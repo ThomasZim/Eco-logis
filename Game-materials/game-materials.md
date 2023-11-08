@@ -31,7 +31,7 @@ The liste of objects can be found in the ```electro_menagers.xlsx``` file.
 ### Actions
 - Change the temperature : +/- confort +/-bills
 - Check the electrical panel : info about consumption, get back on track
-- lauch a machine (washing machine or fryer) : electrical consumption
+- lauch a machine (washing machine or dryer) : electrical consumption
 
 ## First bathroom (1st floor)
 ### Materials 
