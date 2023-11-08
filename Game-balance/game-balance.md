@@ -1,6 +1,6 @@
-## Jauge management
+## Equilibrage
 
-### Personne
+### Bonheur
 
 + Faim
 + Soif
@@ -9,7 +9,7 @@
 + Hygiène
 + Plaisir (Activité)
 
-### Financière
+### Finance
 
 + Capitale
 + Revenu
@@ -19,4 +19,6 @@
 
 ### Ecologie
 
-???
++ ???
++ ???
++ ???

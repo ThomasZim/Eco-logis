@@ -103,7 +103,7 @@ for i in range(hours.shape[0]):
 
 
 # Plot Personne variables
-plt.figure(figsize=(12, 8))
+plt.figure(1,figsize=(12, 8))
 plt.title("Personne variables over time")
 plt.plot(hours, faim, label="Faim")
 plt.plot(hours, soif, label="Soif")
@@ -115,10 +115,10 @@ plt.xlabel("Hours")
 plt.ylabel("Value")
 plt.legend()
 plt.grid(True)
-plt.show()
+#plt.show()
 
 # Plot Financial variables
-plt.figure(figsize=(12, 8))
+plt.figure(2,figsize=(12, 8))
 plt.title("Financial variables over time")
 plt.plot(hours, capitale, label="Capitale")
 plt.plot(hours, revenu, label="Revenu")
@@ -129,10 +129,10 @@ plt.xlabel("Hours")
 plt.ylabel("Value")
 plt.legend()
 plt.grid(True)
-plt.show()
+#plt.show()
 
 # Plot WellBeing variable
-plt.figure(figsize=(12, 8))
+plt.figure(3,figsize=(12, 8))
 plt.title("WellBeing over time")
 plt.plot(hours, well_being, label="WellBeing", color='purple')
 plt.xlabel("Hours")
