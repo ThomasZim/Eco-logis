@@ -125,3 +125,16 @@ The liste of objects can be found in the ```electro_menagers.xlsx``` file.
 - toys
 ### Actions
 - Tell children to play
+
+# What is not available in unity asset store and needs to be done in blender:
+Chauffage pompe à chaleur
+Chauffage gaz
+Chauffage électrique
+Chauffage mazout
+Cheminée
+borne de recharge pour voiture électrique
+Tableau électrique
+Séche-linge
+Appareil à raclette
+Piscine
+Douche
