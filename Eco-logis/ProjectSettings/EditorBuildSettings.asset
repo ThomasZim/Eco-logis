@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/TransiScene1.unity
+  - enabled: 0
+    path: Assets/Scenes/Tests_Thomas/TransiScene1.unity
     guid: dabd8b4ef01d4ff41ae3aa8984ca7e4e
-  - enabled: 1
-    path: Assets/Scenes/TransiScene2.unity
+  - enabled: 0
+    path: Assets/Scenes/Tests_Thomas/TransiScene2.unity
     guid: c9db3c8b817d2cb418c46719fd145c80
+  - enabled: 1
+    path: Assets/Scenes/Tests_Thomas/CharacterMovementAndInteraction1.unity
+    guid: e01ec0ea130b0f24f944e8bdcc0e5d9a
+  - enabled: 1
+    path: Assets/Scenes/Tests_Thomas/CharacterMovementAndInteraction2.unity
+    guid: 462b5e24b88f96f4b915702e00d368ec
   m_configObjects: {}
