@@ -78,3 +78,6 @@ Eco-logis/.idea
 Eco-logis/.vsconfig
 
 .DS_Store
+Eco-logis/.vscode/extensions.json
+Eco-logis/.vscode/launch.json
+Eco-logis/.vscode/settings.json
