@@ -554,7 +554,7 @@ MonoBehaviour:
   - {fileID: 1362974697}
   - {fileID: 1519930751}
   - {fileID: 1747078314}
-  moveSpeed: 0.2
+  moveSpeed: 1
 --- !u!1 &1519930747
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldOfViewAngle: 90
   viewDistance: 100
+  middleRayAngle: 10
 --- !u!1 &1532784534
 GameObject:
   m_ObjectHideFlags: 0

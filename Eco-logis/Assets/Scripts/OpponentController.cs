@@ -20,10 +20,12 @@ public class OpponentController : MonoBehaviour
         if (playerInSight)
         {
             // Player has opponent in sight, don't allow the opponent to enter red squares
+            // pattern of movement not causing troubles 
             SwitchTarget();
             return;
         }
         else{
+            //pattern of movement causing troubles
             MoveToTarget();
         }
 
