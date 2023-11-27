@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
             GameObject opponent = GameObject.FindGameObjectWithTag("Opponent");
             if (opponent != null)
             {
-                opponent.GetComponent<OpponentController>().SetPlayerInSight(true);
+                opponent.GetComponent<kidBehaviour>().SetPlayerInSight(true);
             }
         }
         /*if (hitForward.collider != null && hitForward.collider.CompareTag("Opponent"))
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
             GameObject opponent = GameObject.FindGameObjectWithTag("Opponent");
             if (opponent != null)
             {
-                opponent.GetComponent<OpponentController>().SetPlayerInSight(false);
+                opponent.GetComponent<kidBehaviour>().SetPlayerInSight(false);
             }
         }
     }
