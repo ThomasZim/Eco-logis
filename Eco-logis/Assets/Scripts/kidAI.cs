@@ -9,6 +9,7 @@ public class kidBehaviour : MonoBehaviour
     public float speed = 2f;
     int index = 0;
     //bool notAtDestination = false;
+    private bool playerInSight = false;
 
     void Start()
     {
@@ -18,9 +19,15 @@ public class kidBehaviour : MonoBehaviour
 
     void Update()
     {
+
         Vector3 destination = wayPoints[index].transform.position;
-        Vector3 newPos = Vector3.MoveTowards(transform.position, wayPoints[index].transform.position, speed * Time.deltaTime);
-        transform.position = newPos;
+        
+        if(playerInSight == false)
+        {
+            Vector3 newPos = Vector3.MoveTowards(transform.position, wayPoints[index].transform.position, speed * Time.deltaTime);
+            transform.position = newPos;
+        }
+        
         float distance = Vector3.Distance(transform.position, destination);
         if(distance <= 0.05f){
             ChangeIndex();
@@ -47,5 +54,15 @@ public class kidBehaviour : MonoBehaviour
     {
         index = Random.Range(0, wayPoints.Count);
     }
+
+     // Called by PlayerController when the player has the opponent in vision
+    public void SetPlayerInSight(bool inSight)
+    {
+        playerInSight = inSight;
+        Debug.Log("Is the kid in view :" + playerInSight);
+
+    }
+
+    
 }
 
