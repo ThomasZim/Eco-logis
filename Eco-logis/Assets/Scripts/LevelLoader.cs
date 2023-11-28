@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,18 +11,33 @@ public class LevelLoader : MonoBehaviour
     
     public float transitionTime = 1f;
     
+    void Start()
+    {
+        // Get character
+        GameObject character = GameObject.Find("MaleFreeSimpleMovement1");
+        // First floor
+        if (SceneManager.GetActiveScene().name.Equals("1st_floor"))
+        {
+            Debug.Log("StaticSceneTransi.PreviousScene.name: " + StaticSceneTransi.PreviousSceneName);
+            if (StaticSceneTransi.PreviousSceneName.Equals("Office"))
+            {
+                character.transform.position = new Vector3(1.174f, 0f, -1.132f);
+                character.transform.rotation = Quaternion.Euler(0, 90, 0);
+            }
+        }
+    }
+    
     // Update is called once per frame
     void Update()
     {
 
     }
-
-    public void LoadNextLevel()
+    public void LoadNextRoom(Scene actualScene)
     {
-        StartCoroutine(LoadLevel((SceneManager.GetActiveScene().buildIndex + 1) % 2));
+        StartCoroutine(LoadLevel(GetNextSceneName(actualScene)));
     }
     
-    IEnumerator LoadLevel(int levelIndex)
+    IEnumerator LoadLevel(string sceneName)
     {
         //Play animation
         transition.SetTrigger("Start");
@@ -30,6 +46,23 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
         
         //Load scene
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(sceneName);
+    }
+    
+    private String GetNextSceneName(Scene actualScene)
+    {
+        Debug.Log(actualScene.name);
+        if (!actualScene.name.Equals("1st_floor") && !actualScene.name.Equals("2nd_floor"))
+        {
+            if(actualScene.name.Equals("Bathroom_1st") || actualScene.name.Equals("Office") || actualScene.name.Equals("Garage"))
+            {
+                return "1st_floor";
+            }
+        }
+        else
+        {
+            return "Room1";
+        }
+        return "null";
     }
 }

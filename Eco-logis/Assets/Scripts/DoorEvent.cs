@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorEvent : MonoBehaviour
 {
@@ -26,7 +27,9 @@ public class DoorEvent : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             LevelLoader levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
-            levelLoader.LoadNextLevel();
+            levelLoader.LoadNextRoom(SceneManager.GetActiveScene());
+            StaticSceneTransi.PreviousSceneName = SceneManager.GetActiveScene().name;
+            Debug.Log(StaticSceneTransi.PreviousSceneName);
         }
     }
 }

@@ -11,10 +11,34 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Tests_Thomas/TransiScene2.unity
     guid: c9db3c8b817d2cb418c46719fd145c80
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tests_Thomas/CharacterMovementAndInteraction1.unity
     guid: e01ec0ea130b0f24f944e8bdcc0e5d9a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tests_Thomas/CharacterMovementAndInteraction2.unity
     guid: 462b5e24b88f96f4b915702e00d368ec
+  - enabled: 1
+    path: Assets/Scenes/1st_floor.unity
+    guid: 202e0f0d8cb5a3c4c93efadb7b56e25e
+  - enabled: 1
+    path: Assets/Scenes/Bathroom_1st.unity
+    guid: 53eb94580706d8f47ab57ee3bee2b84c
+  - enabled: 1
+    path: Assets/Scenes/2nd_floor.unity
+    guid: c2790b2e371cb174fa907e8b83865689
+  - enabled: 1
+    path: Assets/Scenes/Adult_bedroom.unity
+    guid: f44495fdc50aa784a92064bc8a149109
+  - enabled: 1
+    path: Assets/Scenes/Bathroom_2nd.unity
+    guid: 6a6a3541c4b5a4d4593d63b76661b61b
+  - enabled: 1
+    path: Assets/Scenes/Child_room.unity
+    guid: 4aaa9f1844d319d409fd3a9f6e109f5b
+  - enabled: 1
+    path: Assets/Scenes/Garage.unity
+    guid: 7ead3f7850f5a9d4da41deb46df126ba
+  - enabled: 1
+    path: Assets/Scenes/Office.unity
+    guid: acaac31dccb35554b9548b3e425616f9
   m_configObjects: {}
