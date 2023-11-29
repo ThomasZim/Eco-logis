@@ -7,4 +7,8 @@ using UnityEngine.SceneManagement;
 public static class StaticSceneTransi
 {
     public static String PreviousSceneName { get; set; }
+    static StaticSceneTransi()
+    {
+        PreviousSceneName = "null";
+    }
 }

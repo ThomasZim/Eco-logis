@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,6 +11,8 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     
     public float transitionTime = 1f;
+
+    
     
     void Start()
     {
@@ -32,9 +35,22 @@ public class LevelLoader : MonoBehaviour
     {
 
     }
-    public void LoadNextRoom(Scene actualScene)
+    public void LoadNextRoom(Scene actualScene, string nextScene)
     {
-        StartCoroutine(LoadLevel(GetNextSceneName(actualScene)));
+        if (!actualScene.name.Equals("1st_floor") && !actualScene.name.Equals("2nd_floor"))
+        {
+            if(actualScene.name.Equals("Bathroom_1st") || actualScene.name.Equals("Office") || actualScene.name.Equals("Garage"))
+            {
+                Debug.Log("Loading next scene: 1st_floor");
+                StartCoroutine(LoadLevel("1st_floor"));
+            }
+        }
+        else if (actualScene.name.Equals("1st_floor"))
+        {
+            Debug.Log("Loading next scene: " + nextScene);
+            StartCoroutine(LoadLevel(nextScene));
+        }
+        
     }
     
     IEnumerator LoadLevel(string sceneName)
@@ -45,24 +61,8 @@ public class LevelLoader : MonoBehaviour
         //Wait
         yield return new WaitForSeconds(transitionTime);
         
+        Debug.Log("Loading scene: " + sceneName);
         //Load scene
         SceneManager.LoadScene(sceneName);
-    }
-    
-    private String GetNextSceneName(Scene actualScene)
-    {
-        Debug.Log(actualScene.name);
-        if (!actualScene.name.Equals("1st_floor") && !actualScene.name.Equals("2nd_floor"))
-        {
-            if(actualScene.name.Equals("Bathroom_1st") || actualScene.name.Equals("Office") || actualScene.name.Equals("Garage"))
-            {
-                return "1st_floor";
-            }
-        }
-        else
-        {
-            return "Room1";
-        }
-        return "null";
     }
 }
