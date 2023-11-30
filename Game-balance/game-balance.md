@@ -19,6 +19,6 @@
 
 ### Ecologie
 
-+ ???
-+ ???
-+ ???
++ 
++ Energie consommée
++ Matériel installé
