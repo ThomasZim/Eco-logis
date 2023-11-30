@@ -22,18 +22,65 @@ public class LevelLoader : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Equals("1st_floor"))
         {
             Debug.Log("StaticSceneTransi.PreviousScene.name: " + StaticSceneTransi.PreviousSceneName);
-            if (StaticSceneTransi.PreviousSceneName.Equals("Office"))
+            if(StaticSceneTransi.PreviousSceneName.Equals("Office"))
             {
                 character.transform.position = new Vector3(1.174f, 0f, -1.132f);
                 character.transform.rotation = Quaternion.Euler(0, 90, 0);
             }
+            if(StaticSceneTransi.PreviousSceneName.Equals("Garage"))
+            {
+                character.transform.position = new Vector3(-0.922f, 0f, 4.438f);
+                character.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            if(StaticSceneTransi.PreviousSceneName.Equals("Bathroom_1st"))
+            {
+                character.transform.position = new Vector3(2.984f, 0f, 1.82f);
+                character.transform.rotation = Quaternion.Euler(0, -90, 0);
+            }
+            if(StaticSceneTransi.PreviousSceneName.Equals("2nd_floor"))
+            {
+                character.transform.position = new Vector3(6.86f, 0f, -5.92f);
+                character.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
         }
+        // Second floor
+        if (SceneManager.GetActiveScene().name.Equals("2nd_floor"))
+        {
+            if(StaticSceneTransi.PreviousSceneName.Equals("1st_floor"))
+            {
+                character.transform.position = new Vector3(1.9f, 0f, -1.649f);
+                character.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            if(StaticSceneTransi.PreviousSceneName.Equals("Child_room"))
+            {
+                character.transform.position = new Vector3(1.429f, 0f, 4.438f);
+                character.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            if(StaticSceneTransi.PreviousSceneName.Equals("Adult_bedroom"))
+            {
+                character.transform.position = new Vector3(-2.29f, 0f, 4.384f);
+                character.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            if(StaticSceneTransi.PreviousSceneName.Equals("Bathroom_2nd"))
+            {
+                character.transform.position = new Vector3(-5.24f, 0f, 1.317f);
+                character.transform.rotation = Quaternion.Euler(0, 90, 0);
+            }
+        }
+
+
+
     }
     
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKey(KeyCode.R))
+        {
+            // Reset scene
+            Debug.Log("Resetting scene");
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name));
+        }
     }
     public void LoadNextRoom(Scene actualScene, string nextScene)
     {
@@ -44,8 +91,23 @@ public class LevelLoader : MonoBehaviour
                 Debug.Log("Loading next scene: 1st_floor");
                 StartCoroutine(LoadLevel("1st_floor"));
             }
+            else if(actualScene.name.Equals("Bathroom_2nd") || actualScene.name.Equals("Adult_bedroom") || actualScene.name.Equals("Child_room"))
+            {
+                Debug.Log("Loading next scene: 2nd_floor");
+                StartCoroutine(LoadLevel("2nd_floor"));
+            }
+            else
+            {
+                Debug.Log("Loading next scene: " + nextScene);
+                StartCoroutine(LoadLevel(nextScene));
+            }
         }
-        else if (actualScene.name.Equals("1st_floor"))
+        else if(actualScene.name.Equals("1st_floor"))
+        {
+            Debug.Log("Loading next scene: " + nextScene);
+            StartCoroutine(LoadLevel(nextScene));
+        }
+        else if(actualScene.name.Equals("2nd_floor"))
         {
             Debug.Log("Loading next scene: " + nextScene);
             StartCoroutine(LoadLevel(nextScene));
