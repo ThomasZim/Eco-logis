@@ -16,9 +16,11 @@ public class kidBehaviour : MonoBehaviour
     private string currentLocation = "1st_floor";
     public float respawnChance= 0.1f;
 
+    private float delayTimer = 0f;
+    private float delayDuration = 2f;
+    private GameObject spawnPoint;
     // TODO : make the logic work so that room changing is more realistic (no teleportation between rooms)
-    // TODO : make the way points every where
-
+    // Current bug : when kid respawn he is also in the room from which he came
     void Start()
     {
         Debug.Log("SameRoom before: " + sameRoom);
@@ -28,11 +30,12 @@ public class kidBehaviour : MonoBehaviour
         Debug.Log("SameRoom after: " + sameRoom);
         if (sameRoom == false)
         {
-            InvokeRepeating("Respawn", 0f, 2f);
+
+            InvokeRepeating("auto_roomChange", 0f, 2f);
         }
         else
         {
-            CancelInvoke("Respawn");
+            CancelInvoke("auto_roomChange");
         }
         gameObject.SetActive(sameRoom);
         //currentLocation = PlayerPrefs.GetString("currentLocation", currentLocation);
@@ -55,10 +58,21 @@ public class kidBehaviour : MonoBehaviour
         // Condition to make the kid change room 
         if(distance <= 0.05f && sameRoom == true && !wayPoints[index].gameObject.name.Contains("Sphere"))
         {
-            gameObject.SetActive(false);
-            currentLocation = wayPoints[index].gameObject.name;
-            PlayerPrefs.SetString("currentLocation", currentLocation);
-            sameRoom = false;
+
+            // Increment the timer
+            delayTimer += Time.deltaTime;
+
+            // Check if the delay has been reached
+            if (delayTimer >= delayDuration)
+            {
+                gameObject.SetActive(false);
+                currentLocation = wayPoints[index].gameObject.name;
+                PlayerPrefs.SetString("currentLocation", currentLocation);
+                sameRoom = false;
+                // Reset the timer
+                delayTimer = 0f;
+            }
+            
         } 
         //Condition to make the kid change destination in the same room
         else if(distance <= 0.05f){
@@ -67,25 +81,66 @@ public class kidBehaviour : MonoBehaviour
         
         if (sameRoom == false)
         {
-            InvokeRepeating("Respawn", 0f, 2f);
+            InvokeRepeating("auto_roomChange", 0f, 2f);
         }
         else
         {
-            CancelInvoke("Respawn");
+            CancelInvoke("auto_roomChange");
         }
         
     }
     
-    void Respawn()
+    void auto_roomChange()
     {
         float randomValue = Random.value;
         Debug.Log("Random value: " + randomValue);
+        
+        // condition to move room 
         if (randomValue > (1-respawnChance))
         {
-            gameObject.SetActive(true);
-            sameRoom = true;
-            transform.position = wayPoints[index].transform.position;
-            ChangeIndex();
+
+            if(currentLocation.Equals("1st_floor"))
+            {
+                string[] possibleRooms = {"Garage", "Office", "Bathroom_1st", "2nd_floor "};
+                currentLocation = possibleRooms[Random.Range(0, possibleRooms.Length)];    
+                PlayerPrefs.SetString("currentLocation", currentLocation);            
+            }
+            else if(currentLocation.Equals("Garage") || currentLocation.Equals("Office") || currentLocation.Equals("Bathroom_1st"))
+            {
+                currentLocation = "1st_floor";
+                PlayerPrefs.SetString("currentLocation", currentLocation);
+            }
+            else if(currentLocation.Equals("2nd_floor"))
+            {
+                string[] possibleRooms = {"Bathroom_2nd", "Child_room", "1st_floor"};
+                currentLocation = possibleRooms[Random.Range(0, possibleRooms.Length)];    
+                PlayerPrefs.SetString("currentLocation", currentLocation);            
+            }
+            else if(currentLocation.Equals("Bathroom_2nd") || currentLocation.Equals("Child_Room"))
+            {
+                currentLocation = "2nd_floor";
+                PlayerPrefs.SetString("currentLocation", currentLocation);
+            }
+            Debug.Log("Kid now in room: " + currentLocation + currentLocation.Equals(SceneManager.GetActiveScene().name));
+            
+            
+            if(currentLocation.Equals(SceneManager.GetActiveScene().name))
+            {
+                Debug.Log("Kid should appear");
+                gameObject.SetActive(true);
+                sameRoom = true;
+                for(int i = 0; i < wayPoints.Count; i++)
+                {
+                    if (wayPoints[i].gameObject.name.Equals(currentLocation))
+                    {
+                        spawnPoint = wayPoints[i];
+                        transform.position = spawnPoint.transform.position;
+                    }
+                }
+                ChangeIndex();
+                currentLocation = SceneManager.GetActiveScene().name;
+                PlayerPrefs.SetString("currentLocation", currentLocation);
+            }
         }
         
         
