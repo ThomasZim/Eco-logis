@@ -21,9 +21,12 @@ public class kidBehaviour : MonoBehaviour
     private float delayDuration = 2f;
     private GameObject spawnPoint;
 
+    Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
+        animator.SetBool("IsWalking", true);
 
         if (!PlayerPrefs.HasKey("kidFirstLaunch"))
         {
@@ -56,17 +59,18 @@ public class kidBehaviour : MonoBehaviour
     void Update()
     {
         //sameRoom = SceneManager.GetActiveScene().name.Equals(currentLocation);
-        Vector3 destination = wayPoints[index].transform.position;
+        Vector3 destination = new Vector3(wayPoints[index].transform.position.x, 0f, wayPoints[index].transform.position.z);
         //Update kid position and make it move if it is not seen by the player
         
         if(playerInSight == false && sameRoom == true)
         {   
+            animator.SetBool("IsWalking", true);
             // Calculate the rotation towards the destination
             Quaternion targetRotation = Quaternion.LookRotation(destination - transform.position);
             // Smoothly rotate towards the destination
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
-            Vector3 newPos = Vector3.MoveTowards(transform.position, wayPoints[index].transform.position, speed * Time.deltaTime);
+            Vector3 newPos = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
             transform.position = newPos;
         }
 
@@ -74,7 +78,7 @@ public class kidBehaviour : MonoBehaviour
         // Condition to make the kid change room 
         if(distance <= 0.05f && sameRoom == true && !wayPoints[index].gameObject.name.Contains("Sphere"))
         {
-
+            animator.SetBool("IsWalking", false);
             // Increment the timer
             delayTimer += Time.deltaTime;
 
@@ -92,15 +96,18 @@ public class kidBehaviour : MonoBehaviour
         } 
         //Condition to make the kid change destination in the same room
         else if(distance <= 0.05f){
+             animator.SetBool("IsWalking", false);
              // Increment the timer
             delayTimer += Time.deltaTime;
             
             if (delayTimer >= delayDuration)
             {   
-                Debug.Log("Kid changed destination");
                 ChangeIndex();
                 delayTimer = 0f;
+                animator.SetBool("IsWalking", true);
+
             }
+        
         }
         
         if (sameRoom == false)
@@ -160,6 +167,7 @@ public class kidBehaviour : MonoBehaviour
                 }
                 
                 gameObject.SetActive(true);
+                animator.SetBool("IsWalking", false);
                 ChangeIndex();
                 currentLocation = SceneManager.GetActiveScene().name;
                 PlayerPrefs.SetString("currentLocation", currentLocation);
@@ -177,9 +185,13 @@ public class kidBehaviour : MonoBehaviour
         if (wayPoints.Contains(other.gameObject) == false && other.gameObject.name.Contains("Floor") == false)
         {
             //change index immediately if random object
+            Debug.Log("Collision with :" + other.gameObject.name);
             ChangeIndex();
-            // Debug.Log("Collision with: " + other.gameObject.name);
             // Debug.Log(SceneManager.GetActiveScene().name);
+        }
+        if (wayPoints.Contains(other.gameObject)) 
+        {
+            animator.SetBool("IsWalking", false);
         }
         
     }

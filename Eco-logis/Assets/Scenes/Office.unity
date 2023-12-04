@@ -1026,7 +1026,7 @@ Transform:
   m_GameObject: {fileID: 334442226}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.917, y: 0, z: 1.319}
+  m_LocalPosition: {x: 2.75, y: 0, z: 1.319}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3184,6 +3184,7 @@ MonoBehaviour:
   - {fileID: 2070578487}
   - {fileID: 334442226}
   speed: 2
+  rotationSpeed: 4
   respawnChance: 0.1
 --- !u!1001 &1319165882
 PrefabInstance:
@@ -5224,7 +5225,7 @@ Transform:
   m_GameObject: {fileID: 2070578487}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.72, y: 0, z: 1.29}
+  m_LocalPosition: {x: -1.45, y: 0, z: 1.18}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
