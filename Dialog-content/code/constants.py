@@ -10,12 +10,12 @@ RECT_W, RECT_H = 745, 437
 X_OBJECT, Y_OBJECT = X_CORNER + MARGIN, Y_CORNER + MARGIN
 
 SMALL_IMAGE_SIZE = 60
-LARGE_IMAGE_SIZE = 90
+LARGE_IMAGE_SIZE = 120
 
 NOTES = {"a", "b", "c", "d", "e", "f", "g"}
 
-OBJECTS = ["tv", "printer", "pc", "fridge", "bulb"]
-OBJECT_NAMES = ["TV", "Printer", "PC", "Fridge", "Light bulb"]
+OBJECTS = ["tv", "printer", "pc", "fridge", "bulb", "air_conditioner"]
+OBJECT_NAMES = ["TV", "Printer", "PC", "Fridge", "Light bulb", "Air conditioner"]
 
 UNIT = "kWh"
 
