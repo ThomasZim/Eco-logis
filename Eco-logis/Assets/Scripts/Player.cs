@@ -202,9 +202,9 @@ public class Player : MonoBehaviour
         }
 
         Gizmos.color = Color.green;
-        foreach (var obj in Objects){
-            Gizmos.DrawSphere(obj.transform.position, 0.2f);
-        }
+        //foreach (var obj in Objects){
+            //Gizmos.DrawSphere(obj.transform.position, 0.2f);
+        //}
 
     }
 

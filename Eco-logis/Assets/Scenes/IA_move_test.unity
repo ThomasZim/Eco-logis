@@ -975,7 +975,13 @@ MonoBehaviour:
   layers:
     serializedVersion: 2
     m_Bits: 1
-  Objects: []
+  Objects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,13 +2252,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531726782}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.20854959, y: -0.4832036, z: 0.3902576, w: -0.75546044}
   m_LocalPosition: {x: -2.29, y: 0.79, z: 2.33}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 176.443, y: 243.455, z: 487.56}
 --- !u!1001 &1537483044
 PrefabInstance:
   m_ObjectHideFlags: 0
