@@ -17,3 +17,7 @@ NOTES = {"a", "b", "c", "d", "e", "f", "g"}
 OBJECTS = ["tv", "printer", "pc", "fridge", "bulb"]
 OBJECT_NAMES = ["TV", "Printer", "PC", "Fridge", "Light bulb"]
 
+UNIT = "kWh"
+
+EXCEL_FILE_PATH = '/Users/clarisse/Documents/MSE/Fall_2023/GT/Projet/Eco-logis/Dialog-content/code/srcs/Effet_Core_Mecanics.xlsx'
+

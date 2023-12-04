@@ -1,5 +1,8 @@
 from PIL import Image, ImageDraw, ImageFont
-from constants import MARGIN, X_CORNER, Y_CORNER, X_OBJECT, Y_OBJECT, LARGE_IMAGE_SIZE, SMALL_IMAGE_SIZE, OBJECT_NAMES, FONT_SIZE, OBJ_SPACE, WIDTH
+from constants import MARGIN, X_CORNER, Y_CORNER, X_OBJECT, Y_OBJECT, LARGE_IMAGE_SIZE, SMALL_IMAGE_SIZE, OBJECT_NAMES, FONT_SIZE, WIDTH, UNIT, OBJECTS
+
+# import pandas lib as pd
+import pandas as pd
 
 # Draw a rounded rectangle with border radius
 def draw_rounded_rectangle(draw, width, height, border_radius):
@@ -75,8 +78,29 @@ def add_action_info(draw, image, is_on):
     draw.text((x, y), text, font=font, fill=font_color, align ="right")
 
 # Add the energy info to the image
-def add_energy_info(image):
+def add_energy_info(draw, image, object_index, note, excel_file):
     energy_image_path = "images/energy.png"
-    position = (X_OBJECT + (LARGE_IMAGE_SIZE - SMALL_IMAGE_SIZE) // 2, Y_OBJECT + LARGE_IMAGE_SIZE + MARGIN + SMALL_IMAGE_SIZE + MARGIN)
+    position = (X_OBJECT + (LARGE_IMAGE_SIZE - SMALL_IMAGE_SIZE) // 2,
+                Y_OBJECT + LARGE_IMAGE_SIZE + MARGIN + SMALL_IMAGE_SIZE + MARGIN)
     add_image(image, energy_image_path, position, SMALL_IMAGE_SIZE)
+
+    try:
+        bulb_value = excel_file.loc[(excel_file["Objet"] == OBJECTS[object_index]) & (excel_file["Note"] == note.upper()), "Energie"].values[0]
+    except:
+        bulb_value = 0
+        return False
+
+    # Add text to the image
+    text = str(bulb_value) + " " + UNIT
+    font_color = "#FFFFFF"  # RGB color code for white text
+    font = ImageFont.truetype(r'/Users/clarisse/Documents/Roboto/Roboto-Regular.ttf', FONT_SIZE)  
+
+    # Calculate the position to center the text
+    text_bbox = draw.textbbox((0, 0), text, font=font)
+    x = WIDTH - MARGIN - text_bbox[2] - text_bbox[0]
+    y = Y_OBJECT + SMALL_IMAGE_SIZE + MARGIN + SMALL_IMAGE_SIZE + MARGIN + FONT_SIZE // 2
+
+    # Draw the text on the image using the defined font_size and text_bbox
+    draw.text((x, y), text, font=font, fill=font_color, align ="right")
+    return True
     
