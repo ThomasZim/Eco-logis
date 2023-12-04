@@ -1,44 +1,16 @@
-from PIL import Image, ImageDraw, ImageColor
-from constants import MARGIN, X_CORNER, Y_CORNER, RECT_W, RECT_H, X_OBJECT, Y_OBJECT, NOTES, OBJECTS, WIDTH, HEIGHT
+from PIL import Image, ImageDraw, ImageFont
+from constants import RECT_W, RECT_H, NOTES, OBJECTS, WIDTH, HEIGHT, OBJECT_NAMES
+from add_images import draw_rounded_rectangle, add_note, add_object, add_energy_info, add_action_info
 
 # import pandas lib as pd
 import pandas as pd
  
 # read by default 1st sheet of an excel file
-dataframe1 = pd.read_excel('book2.xlsx')
+#dataframe1 = pd.read_excel('book2.xlsx')
  
-print(dataframe1)
+#print(dataframe1)
 
-def draw_rounded_rectangle(draw, width, height, border_radius):
-    draw.rounded_rectangle(
-        [(X_CORNER, Y_CORNER), (width, height)],
-        fill="#A5BEDC90",  # Rectangle color
-        outline=None,
-        radius=border_radius,
-        width=0,
-    )
-
-def add_note(image, name):
-    # Open the PNG image
-    logo_image = Image.open("images/notes/" + name + ".png")
-
-    # Calculate the position to paste the logo image
-    logo_position = (X_CORNER - logo_image.width // 2, Y_CORNER - logo_image.height // 2)
-
-    # Paste the logo image at the calculated position
-    image.paste(logo_image, logo_position, logo_image)
-
-def add_object(image, name):
-    # Open the PNG image
-    logo_image = Image.open("images/objects/" + name + ".png")
-
-    # Calculate the position to paste the logo image
-    logo_position = (X_OBJECT, Y_OBJECT)
-
-    # Paste the logo image at the calculated position
-    image.paste(logo_image, logo_position, logo_image)
-
-def create_image(note, obj):
+def create_image(note, obj, object_index, is_on):
     # Create a new image with RGBA mode and transparent background
     image = Image.new("RGBA", (WIDTH, HEIGHT))
 
@@ -51,12 +23,17 @@ def create_image(note, obj):
 
     # Add the logo to the image
     add_note(image, note)
-    add_object(image, obj)
+    add_object(draw, image, obj, object_index)
+    add_action_info(draw, image, is_on)
+    add_energy_info(image)
 
     # Save the image
-    image.save("output/" + obj + "_" + note + ".png")
+    image.save("output/" + obj + "_" + note + "_" + ("on" if is_on else "off") + ".png")
 
 if __name__ == "__main__":
     for note in NOTES:
+        object_index = 0
         for obj in OBJECTS:
-            create_image(note, obj)
+            create_image(note, obj, object_index, True)
+            create_image(note, obj, object_index, False)
+            object_index += 1

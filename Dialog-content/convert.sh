@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set the input and output directories
-SVG_DIRECTORY="images/objects_svg"
-PNG_DIRECTORY="images/objects"
+SVG_DIRECTORY="code/images"
+PNG_DIRECTORY="code/images"
 
 # Use find to locate all SVG files in the directory
 find "$SVG_DIRECTORY" -name "*.svg" -type f | while read -r svg_file; do
