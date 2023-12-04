@@ -8,6 +8,7 @@ public class kidBehaviour : MonoBehaviour
 {
     public List<GameObject> wayPoints;
     public float speed = 2f;
+    public float rotationSpeed = 4f;
     int index;
     //bool notAtDestination = false;
     private bool playerInSight = false;
@@ -57,8 +58,14 @@ public class kidBehaviour : MonoBehaviour
         //sameRoom = SceneManager.GetActiveScene().name.Equals(currentLocation);
         Vector3 destination = wayPoints[index].transform.position;
         //Update kid position and make it move if it is not seen by the player
+        
         if(playerInSight == false && sameRoom == true)
-        {
+        {   
+            // Calculate the rotation towards the destination
+            Quaternion targetRotation = Quaternion.LookRotation(destination - transform.position);
+            // Smoothly rotate towards the destination
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+
             Vector3 newPos = Vector3.MoveTowards(transform.position, wayPoints[index].transform.position, speed * Time.deltaTime);
             transform.position = newPos;
         }
@@ -85,7 +92,15 @@ public class kidBehaviour : MonoBehaviour
         } 
         //Condition to make the kid change destination in the same room
         else if(distance <= 0.05f){
-            ChangeIndex();
+             // Increment the timer
+            delayTimer += Time.deltaTime;
+            
+            if (delayTimer >= delayDuration)
+            {   
+                Debug.Log("Kid changed destination");
+                ChangeIndex();
+                delayTimer = 0f;
+            }
         }
         
         if (sameRoom == false)
