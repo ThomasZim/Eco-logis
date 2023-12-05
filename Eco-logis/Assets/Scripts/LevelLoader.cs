@@ -67,9 +67,15 @@ public class LevelLoader : MonoBehaviour
                 character.transform.rotation = Quaternion.Euler(0, 90, 0);
             }
         }
-
-
-
+        // Office
+        if (SceneManager.GetActiveScene().name.Equals("Office"))
+        {
+            if(StaticSceneTransi.PreviousSceneName.Equals("Computer_menu"))
+            {
+                character.transform.position = new Vector3(1.41f, 0f, 3.36f);
+                character.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
     }
     
     // Update is called once per frame
@@ -112,7 +118,11 @@ public class LevelLoader : MonoBehaviour
             Debug.Log("Loading next scene: " + nextScene);
             StartCoroutine(LoadLevel(nextScene));
         }
-        
+    }
+    
+    public void LoadScene(string nextScene)
+    {
+        StartCoroutine(LoadLevel(nextScene));
     }
     
     IEnumerator LoadLevel(string sceneName)
