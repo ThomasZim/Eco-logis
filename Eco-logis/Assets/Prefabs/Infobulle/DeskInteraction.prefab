@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InfoOn: {fileID: 7714494391963673398}
   InfoOff: {fileID: 7454491797948849092}
-  character: {fileID: 1824340380413090, guid: 0e74cf81e6fd82546b4797f71ceffb81, type: 3}
+  character: {fileID: 0}
   interactionCode: 
 --- !u!1 &4754495429147421712
 GameObject:

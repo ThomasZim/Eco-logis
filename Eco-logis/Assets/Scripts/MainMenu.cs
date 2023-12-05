@@ -6,10 +6,9 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    private LevelLoader levelLoader;
     void Start()
     {
-        levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+        
     }
 
     // Update is called once per frame
