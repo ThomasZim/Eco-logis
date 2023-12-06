@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
+
     void Start()
-    {
-        
+    { 
+       
     }
 
     // Update is called once per frame
@@ -17,9 +19,24 @@ public class MainMenu : MonoBehaviour
         
     }
     
-    public void quitMenu()
+    public void LaunchGame()
     {
-        SceneManager.LoadScene("Office");
-        StaticSceneTransi.PreviousSceneName = "Computer_menu";
+        Debug.Log("Launching game");
+        if (StaticSceneTransi.PreviousSceneName.Equals("null"))
+        {
+            SceneManager.LoadScene("1st_floor");
+        }
+        else
+        {
+            Debug.Log(StaticSceneTransi.PreviousSceneName);
+            SceneManager.LoadScene(StaticSceneTransi.PreviousSceneName);
+        }
     }
+    
+    public void QuitGame()
+    {
+        Debug.Log("Quitting game");
+        Application.Quit();
+    }
+    
 }
