@@ -87,6 +87,7 @@ def add_energy_info(draw, image, object_index, note, excel_file):
 
     try:
         energy = excel_file.loc[(excel_file["Objet"] == OBJECTS[object_index]) & (excel_file["Note"] == note.upper()), "Energie"].values[0]
+        energy = float(format(energy, '.2f'))
         unit = excel_file.loc[(excel_file["Objet"] == OBJECTS[object_index]) & (excel_file["Note"] == note.upper()), "Unité"].values[0]
         if unit == "0":
             unit = UNIT
