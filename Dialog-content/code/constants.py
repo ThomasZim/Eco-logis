@@ -14,8 +14,8 @@ LARGE_IMAGE_SIZE = 120
 
 NOTES = {"a", "b", "c", "d", "e", "f", "g"}
 
-OBJECTS = ["tv", "printer", "desktop_computer", "refrigerator", "bulb", "air_conditioner", "dishwasher", "oven"]
-OBJECT_NAMES = ["TV", "Printer", "Desktop computer", "Refrigerator", "Light bulb", "Air conditioner", "Dishwasher", "Oven"]
+OBJECTS = ["tv", "printer", "desktop_computer", "refrigerator", "bulb", "air_conditioner", "dishwasher", "oven", "washing_machine"]
+OBJECT_NAMES = ["TV", "Printer", "Desktop computer", "Refrigerator", "Light bulb", "Air conditioner", "Dishwasher", "Oven", "Washing machine"]
 
 UNIT = "kWh"
 
