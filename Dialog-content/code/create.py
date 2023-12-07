@@ -17,14 +17,15 @@ def create_image(note, obj, object_index, is_on, excel_file):
     draw_rounded_rectangle(draw, RECT_W, RECT_H, border_radius)
 
     # Add the logo to the image
-    add_note(image, note)
+    if note != "-":
+        add_note(image, note)
     add_object(draw, image, obj, object_index)
     add_action_info(draw, image, is_on)
     is_success = add_energy_info(draw, image, object_index, note, excel_file)
 
     if is_success:
         # Save the image
-        image.save("output/" + obj + "_" + note + "_" + ("on" if is_on else "off") + ".png")
+        image.save("output/" + obj + "_" + (note + "_" if note != "-" else "") + ("on" if is_on else "off") + ".png")
 
 if __name__ == "__main__":
 
