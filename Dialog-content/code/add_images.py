@@ -86,13 +86,15 @@ def add_energy_info(draw, image, object_index, note, excel_file):
     add_image(image, energy_image_path, position, SMALL_IMAGE_SIZE)
 
     try:
-        bulb_value = excel_file.loc[(excel_file["Objet"] == OBJECTS[object_index]) & (excel_file["Note"] == note.upper()), "Energie"].values[0]
+        energy = excel_file.loc[(excel_file["Objet"] == OBJECTS[object_index]) & (excel_file["Note"] == note.upper()), "Energie"].values[0]
+        unit = excel_file.loc[(excel_file["Objet"] == OBJECTS[object_index]) & (excel_file["Note"] == note.upper()), "Unité"].values[0]
+        if unit == "0":
+            unit = UNIT
     except:
-        bulb_value = 0
         return False
 
     # Add text to the image
-    text = str(bulb_value) + " " + UNIT
+    text = str(energy) + " " + unit
     font_color = "#FFFFFF"  # RGB color code for white text
     font = ImageFont.truetype(r'/Users/clarisse/Documents/Roboto/Roboto-Regular.ttf', FONT_SIZE)  
 

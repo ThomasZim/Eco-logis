@@ -30,7 +30,6 @@ if __name__ == "__main__":
 
     # read by default 1st sheet of an excel file
     excel_file = pd.read_excel(EXCEL_FILE_PATH, sheet_name="Impact détails")
-    
     for note in NOTES:
         object_index = 0
         for obj in OBJECTS:
