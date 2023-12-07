@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Tests_Thomas/CharacterMovementAndInteraction2.unity
     guid: 462b5e24b88f96f4b915702e00d368ec
   - enabled: 1
+    path: Assets/Scenes/Main_menu.unity
+    guid: d0b3dd59c45d57b448b5bd2ab0e0a733
+  - enabled: 1
     path: Assets/Scenes/1st_floor.unity
     guid: 202e0f0d8cb5a3c4c93efadb7b56e25e
   - enabled: 1
@@ -41,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Office.unity
     guid: acaac31dccb35554b9548b3e425616f9
+  - enabled: 1
+    path: Assets/Scenes/Computer_menu.unity
+    guid: 9c6e82523ab58a54885d6082db3d5e44
   m_configObjects: {}
