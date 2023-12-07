@@ -20,4 +20,4 @@ OBJECT_NAMES = ["TV", "Printer", "PC", "Fridge", "Light bulb", "Air conditioner"
 UNIT = "kWh"
 
 EXCEL_FILE_PATH = '/Users/clarisse/Documents/MSE/Fall_2023/GT/Projet/Eco-logis/Dialog-content/code/srcs/Effet_Core_Mecanics.xlsx'
-
+# EXCEL_FILE_PATH = '/Users/clarisse/Documents/MSE/Fall_2023/GT/Projet/Eco-logis/Game-balance/Effet_Core_Mecanics.xlsx'
