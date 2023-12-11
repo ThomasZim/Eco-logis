@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         RaycastHit hitForward;
     
         bool raycastForward = Physics.Raycast(transform.position, forwardDirection, out hitForward, distance);
-        UpdateLineRenderer(forwardDirection, distance, 0, 1, raycastForward, hitForward);
+        // UpdateLineRenderer(forwardDirection, distance, 0, 1, raycastForward, hitForward);
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float rotationSpeed = 90f; // You can adjust this value
@@ -61,8 +61,9 @@ public class Player : MonoBehaviour
         
         foreach (Collider collider in kidColliders)
         {
+        
             GameObject kidObj = collider.gameObject;
-
+        
             if (kidObj.CompareTag("Kid")){
                 GameObject kid = kidObj;
                 if (IsInSight(kid))
