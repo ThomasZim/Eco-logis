@@ -18,8 +18,8 @@ public class InfoInteractor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InfoTurnOn.enabled = false;
-        InfoTurnOff.enabled = false;
+        //InfoTurnOn.enabled = false;
+        //InfoTurnOff.enabled = false;
         levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
     }
 

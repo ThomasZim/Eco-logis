@@ -10,8 +10,8 @@ public class kidBehaviour : MonoBehaviour
     public float speed = 2f;
     public float rotationSpeed = 4f;
     int index;
-    //bool notAtDestination = false;
-    private bool playerInSight = false;
+
+    private bool canNotMove = false;
     //is the kid in the same room as the player
     private bool sameRoom; 
     private string currentLocation;
@@ -63,7 +63,7 @@ public class kidBehaviour : MonoBehaviour
         Vector3 destination = new Vector3(wayPoints[index].transform.position.x, 0f, wayPoints[index].transform.position.z);
         //Update kid position and make it move if it is not seen by the player
         
-        if(playerInSight == false && sameRoom == true)
+        if(canNotMove == false && sameRoom == true)
         {   
             animator.SetBool("IsWalking", true);
             // Calculate the rotation towards the destination
@@ -73,6 +73,10 @@ public class kidBehaviour : MonoBehaviour
 
             Vector3 newPos = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
             transform.position = newPos;
+        }
+        if(canNotMove == true && sameRoom == true)
+        {
+            animator.SetBool("IsWalking", false);
         }
 
         float distance = Vector3.Distance(transform.position, destination);
@@ -209,7 +213,7 @@ public class kidBehaviour : MonoBehaviour
      // Called by PlayerController when the player has the opponent in vision
     public void SetPlayerInSight(bool inSight)
     {
-        playerInSight = inSight;
+        canNotMove = inSight;
         // Debug.Log("Is the kid in view :" + playerInSight);
     }
 
