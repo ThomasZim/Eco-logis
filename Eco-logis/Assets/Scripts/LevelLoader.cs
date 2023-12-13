@@ -55,6 +55,11 @@ public class LevelLoader : MonoBehaviour
                     character.transform.position = new Vector3(6.86f, 0f, -5.92f);
                     character.transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
+                if (StaticSceneTransi.PreviousSceneName.Equals("buanderie_chauffage"))
+                {
+                    character.transform.position = new Vector3(2.409f, 0f, 4.532289f);
+                    character.transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
             }
 
             // Second floor
@@ -120,7 +125,8 @@ public class LevelLoader : MonoBehaviour
     {
         if (!actualScene.name.Equals("1st_floor") && !actualScene.name.Equals("2nd_floor"))
         {
-            if(actualScene.name.Equals("Bathroom_1st") || actualScene.name.Equals("Office") || actualScene.name.Equals("Garage"))
+            if (actualScene.name.Equals("Bathroom_1st") || actualScene.name.Equals("Office") ||
+                actualScene.name.Equals("Garage") || actualScene.name.Equals("buanderie_chauffage")) 
             {
                 Debug.Log("Loading next scene: 1st_floor");
                 StartCoroutine(LoadLevel("1st_floor"));

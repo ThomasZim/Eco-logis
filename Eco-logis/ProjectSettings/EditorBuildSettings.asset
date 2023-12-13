@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Computer_menu.unity
     guid: 9c6e82523ab58a54885d6082db3d5e44
+  - enabled: 1
+    path: Assets/Scenes/buanderie_chauffage.unity
+    guid: c7edc5713e0a63c4f9428024f86c0244
   m_configObjects: {}
