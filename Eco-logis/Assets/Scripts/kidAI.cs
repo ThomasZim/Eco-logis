@@ -24,7 +24,8 @@ public class kidBehaviour : MonoBehaviour
 
     Animator animator;
     private bool enableAutoChange = false;
-
+    // timer to look at which spawn point the kid have access based on time he has changed room
+    private float distanceTimer = 0f;
 
     void Start()
     {
@@ -40,16 +41,10 @@ public class kidBehaviour : MonoBehaviour
         else
         {
             CancelInvoke("auto_roomChange");
-            for(int i = 0; i < wayPoints.Count; i++)
-            {
-                if (wayPoints[i].gameObject.name.Equals(currentLocation))
-                {
-                    spawnPoint = wayPoints[i];
-                    transform.position = spawnPoint.transform.position;
-                }
-            }
+            distanceTimer = 0f;
+            spawnPoint = kidRoomHandle.get_available_spawn_point(distanceTimer, wayPoints);
+            transform.position = spawnPoint.transform.position;
         }
-
         gameObject.SetActive(sameRoom);
         //currentLocation = PlayerPrefs.GetString("currentLocation", currentLocation);
         index = Random.Range(0, wayPoints.Count);
@@ -133,6 +128,12 @@ public class kidBehaviour : MonoBehaviour
 
     void auto_roomChange()
     {
+        distanceTimer += Time.deltaTime;
+
+
+
+
+
         float randomValue = Random.value;
         // Debug.Log("Random value: " + randomValue);
         // Debug.Log("Respawn chance: " + (1-respawnChance));
@@ -159,23 +160,19 @@ public class kidBehaviour : MonoBehaviour
             {
                 currentLocation = "2nd_floor";
             }
-            
+            string oldLocation = kidRoomHandle.GetCurrentRoom();
             kidRoomHandle.SetCurrentRoom(currentLocation);
 
 
             Debug.Log("Kid changed room and now in : " + currentLocation);
             sameRoom = currentLocation.Equals(SceneManager.GetActiveScene().name);
+
+
             if(sameRoom)
             {
                 Debug.Log("Kid SPAWN");
-                for(int i = 0; i < wayPoints.Count; i++)
-                {
-                    if (wayPoints[i].gameObject.name.Equals(currentLocation))
-                    {
-                        spawnPoint = wayPoints[i];
-                        transform.position = spawnPoint.transform.position;
-                    }
-                }
+                spawnPoint = kidRoomHandle.get_available_spawn_point(distanceTimer, wayPoints);
+                transform.position = spawnPoint.transform.position;
                 
                 gameObject.SetActive(true);
                 animator.SetBool("IsWalking", false);
@@ -217,6 +214,10 @@ public class kidBehaviour : MonoBehaviour
         // Debug.Log("Is the kid in view :" + playerInSight);
     }
 
+    public GameObject GetSpecificWayPoint(string WayPointName)
+    {
+        return wayPoints.Find(waypoint => waypoint.name == WayPointName);
+    }
     
 }
 
