@@ -34,19 +34,19 @@ public class InfoInteractor : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        Debug.Log(CoreMechanics.computerState);
-                        if (CoreMechanics.computerState == false)
+                        Debug.Log(CoreMechanics.computerOfficeState);
+                        if (CoreMechanics.computerOfficeState == false)
                         {
                             SceneManager.LoadScene("Computer_menu");
-                            CoreMechanics.computerState = true;
+                            CoreMechanics.computerOfficeState = true;
                         }
                         else
                         {
-                            CoreMechanics.computerState = false;
+                            CoreMechanics.computerOfficeState = false;
                         }
                     }
 
-                    if (CoreMechanics.computerState)
+                    if (CoreMechanics.computerOfficeState)
                     {
                         InfoTurnOff.enabled = true;
                         InfoTurnOn.enabled = false;
@@ -69,7 +69,7 @@ public class InfoInteractor : MonoBehaviour
         if (other.gameObject == character)
         {
             collision = true;
-            if (CoreMechanics.computerState)
+            if (CoreMechanics.computerOfficeState)
             {
                 InfoTurnOff.enabled = true;
             }
