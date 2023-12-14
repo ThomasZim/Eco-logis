@@ -15,7 +15,7 @@ public class kidBehaviour : MonoBehaviour
     //is the kid in the same room as the player
     private bool sameRoom; 
     private string currentLocation;
-    private static float respawnChance= 0.2f;
+    private static float respawnChance= 0.1f;
 
     private float delayTimer = 0f;
     private float delayDuration = 2f;
@@ -24,8 +24,6 @@ public class kidBehaviour : MonoBehaviour
 
     Animator animator;
     private bool enableAutoChange = false;
-    // timer to look at which spawn point the kid have access based on time he has changed room
-    private float distanceTimer = 0f;
 
     void Start()
     {
@@ -41,9 +39,23 @@ public class kidBehaviour : MonoBehaviour
         else
         {
             CancelInvoke("auto_roomChange");
-            distanceTimer = 0f;
-            spawnPoint = kidRoomHandle.get_available_spawn_point(distanceTimer, wayPoints);
+            //for(int i = 0; i < wayPoints.Count; i++)
+            //{
+            //    if (wayPoints[i].gameObject.name.Equals(currentLocation))
+            //    {
+            //        spawnPoint = wayPoints[i];
+            //        transform.position = spawnPoint.transform.position;
+            //    }
+            //}
+
+            spawnPoint = get_available_spawn_point(kidRoomHandle.get_distance_in_room(), wayPoints);
+            kidRoomHandle.Reset_distance();
             transform.position = spawnPoint.transform.position;
+
+
+
+            // spawnPoint = kidRoomHandle.get_available_spawn_point(distanceTimer, wayPoints);
+            // transform.position = spawnPoint.transform.position;            
         }
         gameObject.SetActive(sameRoom);
         //currentLocation = PlayerPrefs.GetString("currentLocation", currentLocation);
@@ -86,6 +98,7 @@ public class kidBehaviour : MonoBehaviour
             if (delayTimer >= delayDuration)
             {
                 gameObject.SetActive(false);
+                kidRoomHandle.SetOldRoom(currentLocation);
                 currentLocation = wayPoints[index].gameObject.name;
                 kidRoomHandle.SetCurrentRoom(currentLocation);
                 oldLocation = SceneManager.GetActiveScene().name;
@@ -128,11 +141,7 @@ public class kidBehaviour : MonoBehaviour
 
     void auto_roomChange()
     {
-        distanceTimer += Time.deltaTime;
-
-
-
-
+        kidRoomHandle.distance_in_room();
 
         float randomValue = Random.value;
         // Debug.Log("Random value: " + randomValue);
@@ -161,6 +170,7 @@ public class kidBehaviour : MonoBehaviour
                 currentLocation = "2nd_floor";
             }
             string oldLocation = kidRoomHandle.GetCurrentRoom();
+            kidRoomHandle.SetOldRoom(oldLocation);
             kidRoomHandle.SetCurrentRoom(currentLocation);
 
 
@@ -171,9 +181,17 @@ public class kidBehaviour : MonoBehaviour
             if(sameRoom)
             {
                 Debug.Log("Kid SPAWN");
-                spawnPoint = kidRoomHandle.get_available_spawn_point(distanceTimer, wayPoints);
-                transform.position = spawnPoint.transform.position;
                 
+                for(int i = 0; i < wayPoints.Count; i++)
+                {
+                    if (wayPoints[i].gameObject.name.Equals(kidRoomHandle.GetoldRoom()))
+                    {
+                        spawnPoint = wayPoints[i];
+                        transform.position = spawnPoint.transform.position;
+                    }
+                }
+
+
                 gameObject.SetActive(true);
                 animator.SetBool("IsWalking", false);
                 ChangeIndex();
@@ -218,6 +236,63 @@ public class kidBehaviour : MonoBehaviour
     {
         return wayPoints.Find(waypoint => waypoint.name == WayPointName);
     }
+
+    public List<(float,string)> SortWaypointsByDistance(List<GameObject> localWayPoints)
+    {
+        // Create a list to store waypoints of scene where kid is currently in
+        List<GameObject> currentWaypoints = new List<GameObject>();
+        currentWaypoints = localWayPoints;
+        
+        // store specific point closest to the room where kid comes from
+        GameObject originWayPoint = currentWaypoints.Find(waypoint => waypoint.name.Contains(kidRoomHandle.GetoldRoom()));
+        // Calculate and store distances for each waypoint compared to orifinWayPoint
+        
+        List<(float, string)> distances = new List<(float,string)>();
+        
+        foreach (GameObject waypoint in currentWaypoints)
+        {
+            float distance = Vector3.Distance(originWayPoint.transform.position, waypoint.transform.position);
+            string name = waypoint.name;
+            distances.Add((distance, name));
+        }
+
+        // Sort the list based on distance
+        distances.Sort((a, b) => a.Item1.CompareTo(b.Item1));
+        // Make distance correspond to specific way point 
+        
+        return distances;
+    }
+    public GameObject get_available_spawn_point(float number_authorized, List<GameObject> localWayPoints)
+    {
+        // Get current room points
+        List<GameObject> currentPoints = localWayPoints;
+
+        // Get current room points name sorted by distance
+        List<(float, string)> spawnPoints = SortWaypointsByDistance(currentPoints);
+
+        // Create list of spawn points authorized based on the number_authorized
+        List<GameObject> authorizedSpawnPoints = new List<GameObject>();
+        // Iterate through spawnPoints and add to authorizedSpawnPoints based on the number_authorized
+        for (int i = 0; i < number_authorized && i < spawnPoints.Count; i++)
+        {
+            GameObject spawnPoint = currentPoints.Find(point => point.name.Contains(spawnPoints[i].Item2));
+            if (spawnPoint != null)
+            {
+                authorizedSpawnPoints.Add(spawnPoint);
+            }
+        }
+
+        // Return a random authorized spawn point
+        if (authorizedSpawnPoints.Count > 0)
+        {
+            return authorizedSpawnPoints[Random.Range(0, authorizedSpawnPoints.Count)];
+        }
+        else
+        {
+            return null; // No authorized spawn points available
+        }
+    }
+    
     
 }
 
