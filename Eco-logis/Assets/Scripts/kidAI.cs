@@ -143,23 +143,23 @@ public class kidBehaviour : MonoBehaviour
             // Debug.Log("Kid changed room");
             if(currentLocation.Equals("1st_floor"))
             {
-                string[] possibleRooms = {"Garage", "Office", "Bathroom_1st", "2nd_floor"};
+                string[] possibleRooms = {"Garage", "Office", "Bathroom_1st", "2nd_floor", "buanderie_chauffage"};
                 currentLocation = possibleRooms[Random.Range(0, possibleRooms.Length)];    
             }
-            else if(currentLocation.Equals("Garage") || currentLocation.Equals("Office") || currentLocation.Equals("Bathroom_1st"))
+            else if(currentLocation.Equals("Garage") || currentLocation.Equals("Office") || currentLocation.Equals("Bathroom_1st") || currentLocation.Equals("buanderie_chauffage"))
             {
                 currentLocation = "1st_floor";
             }
             else if(currentLocation.Equals("2nd_floor"))
             {
-                string[] possibleRooms = {"Bathroom_2nd", "Child_room", "1st_floor"};
+                string[] possibleRooms = {"Bathroom_2nd", "Child_room", "1st_floor", "Adult_bedroom"};
                 currentLocation = possibleRooms[Random.Range(0, possibleRooms.Length)];    
             }
-            else if(currentLocation.Equals("Bathroom_2nd") || currentLocation.Equals("Child_room"))
+            else if(currentLocation.Equals("Bathroom_2nd") || currentLocation.Equals("Child_room") || currentLocation.Equals("Adult_bedroom"))
             {
                 currentLocation = "2nd_floor";
             }
-
+            
             kidRoomHandle.SetCurrentRoom(currentLocation);
 
 
