@@ -10,35 +10,27 @@ public class kidBehaviour : MonoBehaviour
     public float speed = 2f;
     public float rotationSpeed = 4f;
     int index;
-    //bool notAtDestination = false;
-    private bool playerInSight = false;
+
+    private bool canNotMove = false;
     //is the kid in the same room as the player
     private bool sameRoom; 
-    private string currentLocation = "1st_floor";
-    public float respawnChance= 0.1f;
+    private string currentLocation;
+    private static float respawnChance= 0.2f;
 
     private float delayTimer = 0f;
     private float delayDuration = 2f;
     private GameObject spawnPoint;
+    private string oldLocation;
 
     Animator animator;
+    private bool enableAutoChange = false;
+
 
     void Start()
     {
         animator = GetComponent<Animator>();
         animator.SetBool("IsWalking", true);
-
-        if (!PlayerPrefs.HasKey("kidFirstLaunch"))
-        {
-            currentLocation = "1st_floor";
-            PlayerPrefs.SetString("currentLocation", currentLocation);
-            PlayerPrefs.SetInt("kidFirstLaunch", 1);
-        }
-        else
-        {
-            currentLocation = PlayerPrefs.GetString("currentLocation", currentLocation);
-        }
-
+        currentLocation = kidRoomHandle.GetCurrentRoom();
         sameRoom = SceneManager.GetActiveScene().name.Equals(currentLocation);
 
         if (sameRoom == false)
@@ -48,6 +40,14 @@ public class kidBehaviour : MonoBehaviour
         else
         {
             CancelInvoke("auto_roomChange");
+            for(int i = 0; i < wayPoints.Count; i++)
+            {
+                if (wayPoints[i].gameObject.name.Equals(currentLocation))
+                {
+                    spawnPoint = wayPoints[i];
+                    transform.position = spawnPoint.transform.position;
+                }
+            }
         }
 
         gameObject.SetActive(sameRoom);
@@ -58,11 +58,12 @@ public class kidBehaviour : MonoBehaviour
 
     void Update()
     {
+
         //sameRoom = SceneManager.GetActiveScene().name.Equals(currentLocation);
         Vector3 destination = new Vector3(wayPoints[index].transform.position.x, 0f, wayPoints[index].transform.position.z);
         //Update kid position and make it move if it is not seen by the player
         
-        if(playerInSight == false && sameRoom == true)
+        if(canNotMove == false && sameRoom == true)
         {   
             animator.SetBool("IsWalking", true);
             // Calculate the rotation towards the destination
@@ -72,6 +73,10 @@ public class kidBehaviour : MonoBehaviour
 
             Vector3 newPos = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
             transform.position = newPos;
+        }
+        if(canNotMove == true && sameRoom == true)
+        {
+            animator.SetBool("IsWalking", false);
         }
 
         float distance = Vector3.Distance(transform.position, destination);
@@ -87,7 +92,9 @@ public class kidBehaviour : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 currentLocation = wayPoints[index].gameObject.name;
-                PlayerPrefs.SetString("currentLocation", currentLocation);
+                kidRoomHandle.SetCurrentRoom(currentLocation);
+                oldLocation = SceneManager.GetActiveScene().name;
+
                 sameRoom = false;
                 // Reset the timer
                 delayTimer = 0f;
@@ -110,53 +117,57 @@ public class kidBehaviour : MonoBehaviour
         
         }
         
-        if (sameRoom == false)
+        if (sameRoom == false && enableAutoChange == false)
         {
             InvokeRepeating("auto_roomChange", 0f, 2f);
-        }
-        else
+            //we invoke the function only once
+            enableAutoChange = true;
+        }  
+        else if (sameRoom == true)
         {
             CancelInvoke("auto_roomChange");
-        }
-        
+            enableAutoChange = false;
+        } 
+       
     }
-    
+
     void auto_roomChange()
     {
         float randomValue = Random.value;
-        //Debug.Log("Random value: " + randomValue);
-        
+        // Debug.Log("Random value: " + randomValue);
+        // Debug.Log("Respawn chance: " + (1-respawnChance));
+        // Debug.Log("respawn = " + (randomValue > (1-respawnChance)));
         // condition to move room 
         if (randomValue > (1-respawnChance))
         {
-
+            // Debug.Log("Kid changed room");
             if(currentLocation.Equals("1st_floor"))
             {
-                string[] possibleRooms = {"Garage", "Office", "Bathroom_1st", "2nd_floor "};
+                string[] possibleRooms = {"Garage", "Office", "Bathroom_1st", "2nd_floor", "buanderie_chauffage"};
                 currentLocation = possibleRooms[Random.Range(0, possibleRooms.Length)];    
-                PlayerPrefs.SetString("currentLocation", currentLocation);            
             }
-            else if(currentLocation.Equals("Garage") || currentLocation.Equals("Office") || currentLocation.Equals("Bathroom_1st"))
+            else if(currentLocation.Equals("Garage") || currentLocation.Equals("Office") || currentLocation.Equals("Bathroom_1st") || currentLocation.Equals("buanderie_chauffage"))
             {
                 currentLocation = "1st_floor";
-                PlayerPrefs.SetString("currentLocation", currentLocation);
             }
             else if(currentLocation.Equals("2nd_floor"))
             {
-                string[] possibleRooms = {"Bathroom_2nd", "Child_room", "1st_floor"};
+                string[] possibleRooms = {"Bathroom_2nd", "Child_room", "1st_floor", "Adult_bedroom"};
                 currentLocation = possibleRooms[Random.Range(0, possibleRooms.Length)];    
-                PlayerPrefs.SetString("currentLocation", currentLocation);            
             }
-            else if(currentLocation.Equals("Bathroom_2nd") || currentLocation.Equals("Child_room"))
+            else if(currentLocation.Equals("Bathroom_2nd") || currentLocation.Equals("Child_room") || currentLocation.Equals("Adult_bedroom"))
             {
                 currentLocation = "2nd_floor";
-                PlayerPrefs.SetString("currentLocation", currentLocation);
             }
-            Debug.Log("Kid changed room and now in : " + currentLocation);
             
-            if(currentLocation.Equals(SceneManager.GetActiveScene().name))
+            kidRoomHandle.SetCurrentRoom(currentLocation);
+
+
+            Debug.Log("Kid changed room and now in : " + currentLocation);
+            sameRoom = currentLocation.Equals(SceneManager.GetActiveScene().name);
+            if(sameRoom)
             {
-                sameRoom = true;
+                Debug.Log("Kid SPAWN");
                 for(int i = 0; i < wayPoints.Count; i++)
                 {
                     if (wayPoints[i].gameObject.name.Equals(currentLocation))
@@ -169,8 +180,6 @@ public class kidBehaviour : MonoBehaviour
                 gameObject.SetActive(true);
                 animator.SetBool("IsWalking", false);
                 ChangeIndex();
-                currentLocation = SceneManager.GetActiveScene().name;
-                PlayerPrefs.SetString("currentLocation", currentLocation);
             }
         }
         
@@ -185,7 +194,7 @@ public class kidBehaviour : MonoBehaviour
         if (wayPoints.Contains(other.gameObject) == false && other.gameObject.name.Contains("Floor") == false)
         {
             //change index immediately if random object
-            Debug.Log("Collision with :" + other.gameObject.name);
+            // Debug.Log("Collision with :" + other.gameObject.name);
             ChangeIndex();
             // Debug.Log(SceneManager.GetActiveScene().name);
         }
@@ -204,9 +213,8 @@ public class kidBehaviour : MonoBehaviour
      // Called by PlayerController when the player has the opponent in vision
     public void SetPlayerInSight(bool inSight)
     {
-        playerInSight = inSight;
-        Debug.Log("Is the kid in view :" + playerInSight);
-
+        canNotMove = inSight;
+        // Debug.Log("Is the kid in view :" + playerInSight);
     }
 
     

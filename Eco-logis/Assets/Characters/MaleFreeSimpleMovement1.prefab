@@ -1006,6 +1006,7 @@ GameObject:
   - component: {fileID: 136606663363984694}
   - component: {fileID: 95665039525092722}
   - component: {fileID: 8748688856612009363}
+  - component: {fileID: -3551939941151459255}
   m_Layer: 0
   m_Name: MaleFreeSimpleMovement1
   m_TagString: Untagged
@@ -1119,6 +1120,27 @@ MonoBehaviour:
   m_animator: {fileID: 95665039525092722}
   m_rigidBody: {fileID: 54084939265967506}
   m_controlMode: 1
+--- !u!114 &-3551939941151459255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824340380413090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57e2971b2062484ba3ea52aeea77f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 4.99
+  angle: 15.7
+  height: 0.5
+  meshColor: {r: 1, g: 0, b: 0, a: 1}
+  scanFrequency: 30
+  layers:
+    serializedVersion: 2
+    m_Bits: 0
+  Objects: []
 --- !u!1 &1826566120413068
 GameObject:
   m_ObjectHideFlags: 0

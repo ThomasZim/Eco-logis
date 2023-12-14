@@ -20,18 +20,12 @@ public class Player : MonoBehaviour
     int count;
     float scanInterval;
     float scanTimer;
-    private LineRenderer lineRenderer;
 
 
     void Start(){   
         mesh = CreateWedgeMesh();
         scanInterval = 1.0f / scanFrequency;
-        // Create and configure the Line Renderer
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.positionCount = 6;
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
-        lineRenderer.material.color = Color.green;
+        
 
 
     }
@@ -40,8 +34,6 @@ public class Player : MonoBehaviour
         Vector3 forwardDirection = transform.forward;
         RaycastHit hitForward;
     
-        bool raycastForward = Physics.Raycast(transform.position, forwardDirection, out hitForward, distance);
-        UpdateLineRenderer(forwardDirection, distance, 0, 1, raycastForward, hitForward);
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float rotationSpeed = 90f; // You can adjust this value
@@ -61,8 +53,8 @@ public class Player : MonoBehaviour
         
         foreach (Collider collider in kidColliders)
         {
+        
             GameObject kidObj = collider.gameObject;
-
             if (kidObj.CompareTag("Kid")){
                 GameObject kid = kidObj;
                 if (IsInSight(kid))
@@ -103,11 +95,10 @@ public class Player : MonoBehaviour
         Vector3 origin = transform.position;
         Vector3 dest = obj.transform.position;
         Vector3 direction = dest - origin;
-        Debug.Log("sight obj " + obj);
+        //Debug.Log("sight obj " + obj);
         if(direction.y < 0 || direction.y > height){
             return false;
         }
-        Debug.Log("hello");
         direction.y = 0;
         float deltaAngle = Vector3.Angle(direction,transform.forward);
         if (deltaAngle > angle) {
@@ -208,10 +199,5 @@ public class Player : MonoBehaviour
 
     }
 
-    void UpdateLineRenderer(Vector3 direction, float distance, int startIndex, int endIndex, bool hasHit, RaycastHit hitInfo)
-    {
-        lineRenderer.SetPosition(startIndex, transform.position);
-        lineRenderer.SetPosition(endIndex, hasHit ? hitInfo.point : transform.position + direction * distance);
-    }
 
 }
