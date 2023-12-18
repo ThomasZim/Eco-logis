@@ -4,54 +4,340 @@ using UnityEngine;
 
 public static class CoreMechanics
 {
-	//Garage
-	public static bool lightGarageState = false;
-	public static float lightGarageValue = 5;
-	//public static bool workshopGarageState = false;
-	//public static float workshopGarageValue = 5;
-	//1Floor
-	public static bool lightFloor1State = false;
-	public static float lightFloor1Value = 5;
-	public static bool tvFloor1State = false;
-	public static float tvFloor1Value = 5;
-	public static bool fridgeFloor1State = false;
-	public static float fridgeFloor1Value = 5;
-	public static bool ovenFloor1State = false;
-	public static float ovenFloor1Value = 5;
-	public static bool lavaboFloor1State = false;
-	public static float lavaboFloor1Value = 5;
-	//Bathroom 1Floor
-	public static bool lightBathFloor1State = false;
-	public static float lightBathFloor1Value = 5;
-	public static bool wcBathFloor1State = false;
-	public static float wcBathFloor1Value = 5;
-	public static bool lavaboBathFloor1State = false;
-	public static float lavaboBathFloor1Value = 5;
-	//Office
-	public static bool lightOfficeState = false;
-	public static float lightOfficeValue = 5;
-	public static bool computerOfficeState = false;
-	public static float computerOfficeValue = 5;
-	//Bathroom 2Floor
-	public static bool lightBathFloor2State = false;
-	public static float lightBathFloor2Value = 5;
-	public static bool bathBathFloor2State = false;
-	public static float bathBathFloor2Value = 5;
-	public static bool wcBathFloor2State = false;
-	public static float wcBathFloor2Value = 5;
-	public static bool lavaboBathFloor2State = false;
-	public static float lavaboBathFloor2Value = 5;
-	//Child room
-	public static bool lightChildRoomState = false;
-	public static float lightChildRoomValue = 5;
-	//Adult room
-	public static bool lightAdultRoomState = false;
-	public static float lightAdultRoomValue = 5;
-	//Laundry Room
-	public static bool lightLaundryRoomState = false;
-	public static float lightLaundryRoomValue = 5;
-	public static bool washMachineLaundryRoomState = false;
-	public static float washMachineLaundryRoomValue = 5;
-	public static bool heaterLaundryRoomState = false;
-	public static float heaterLaundryRoomValue = 5;
+    //Upgrade cost
+    public static double[] lightCosts = { 7, 13, 20 };
+    public static double[] fridgeCosts = { 360, 630, 840 };
+    public static double[] ovenCosts = { 2350, 4790, 6895 };
+    public static double[] washMachineCosts = { 700, 1600, 2900 }; 
+    public static double[] dishwasherCosts = { 1070, 1650, 2250 };
+    public static double[] Costs = { 1070, 1650, 2250 };
+    public static double[] heaterCosts = { 3100, 4800, 21500 };
+    public static double[] conditionerCosts = { 1100, 1550, 2300 };
+
+    //Level of objects
+    public static int lightLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
+    public static int fridgeLevel = 0; // 0 = Low, 1 = Medium, 2 = 
+    public static int ovenLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
+    public static int washMachineLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
+    public static int dishwasherLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
+    public static int heaterLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
+    public static int conditionerLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
+
+    //Score effect
+    public static double eatingEffectHunger = -100;
+    public static double drinkingEffectThirst = -100;
+    public static double wcEffectBladder = -100;
+    public static double wcEffectWater = 40;
+    public static double workshopEffectFun = 10;
+    public static double tvEffectFun = 10;
+    public static double lavaboEffectHygiene = 20;
+    public static double lavaboEffectWater = 10;
+    public static double bathEffectHygiene = 60;
+    public static double bathEffectFun = 30;
+    public static double bathEffectWater = 200;
+    public static double showerEffectHygiene = 50;
+    public static double showerEffectFun = 20;
+    public static double showerEffectWater = 50;
+    public static double washMachineEffectHygiene = 60;
+    public static double washMachineEffectWater = 60;
+    public static double dishwasherEffectHygiene = 20;
+    public static double dishwasherEffectWater = 12;
+    public static double heaterHighEffectComfort = 100;
+    public static double heaterMediumEffectComfort = 50;
+    public static double heaterOffEffectComfort = 0;
+    public static double conditionerHighEffectComfort = 100;
+    public static double conditionerMediumEffectComfort = 50;
+    public static double conditionerOffEffectComfort = -100;
+
+    //States
+    public static bool lightGarageState = false;
+    public static bool lightFloor1State = false;
+    public static bool tvFloor1State = false;
+    public static bool fridgeFloor1State = false;
+    public static bool ovenFloor1State = false;
+    public static bool dishwasherFloor1State = false;
+    public static bool lavaboFloor1State = false;
+    public static bool lightBathFloor1State = false;
+    public static bool wcBathFloor1State = false;
+    public static bool lavaboBathFloor1State = false;
+    public static bool lightOfficeState = false;
+    public static bool computerOfficeState = false;
+    public static bool lightBathFloor2State = false;
+    public static bool bathBathFloor2State = false;
+    public static bool wcBathFloor2State = false;
+    public static bool lavaboBathFloor2State = false;
+    public static bool lightChildRoomState = false;
+    public static bool lightAdultRoomState = false;
+    public static bool lightLaundryRoomState = false;
+    public static bool washMachineLaundryRoomState = false;
+    public static bool heaterLaundryRoomState = false;
+    public static bool conditionerLaundryRoomState = false;
+
+    //Consommation values
+    public static double[] lightConso = { 0.056, 0.04, 0.032 };
+    public static double tvConso = 0.1;
+    public static double[] fridgeConso = { 1, 0.56, 0.4 };
+    public static double[] ovenConso = { 1.23, 1, 0.52 };
+    public static double lavaboConso = 1;
+    public static double wcConso = 1;
+    public static double computerConso = 1;
+    public static double bathConso = 1;
+    public static double showerConso = 1;
+    public static double[] washMachineConso = { 0.5, 0.4, 0.2 };
+    public static double[] dishwasherConso = { 0.84, 0.74, 0.54 };
+    public static double[] heaterConso = { 0, 0, 3.5 };
+    public static double[] conditionerConso = { 20, 13, 8 };
+
+    //Scoring
+    public static double hunger;
+    public static double thirst;
+    public static double bladder;
+    public static double comfort;
+    public static double hygiene;
+    public static double fun;
+    public static double energy;
+    public static double water;
+    public static double money;
+    public static double time;
+
+    private static bool isRunning = false;
+
+    public static void Init()
+    {
+        hunger = 90;
+        thirst = 90;
+        bladder = 90;
+        comfort = 50;
+        hygiene = 60;
+        fun = 50;
+        energy = 0;
+        water = 0;
+        money = 25000;
+    }
+
+    public static void stop()
+    {
+        isRunning = false;
+    }
+
+    public static double keepBetween0and100(double variable)
+    {
+        if (variable < 0)
+        {
+            variable = 0;
+        }
+        else if (variable > 100)
+        {
+            variable = 100;
+        }
+        return variable;
+    }
+
+    public static int coreMecanicsEvent(string mecanic)
+    {
+        if (mecanic == "Drinking")
+        {
+            thirst += drinkingEffectThirst;
+            return 1;
+        }
+        if (mecanic == "Eating")
+        {
+            hunger += eatingEffectHunger;
+            return 1;
+        }
+        if (mecanic == "Wc")
+        {
+            water += wcEffectWater;
+            bladder += wcEffectBladder;
+            return 1;
+        }
+        if (mecanic == "Shower")
+        {
+            water += showerEffectWater;
+            hygiene += showerEffectHygiene;
+            fun += showerEffectFun;
+            return 1;
+        }
+        if (mecanic == "Bath")
+        {
+            fun += bathEffectFun;
+            hygiene += bathEffectHygiene;
+            water += bathEffectWater;
+            return 1;
+        }
+        if (mecanic == "HeaterMax")
+        {
+            comfort = heaterHighEffectComfort;
+            return 1;
+        }
+        if (mecanic == "HeaterMin")
+        {
+            comfort = heaterMediumEffectComfort;
+            return 1;
+        }
+        if (mecanic == "HeaterOff")
+        {
+            comfort = heaterOffEffectComfort;
+            return 1;
+        }
+        if (mecanic == "ConditionerMax")
+        {
+            comfort = conditionerHighEffectComfort;
+            return 1;
+        }
+        if (mecanic == "ConditionerMin")
+        {
+            comfort = conditionerMediumEffectComfort;
+            return 1;
+        }
+        if (mecanic == "ConditionerOff")
+        {
+            comfort = conditionerOffEffectComfort;
+            return 1;
+        }
+        if (mecanic == "WashMachine")
+        {
+            hygiene += washMachineEffectHygiene;
+            water += washMachineEffectWater;
+            return 1;
+        }
+
+        if (mecanic == "Dishwasher")
+        {
+            hygiene += dishwasherEffectHygiene;
+            water += dishwasherEffectWater;
+            return 1;
+        }
+        return 0;
+    }
+
+    private static void start()
+    {
+        double hunger_rate = 10;
+        double thirst_rate = 10;
+        double bladder_rate = 7;
+        double comfort_rate = 0;
+        double hygiene_rate = -5;
+        double fun_rate = -6;
+
+        isRunning = true;
+
+        while (isRunning)
+        {
+            System.Threading.Thread.Sleep(1000);
+
+            hunger += hunger_rate;
+            thirst += thirst_rate;
+            bladder += bladder_rate;
+            comfort += comfort_rate;
+            hygiene += hygiene_rate;
+            fun += fun_rate;
+
+            keepBetween0and100(hunger);
+            keepBetween0and100(thirst);
+            keepBetween0and100(bladder);
+            keepBetween0and100(comfort);
+            keepBetween0and100(hygiene);
+            keepBetween0and100(fun);
+
+            //Garage
+            if (lightGarageState)
+            {
+                energy += lightConso[lightLevel];
+            }
+            //1Floor
+            if (lightFloor1State)
+            {
+                energy += lightConso[lightLevel];
+            }
+            if (tvFloor1State)
+            {
+                energy += tvConso;
+            }
+            if (fridgeFloor1State)
+            {
+                energy += fridgeConso[fridgeLevel];
+            }
+            if (ovenFloor1State)
+            {
+                energy += ovenConso[ovenLevel];
+            }
+            if (dishwasherFloor1State)
+            {
+                energy += dishwasherConso[dishwasherLevel];
+            }
+            
+            if (lavaboFloor1State)
+            {
+                water += lavaboConso;
+            }
+            //Bathroom 1Floor
+            if (lightBathFloor1State)
+            {
+                energy += lightConso[lightLevel];
+            }
+            if (wcBathFloor1State)
+            {
+                energy += wcConso;
+            }
+            if (lavaboBathFloor1State)
+            {
+                energy += lavaboConso;
+            }
+            //Office
+            if (lightOfficeState)
+            {
+                energy += lightConso[lightLevel];
+            }
+            if (computerOfficeState)
+            {
+                energy += computerConso;
+            }
+            //Bathroom 2Floor
+            if (lightBathFloor2State)
+            {
+                energy += lightConso[lightLevel];
+            }
+            if (bathBathFloor2State)
+            {
+                water += bathConso;
+            }
+            if (wcBathFloor2State)
+            {
+                water += wcConso;
+            }
+            if (lavaboBathFloor2State)
+            {
+                water += lavaboConso;
+            }
+            //Child room
+            if (lightChildRoomState)
+            {
+                energy += lightConso[lightLevel];
+            }
+            //Adult room
+            if (lightAdultRoomState)
+            {
+                energy += lightConso[lightLevel];
+            }
+            //Laundry Room
+            if (lightLaundryRoomState)
+            {
+                energy += lightConso[lightLevel];
+            }
+            if (washMachineLaundryRoomState)
+            {
+                energy += washMachineConso[washMachineLevel];
+            }
+            if (heaterLaundryRoomState)
+            {
+                energy += heaterConso[heaterLevel];
+            }
+
+            if (conditionerLaundryRoomState)
+            {
+                energy += conditionerConso[conditionerLevel];
+            }
+        }
+    }
 }
