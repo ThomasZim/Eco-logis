@@ -208,6 +208,11 @@ public static class CoreMechanics
             water += dishwasherEffectWater;
             return 1;
         }
+        if (mecanic == "Workshop")
+        {
+            fun += workshopEffectFun;
+            return 1;
+        }
         return 0;
     }
 
