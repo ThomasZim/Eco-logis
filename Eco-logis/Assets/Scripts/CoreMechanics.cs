@@ -108,8 +108,7 @@ public static class CoreMechanics
     public static double hygiene_rate = -5;
     public static double fun_rate = -6;
 
-    public static bool isRunning = false;
-    public static bool isPaused = false;
+    private static bool isRunning = false;
 
     public static void Init()
     {
@@ -241,141 +240,138 @@ public static class CoreMechanics
 
         while (isRunning)
         {
-            if (!isPaused)
+            System.Threading.Thread.Sleep(1000);
+
+            hunger += hunger_rate;
+            thirst += thirst_rate;
+            bladder += bladder_rate;
+            comfort += comfort_rate;
+            hygiene += hygiene_rate;
+            fun += fun_rate;
+
+            keepBetween0and100(hunger);
+            keepBetween0and100(thirst);
+            keepBetween0and100(bladder);
+            keepBetween0and100(comfort);
+            keepBetween0and100(hygiene);
+            keepBetween0and100(fun);
+
+            //Garage
+            if (lightGarageState)
             {
-                System.Threading.Thread.Sleep(1000);
+                energy += lightConso[lightLevel];
+            }
 
-                hunger += hunger_rate;
-                thirst += thirst_rate;
-                bladder += bladder_rate;
-                comfort += comfort_rate;
-                hygiene += hygiene_rate;
-                fun += fun_rate;
+            //1Floor
+            if (lightFloor1State)
+            {
+                energy += lightConso[lightLevel];
+            }
 
-                keepBetween0and100(hunger);
-                keepBetween0and100(thirst);
-                keepBetween0and100(bladder);
-                keepBetween0and100(comfort);
-                keepBetween0and100(hygiene);
-                keepBetween0and100(fun);
+            if (tvFloor1State)
+            {
+                energy += tvConso;
+            }
 
-                //Garage
-                if (lightGarageState)
-                {
-                    energy += lightConso[lightLevel];
-                }
+            if (fridgeFloor1State)
+            {
+                energy += fridgeConso[fridgeLevel];
+            }
 
-                //1Floor
-                if (lightFloor1State)
-                {
-                    energy += lightConso[lightLevel];
-                }
+            if (ovenFloor1State)
+            {
+                energy += ovenConso[ovenLevel];
+            }
 
-                if (tvFloor1State)
-                {
-                    energy += tvConso;
-                }
+            if (dishwasherFloor1State)
+            {
+                energy += dishwasherConso[dishwasherLevel];
+            }
 
-                if (fridgeFloor1State)
-                {
-                    energy += fridgeConso[fridgeLevel];
-                }
+            if (lavaboFloor1State)
+            {
+                water += lavaboConso;
+            }
 
-                if (ovenFloor1State)
-                {
-                    energy += ovenConso[ovenLevel];
-                }
+            //Bathroom 1Floor
+            if (lightBathFloor1State)
+            {
+                energy += lightConso[lightLevel];
+            }
 
-                if (dishwasherFloor1State)
-                {
-                    energy += dishwasherConso[dishwasherLevel];
-                }
+            if (wcBathFloor1State)
+            {
+                energy += wcConso;
+            }
 
-                if (lavaboFloor1State)
-                {
-                    water += lavaboConso;
-                }
+            if (lavaboBathFloor1State)
+            {
+                energy += lavaboConso;
+            }
 
-                //Bathroom 1Floor
-                if (lightBathFloor1State)
-                {
-                    energy += lightConso[lightLevel];
-                }
+            //Office
+            if (lightOfficeState)
+            {
+                energy += lightConso[lightLevel];
+            }
 
-                if (wcBathFloor1State)
-                {
-                    energy += wcConso;
-                }
+            if (computerOfficeState)
+            {
+                energy += computerConso;
+            }
 
-                if (lavaboBathFloor1State)
-                {
-                    energy += lavaboConso;
-                }
+            //Bathroom 2Floor
+            if (lightBathFloor2State)
+            {
+                energy += lightConso[lightLevel];
+            }
 
-                //Office
-                if (lightOfficeState)
-                {
-                    energy += lightConso[lightLevel];
-                }
+            if (bathBathFloor2State)
+            {
+                water += bathConso;
+            }
 
-                if (computerOfficeState)
-                {
-                    energy += computerConso;
-                }
+            if (wcBathFloor2State)
+            {
+                water += wcConso;
+            }
 
-                //Bathroom 2Floor
-                if (lightBathFloor2State)
-                {
-                    energy += lightConso[lightLevel];
-                }
+            if (lavaboBathFloor2State)
+            {
+                water += lavaboConso;
+            }
 
-                if (bathBathFloor2State)
-                {
-                    water += bathConso;
-                }
+            //Child room
+            if (lightChildRoomState)
+            {
+                energy += lightConso[lightLevel];
+            }
 
-                if (wcBathFloor2State)
-                {
-                    water += wcConso;
-                }
+            //Adult room
+            if (lightAdultRoomState)
+            {
+                energy += lightConso[lightLevel];
+            }
 
-                if (lavaboBathFloor2State)
-                {
-                    water += lavaboConso;
-                }
+            //Laundry Room
+            if (lightLaundryRoomState)
+            {
+                energy += lightConso[lightLevel];
+            }
 
-                //Child room
-                if (lightChildRoomState)
-                {
-                    energy += lightConso[lightLevel];
-                }
+            if (washMachineLaundryRoomState)
+            {
+                energy += washMachineConso[washMachineLevel];
+            }
 
-                //Adult room
-                if (lightAdultRoomState)
-                {
-                    energy += lightConso[lightLevel];
-                }
+            if (heaterLaundryRoomState)
+            {
+                energy += heaterConso[heaterLevel];
+            }
 
-                //Laundry Room
-                if (lightLaundryRoomState)
-                {
-                    energy += lightConso[lightLevel];
-                }
-
-                if (washMachineLaundryRoomState)
-                {
-                    energy += washMachineConso[washMachineLevel];
-                }
-
-                if (heaterLaundryRoomState)
-                {
-                    energy += heaterConso[heaterLevel];
-                }
-
-                if (conditionerLaundryRoomState)
-                {
-                    energy += conditionerConso[conditionerLevel];
-                }
+            if (conditionerLaundryRoomState)
+            {
+                energy += conditionerConso[conditionerLevel];
             }
         }
     }
