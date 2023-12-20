@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EcoBar : MonoBehaviour
+public class MoneyBar : MonoBehaviour
 {
-    public Slider slider;
+     public Slider slider;
     public Gradient gradient;
     public Image fill;
 
-    public void SetMaxHealth(int health)
+    public void SetMaxHealth(int money)
     {
-        slider.maxValue = health;
-        slider.value = health;
+        slider.maxValue = money;
+        slider.value = money;
 
         fill.color = gradient.Evaluate(1F);
 
     }
-    public void SetHealth(int health)
+    public void SetHealth(int money)
     {
-        slider.value = health;
+        slider.value = money;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 }
