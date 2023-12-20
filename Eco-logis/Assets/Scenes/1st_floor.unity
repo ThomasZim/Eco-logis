@@ -1323,7 +1323,7 @@ GameObject:
   - component: {fileID: 534163873}
   - component: {fileID: 534163874}
   m_Layer: 0
-  m_Name: example_point_light (4)
+  m_Name: ovenLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

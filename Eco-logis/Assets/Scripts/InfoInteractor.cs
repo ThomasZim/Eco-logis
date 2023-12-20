@@ -68,10 +68,12 @@ public class InfoInteractor : MonoBehaviour
                     {
                         if (CoreMechanics.ovenFloor1State == false)
                         {
+                            GameObject.Find("ovenLight").GetComponent<Light>().enabled = true;
                             CoreMechanics.ovenFloor1State = true;
                         }
                         else
                         {
+                            GameObject.Find("ovenLight").GetComponent<Light>().enabled = false;
                             CoreMechanics.ovenFloor1State = false;
                         }
                     }
