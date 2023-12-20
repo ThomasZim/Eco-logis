@@ -28,7 +28,7 @@ public class InfoInteractor : MonoBehaviour
     {
         switch (interactionCode)
         {
-            case "Computer":
+            case "computer":
             {
                 if (collision)
                 {
@@ -58,6 +58,36 @@ public class InfoInteractor : MonoBehaviour
                     }
                 }
             } 
+            break;
+            case "oven":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        Debug.Log("ovenFloor1State: " + CoreMechanics.ovenFloor1State);
+                        if (CoreMechanics.ovenFloor1State == false)
+                        {
+                            CoreMechanics.ovenFloor1State = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.ovenFloor1State = false;
+                        }
+                    }
+                }
+                
+                if (CoreMechanics.ovenFloor1State)
+                {
+                    InfoTurnOff.enabled = true;
+                    InfoTurnOn.enabled = false;
+                }
+                else
+                {
+                    InfoTurnOff.enabled = false;
+                    InfoTurnOn.enabled = true;
+                }
+            }
             break;
         }
     }

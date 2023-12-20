@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641424, b: 0.5748164, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.4964149, b: 0.5748175, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -325,6 +325,10 @@ PrefabInstance:
     - target: {fileID: 4723996658014723784, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Name
       value: MicrowaveInteraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
+      propertyPath: interactionCode
+      value: microwave
       objectReference: {fileID: 0}
     - target: {fileID: 6959384354430033462, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Size.x
@@ -1083,6 +1087,10 @@ PrefabInstance:
     - target: {fileID: 4723996658014723784, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Name
       value: DishwasherInteraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
+      propertyPath: interactionCode
+      value: dishwasher
       objectReference: {fileID: 0}
     - target: {fileID: 6959384354430033462, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Size.x
@@ -2607,6 +2615,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.69867456, y: 4.0995584, z: 0.44334245}
   m_Center: {x: -0.039853454, y: 2.0497792, z: 0.00057318807}
+--- !u!1 &782117734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1824340380413090, guid: 0e74cf81e6fd82546b4797f71ceffb81, type: 3}
+  m_PrefabInstance: {fileID: 1309827097}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &786890968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2618,6 +2631,14 @@ PrefabInstance:
     - target: {fileID: 4723996658014723784, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Name
       value: OvenInteraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 782117734}
+    - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
+      propertyPath: interactionCode
+      value: oven
       objectReference: {fileID: 0}
     - target: {fileID: 6959384354430033462, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Size.x
@@ -5604,6 +5625,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cofee_machineInteraction
       objectReference: {fileID: 0}
+    - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
+      propertyPath: interactionCode
+      value: cofee
+      objectReference: {fileID: 0}
     - target: {fileID: 6959384354430033462, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Size.x
       value: 0.6050929
@@ -6898,6 +6923,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InterruptorInteraction
       objectReference: {fileID: 0}
+    - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
+      propertyPath: interactionCode
+      value: interruptor
+      objectReference: {fileID: 0}
     - target: {fileID: 6959384354430033462, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Size.x
       value: 0.6050929
@@ -7413,6 +7442,10 @@ PrefabInstance:
     - target: {fileID: 4723996658014723784, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Name
       value: FridgeInteraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
+      propertyPath: interactionCode
+      value: fridge
       objectReference: {fileID: 0}
     - target: {fileID: 6959384354430033462, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Size.x
