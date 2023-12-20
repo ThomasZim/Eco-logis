@@ -9,17 +9,18 @@ public class EcoBar : MonoBehaviour
     public Gradient gradient;
     public Image fill;
 
-    public void SetMaxHealth(int eco)
+    void Start()
     {
-        slider.maxValue = eco;
-        slider.value = eco;
+        slider.maxValue = 100;
+        slider.minValue = 0;
+        slider.value = (float)(CoreMechanics.getEcologyScore());
 
-        fill.color = gradient.Evaluate(1F);
+     
 
     }
-    public void SetHealth(int eco)
+    void Update()
     {
-        slider.value = eco;
-        fill.color = gradient.Evaluate(slider.normalizedValue);
+        slider.value = (float)(CoreMechanics.getEcologyScore());
+        
     }
 }

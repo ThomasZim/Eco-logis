@@ -9,17 +9,17 @@ public class MoneyBar : MonoBehaviour
     public Gradient gradient;
     public Image fill;
 
-    public void SetMaxHealth(int money)
+    void Start()
     {
-        slider.maxValue = money;
-        slider.value = money;
+        slider.maxValue = 100000;
+        slider.minValue = 0;
+        slider.value = (float)(CoreMechanics.money);
 
-        fill.color = gradient.Evaluate(1F);
+     
 
     }
-    public void SetHealth(int money)
+    void Update()
     {
-        slider.value = money;
-        fill.color = gradient.Evaluate(slider.normalizedValue);
+        slider.value = (float)(CoreMechanics.money);
     }
 }

@@ -261,8 +261,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -195.10498, y: 49.00656}
-  m_SizeDelta: {x: 390.21, y: 98.0132}
+  m_AnchoredPosition: {x: -250.80627, y: 81.70077}
+  m_SizeDelta: {x: 501.6125, y: 163.4016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4892257677669918401
 CanvasRenderer:
@@ -339,8 +339,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 17.9821, y: -14.562}
-  m_SizeDelta: {x: 147.7978, y: 14.7407}
+  m_AnchoredPosition: {x: 45.686, y: -14.562}
+  m_SizeDelta: {x: 203.21, y: 14.7407}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3595604695600991633
 MonoBehaviour:
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8b49c39e312614fbf6c8b7825a118d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 3595604695600991633}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -469,10 +469,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4047858239582059779}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -75.8, y: -0.1086}
-  m_SizeDelta: {x: 51.1137, y: 43.6522}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 51.11371, y: 43.6522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7087395288690633308
 CanvasRenderer:
@@ -724,8 +724,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 98.1971, y: 0}
-  m_SizeDelta: {x: -196.3942, y: -8.6093}
+  m_AnchoredPosition: {x: 91.32471, y: -2.643196}
+  m_SizeDelta: {x: -182.6494, y: -53.0158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4960576567371037407
 GameObject:
@@ -1046,8 +1046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17.983, y: -2.6847}
-  m_SizeDelta: {x: 147.8, y: 16.563}
+  m_AnchoredPosition: {x: 45.68576, y: -2.6847}
+  m_SizeDelta: {x: 203.2054, y: 16.563}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4136518575213638583
 MonoBehaviour:
@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d7cfeeb666a9c4f8ebc31a34dd6026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 4136518575213638583}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1331,8 +1331,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 17.983, y: 8.2825}
-  m_SizeDelta: {x: 147.8, y: 16.565}
+  m_AnchoredPosition: {x: 45.686, y: 8.2825}
+  m_SizeDelta: {x: 203.21, y: 16.565}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4158688307319440403
 MonoBehaviour:
@@ -1397,7 +1397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1217460951a3c1848ae7913a8a707d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 4158688307319440403}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1540,8 +1540,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -166.8, y: 26.1}
-  m_SizeDelta: {x: 78.669, y: 70.2167}
+  m_AnchoredPosition: {x: -224, y: 46.903}
+  m_SizeDelta: {x: 100.8724, y: 93.8061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3677647030626722423
 MonoBehaviour:

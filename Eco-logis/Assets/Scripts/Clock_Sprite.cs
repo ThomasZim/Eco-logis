@@ -10,12 +10,12 @@ public class Clock_Sprite : MonoBehaviour
     private Transform clockMinuteHandTransform;
     private float offset = 480f;
 
-    private void Awake(){
+    void Awake(){
         clockHourHandTransform = transform.Find("Big tick");
         clockMinuteHandTransform = transform.Find("Small tick");
     }
 
-    private void Update(){
+    void Update(){
         float nbr_sec = ((float)CoreMechanics.time+offset)/REAL_SECONDS_PER_INGAME_DAY;
         float dayNormalized = nbr_sec % 1f;
         //day += Time.deltaTime / REAL_SECONDS_PER_INGAME_DAY;
