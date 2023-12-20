@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
+[System.Serializable]
 public static class CoreMechanics
+
 {
+    private static Thread t;
+
     //Upgrade cost
     public static double[] lightCosts = { 7, 13, 20 };
     public static double[] fridgeCosts = { 360, 630, 840 };
@@ -121,6 +126,7 @@ public static class CoreMechanics
         energy = 0;
         water = 0;
         money = 25000;
+        time = 0;
     }
 
     public static void stop()
@@ -236,18 +242,25 @@ public static class CoreMechanics
 
     public static void start()
     {
+        t = new Thread(thread_func);
+        t.Start();
+    }
+
+    public static void thread_func()
+    {
         isRunning = true;
 
         while (isRunning)
         {
-            System.Threading.Thread.Sleep(1000);
-
             hunger += hunger_rate;
             thirst += thirst_rate;
             bladder += bladder_rate;
             comfort += comfort_rate;
             hygiene += hygiene_rate;
             fun += fun_rate;
+            time += 1;
+
+            Debug.Log("Time since start: " + time + "[s]");
 
             keepBetween0and100(hunger);
             keepBetween0and100(thirst);
@@ -373,6 +386,8 @@ public static class CoreMechanics
             {
                 energy += conditionerConso[conditionerLevel];
             }
+
+            System.Threading.Thread.Sleep(1000);
         }
     }
 

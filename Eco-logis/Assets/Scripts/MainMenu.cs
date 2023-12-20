@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
         if (StaticSceneTransi.PreviousSceneName.Equals("null"))
         {
             SceneManager.LoadScene("1st_floor");
+            CoreMechanics.Init();
         }
         else
         {
