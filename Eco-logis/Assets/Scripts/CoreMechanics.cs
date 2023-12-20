@@ -100,6 +100,14 @@ public static class CoreMechanics
     public static double money;
     public static double time;
 
+    //Rate
+    public static double hunger_rate = 10;
+    public static double thirst_rate = 10;
+    public static double bladder_rate = 7;
+    public static double comfort_rate = 0;
+    public static double hygiene_rate = -5;
+    public static double fun_rate = -6;
+
     private static bool isRunning = false;
 
     public static void Init()
@@ -131,6 +139,16 @@ public static class CoreMechanics
             variable = 100;
         }
         return variable;
+    }
+
+    public static void lightIsOff()
+    {
+        fun_rate = -8;
+    }
+
+    public static void lightIsOn()
+    {
+        fun_rate = -6;
     }
 
     public static int coreMecanicsEvent(string mecanic)
@@ -216,15 +234,8 @@ public static class CoreMechanics
         return 0;
     }
 
-    private static void start()
+    public static void start()
     {
-        double hunger_rate = 10;
-        double thirst_rate = 10;
-        double bladder_rate = 7;
-        double comfort_rate = 0;
-        double hygiene_rate = -5;
-        double fun_rate = -6;
-
         isRunning = true;
 
         while (isRunning)
@@ -344,5 +355,46 @@ public static class CoreMechanics
                 energy += conditionerConso[conditionerLevel];
             }
         }
+    }
+
+    public static double getJoyScore()
+    {
+        double hungerWeight = 0.15;
+        double thirstWeight = 0.20;
+        double bladderWeight = 0.15;
+        double comfortWeight = 0.05;
+        double hygieneWeight = 0.20;
+        double funWeight = 0.25;
+        double score = 0;
+        score += (100 - hunger * hungerWeight);
+        score += (100 - thirst * thirstWeight);
+        score += (100 - bladder * bladderWeight);
+        score += (comfort * comfortWeight);
+        score += (hygiene * hygieneWeight);
+        score += (fun * funWeight);
+
+        return score;
+    }
+
+    public static double getMoneyScore()
+    {
+        return money;
+    }
+
+    public static double getEcologyScore()
+    {
+        double refEnergie = 12;
+        double refWater = 150;
+        double scoreEnergie = 100 / (energy / refEnergie);
+        double scoreWater = 100 / (water / refWater);
+        double scoreEquipments = 100 * (lightLevel + fridgeLevel + ovenLevel + washMachineLevel + dishwasherLevel + heaterLevel + conditionerLevel) / 21;
+
+        scoreEnergie = keepBetween0and100(scoreEnergie);
+        scoreWater = keepBetween0and100(scoreWater);
+        scoreEquipments = keepBetween0and100(scoreEquipments);
+
+        double score = scoreEnergie * 0.6 + scoreWater * 0.2 + scoreEquipments * 0.2;
+
+        return score;
     }
 }
