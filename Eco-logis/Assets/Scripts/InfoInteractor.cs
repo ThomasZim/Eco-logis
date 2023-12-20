@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class InfoInteractor : MonoBehaviour
 {
@@ -65,7 +66,6 @@ public class InfoInteractor : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        Debug.Log("ovenFloor1State: " + CoreMechanics.ovenFloor1State);
                         if (CoreMechanics.ovenFloor1State == false)
                         {
                             CoreMechanics.ovenFloor1State = true;
@@ -86,6 +86,78 @@ public class InfoInteractor : MonoBehaviour
                 {
                     InfoTurnOff.enabled = false;
                     InfoTurnOn.enabled = true;
+                }
+            }
+            break;
+            case "dishwasher":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.dishwasherFloor1State == false)
+                        {
+                            CoreMechanics.dishwasherFloor1State = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.dishwasherFloor1State = false;
+                        }
+                    }
+
+                    if (CoreMechanics.dishwasherFloor1State)
+                    {
+                        InfoTurnOff.enabled = true;
+                        InfoTurnOn.enabled = false;
+                    }
+                    else
+                    {
+                        InfoTurnOff.enabled = false;
+                        InfoTurnOn.enabled = true;
+                    }
+                }
+            }
+            break;
+            case "fridge":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.fridgeFloor1State == false)
+                        {
+                            CoreMechanics.fridgeFloor1State = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.fridgeFloor1State = false;
+                        }
+                    }
+                    
+                    if (CoreMechanics.fridgeFloor1State)
+                    {
+                        InfoTurnOff.enabled = true;
+                        InfoTurnOn.enabled = false;
+                    }
+                    else
+                    {
+                        InfoTurnOff.enabled = false;
+                        InfoTurnOn.enabled = true;
+                    }
+                }
+            }
+            break;
+            case "interruptor":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        switch (this.name)
+                        {
+                            //TODO: Add interruptor logoci
+                        }
+                    }
                 }
             }
             break;
