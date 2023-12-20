@@ -121,7 +121,7 @@ public class LevelLoader : MonoBehaviour
             SceneManager.LoadScene("Main_menu");
         }
 
-        lightUpdate();
+        //lightUpdate();
     }
     public void LoadNextRoom(Scene actualScene, string nextScene)
     {
