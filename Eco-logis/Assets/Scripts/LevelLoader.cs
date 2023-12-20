@@ -120,6 +120,8 @@ public class LevelLoader : MonoBehaviour
             StaticSceneTransi.PreviousRotation = GameObject.Find("MaleFreeSimpleMovement1").transform.rotation;
             SceneManager.LoadScene("Main_menu");
         }
+
+        lightUpdate();
     }
     public void LoadNextRoom(Scene actualScene, string nextScene)
     {
@@ -170,5 +172,98 @@ public class LevelLoader : MonoBehaviour
         Debug.Log("Loading scene: " + sceneName);
         //Load scene
         SceneManager.LoadScene(sceneName);
+    }
+
+    private void lightUpdate()
+    {
+        /*public static bool lightGarageState = false;
+        public static bool lightFloor1State = false;
+        public static bool lightBathFloor1State = false;
+        public static bool lightOfficeState = false;
+        public static bool lightBathFloor2State = false;
+        public static bool lightChildRoomState = false;
+        public static bool lightAdultRoomState = false;
+        public static bool lightLaundryRoomState = false;*/
+
+        switch (this.name)
+        {
+            case "sceneName":
+            {
+                //TODO: Venir mettre les bonnes lumières dansles bonnes scènes
+            }
+            break;
+        }
+
+        if (CoreMechanics.lightGarageState)
+        {
+            GameObject.Find("Light_Garage").GetComponent<Light>().enabled = true;
+        }
+        else
+        {
+            GameObject.Find("Light_Garage").GetComponent<Light>().enabled = false;
+        }
+        
+        if (CoreMechanics.lightFloor1State)
+        {
+            GameObject.Find("Light_Floor1").GetComponent<Light>().enabled = true;
+        }
+        else
+        {
+            GameObject.Find("Light_Floor1").GetComponent<Light>().enabled = false;
+        }
+        
+        if (CoreMechanics.lightBathFloor1State)
+        {
+            GameObject.Find("Light_BathFloor1").GetComponent<Light>().enabled = true;
+        }
+        else
+        {
+            GameObject.Find("Light_BathFloor1").GetComponent<Light>().enabled = false;
+        }
+        
+        if (CoreMechanics.lightOfficeState)
+        {
+            GameObject.Find("Light_Office").GetComponent<Light>().enabled = true;
+        }
+        else
+        {
+            GameObject.Find("Light_Office").GetComponent<Light>().enabled = false;
+        }
+        
+        if (CoreMechanics.lightBathFloor2State)
+        {
+            GameObject.Find("Light_BathFloor2").GetComponent<Light>().enabled = true;
+        }
+        else
+        {
+            GameObject.Find("Light_BathFloor2").GetComponent<Light>().enabled = false;
+        }
+        
+        if (CoreMechanics.lightChildRoomState)
+        {
+            GameObject.Find("Light_ChildRoom").GetComponent<Light>().enabled = true;
+        }
+        else
+        {
+            GameObject.Find("Light_ChildRoom").GetComponent<Light>().enabled = false;
+        }
+        
+        if (CoreMechanics.lightAdultRoomState)
+        {
+            GameObject.Find("Light_AdultRoom").GetComponent<Light>().enabled = true;
+        }
+        else
+        {
+            GameObject.Find("Light_AdultRoom").GetComponent<Light>().enabled = false;
+        }
+        
+        if (CoreMechanics.lightLaundryRoomState)
+        {
+            GameObject.Find("Light_LaundryRoom").GetComponent<Light>().enabled = true;
+        }
+        else
+        {
+            GameObject.Find("Light_LaundryRoom").GetComponent<Light>().enabled = false;
+        }
     }
 }
