@@ -81,3 +81,5 @@ Eco-logis/.vsconfig
 Eco-logis/.vscode/extensions.json
 Eco-logis/.vscode/launch.json
 Eco-logis/.vscode/settings.json
+Eco-logis/Packages/manifest.json
+Eco-logis/Packages/packages-lock.json
