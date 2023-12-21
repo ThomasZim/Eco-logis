@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +22,9 @@ public class kidBehaviour : MonoBehaviour
     private float delayDuration = 2f;
     private GameObject spawnPoint;
     private string oldLocation;
+
+    private string[] interactionPoints = {"GarageLight", "1st_floorLight", "tvFloor1State", "fridgeFloor1State", "ovenFloor1State", "Dishwasher", "Bath1Light", "OfficeLight", "OfficeComputer", "Bath2Light", "ChildRoomLight", "AdultRoomLight", "LaundryRoomLight", "LaundryRoomWashMachine", "LaundryRoomHeater", "LaundryRoomConditioner"};
+
 
     Animator animator;
     private bool enableAutoChange = false;
@@ -87,8 +91,48 @@ public class kidBehaviour : MonoBehaviour
         }
 
         float distance = Vector3.Distance(transform.position, destination);
+        //condition to make the kid interact with an object in same room and then go awaw
+        if (distance <= 0.05f && sameRoom == true && interactionPoints.Contains(wayPoints[index].gameObject.name))
+        {
+            animator.SetBool("IsWalking", false);
+            
+             // Increment the timer
+            delayTimer += Time.deltaTime;
+            
+            if (delayTimer >= delayDuration)
+            {   
+
+                // Switch Case to include all the variables that rule the state of objects
+                switch (wayPoints[index].gameObject.name)
+                {
+                    case "tvFloor1State":
+                        CoreMechanics.tvFloor1State = !CoreMechanics.tvFloor1State;
+                        Debug.Log("Changed TV to : " + CoreMechanics.tvFloor1State);
+                        break;
+                    case "fridgeFloor1State":
+                        CoreMechanics.fridgeFloor1State = !CoreMechanics.fridgeFloor1State;
+                        Debug.Log("Changed Fridge to : " + CoreMechanics.fridgeFloor1State);
+
+                        break;
+                    case "ovenFloor1State":
+                        CoreMechanics.ovenFloor1State = !CoreMechanics.ovenFloor1State;
+                        Debug.Log("Changed Oven to : " + CoreMechanics.ovenFloor1State);
+                        break;
+                    // Add cases for other variables 
+                    default:
+                        // Handle unknown interaction point names or add additional cases
+                        Debug.Log("Unknown interaction point name: " + wayPoints[index].gameObject.name);
+                        break;
+                }
+
+                ChangeIndex();
+                delayTimer = 0f;
+                animator.SetBool("IsWalking", true);
+
+            }
+        }
         // Condition to make the kid change room 
-        if(distance <= 0.05f && sameRoom == true && !wayPoints[index].gameObject.name.Contains("Sphere"))
+        else if(distance <= 0.05f && sameRoom == true && !wayPoints[index].gameObject.name.Contains("Sphere"))
         {
             animator.SetBool("IsWalking", false);
             // Increment the timer
@@ -205,7 +249,22 @@ public class kidBehaviour : MonoBehaviour
     // This function is called when a collision occurs.
     private void OnTriggerEnter(Collider other)
     {
-        // Kid changes destination when collision with every thing except the floor and the waypoints
+        // Kid changes destination when collision with every thing except the floor and the waypoints and the interaction box colliders
+        
+        //TODO : HANDLE THE CASE WHEN COLLISION WITH INTERACTION OBJECT
+
+
+
+        if (wayPoints.Contains(other.gameObject) == false && other.gameObject.name.Contains("Floor") == false)
+        {
+            //change index immediately if random object
+            // Debug.Log("Collision with :" + other.gameObject.name);
+            ChangeIndex();
+            // Debug.Log(SceneManager.GetActiveScene().name);
+        }
+
+
+
         if (wayPoints.Contains(other.gameObject) == false && other.gameObject.name.Contains("Floor") == false)
         {
             //change index immediately if random object
