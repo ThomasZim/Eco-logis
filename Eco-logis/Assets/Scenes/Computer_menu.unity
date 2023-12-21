@@ -3106,7 +3106,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FRIDGE
+  m_text: LIGHTNING
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ee22b7ca508cc140aa6feeb877bad9d, type: 2}
   m_sharedMaterial: {fileID: 3096844439647422850, guid: 0ee22b7ca508cc140aa6feeb877bad9d, type: 2}
@@ -4675,7 +4675,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 449.83276, y: 75.824524}
+  m_SizeDelta: {x: 5000.833, y: 75.824524}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &804279321
 MonoBehaviour:
@@ -4697,7 +4697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FRIDGE
+  m_text: DISHWASHER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ee22b7ca508cc140aa6feeb877bad9d, type: 2}
   m_sharedMaterial: {fileID: 3096844439647422850, guid: 0ee22b7ca508cc140aa6feeb877bad9d, type: 2}
@@ -10117,7 +10117,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 449.83276, y: 75.824524}
+  m_SizeDelta: {x: 5000.833, y: 75.824524}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633917464
 MonoBehaviour:
@@ -10139,7 +10139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FRIDGE
+  m_text: WASHING MACHINE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ee22b7ca508cc140aa6feeb877bad9d, type: 2}
   m_sharedMaterial: {fileID: 3096844439647422850, guid: 0ee22b7ca508cc140aa6feeb877bad9d, type: 2}
@@ -11209,7 +11209,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FRIDGE
+  m_text: OVEN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ee22b7ca508cc140aa6feeb877bad9d, type: 2}
   m_sharedMaterial: {fileID: 3096844439647422850, guid: 0ee22b7ca508cc140aa6feeb877bad9d, type: 2}
@@ -13064,7 +13064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1993699085
 Transform:
   m_ObjectHideFlags: 0
