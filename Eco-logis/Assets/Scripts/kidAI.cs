@@ -23,8 +23,7 @@ public class kidBehaviour : MonoBehaviour
     private GameObject spawnPoint;
     private string oldLocation;
 
-    private string[] interactionPoints = {"GarageLight", "1st_floorLight", "tvFloor1State", "fridgeFloor1State", "ovenFloor1State", "Dishwasher", "Bath1Light", "OfficeLight", "OfficeComputer", "Bath2Light", "ChildRoomLight", "AdultRoomLight", "LaundryRoomLight", "LaundryRoomWashMachine", "LaundryRoomHeater", "LaundryRoomConditioner"};
-
+    private string[] interactionPoints = {"lightFloor1State", "tvFloor1State", "fridgeFloor1State", "ovenFloor1State"};
 
     Animator animator;
     private bool enableAutoChange = false;
@@ -106,17 +105,33 @@ public class kidBehaviour : MonoBehaviour
                 switch (wayPoints[index].gameObject.name)
                 {
                     case "tvFloor1State":
-                        CoreMechanics.tvFloor1State = !CoreMechanics.tvFloor1State;
-                        Debug.Log("Changed TV to : " + CoreMechanics.tvFloor1State);
+                        if(CoreMechanics.tvFloor1State == false)
+                        {
+                            CoreMechanics.tvFloor1State = true;
+                            Debug.Log("Changed TV to : " + CoreMechanics.tvFloor1State);
+                        }
+                        
                         break;
                     case "fridgeFloor1State":
-                        CoreMechanics.fridgeFloor1State = !CoreMechanics.fridgeFloor1State;
-                        Debug.Log("Changed Fridge to : " + CoreMechanics.fridgeFloor1State);
-
+                        if(CoreMechanics.fridgeFloor1State == false)
+                        {
+                            CoreMechanics.fridgeFloor1State = true;
+                            Debug.Log("Changed Fridge to : " + CoreMechanics.fridgeFloor1State);    
+                        }
                         break;
                     case "ovenFloor1State":
-                        CoreMechanics.ovenFloor1State = !CoreMechanics.ovenFloor1State;
-                        Debug.Log("Changed Oven to : " + CoreMechanics.ovenFloor1State);
+                        if(CoreMechanics.ovenFloor1State == false)
+                        {
+                            CoreMechanics.ovenFloor1State = true;
+                            Debug.Log("Changed Oven to : " + CoreMechanics.ovenFloor1State);
+                        }
+                        break;
+                    case "lightFloor1State":
+                        if(CoreMechanics.lightFloor1State == false)
+                        {
+                            CoreMechanics.lightFloor1State = true;
+                            Debug.Log("Changed light to : " + CoreMechanics.lightFloor1State);
+                        }
                         break;
                     // Add cases for other variables 
                     default:
