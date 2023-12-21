@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 using System.Diagnostics;
+using System.Security.Cryptography;
+
 public static class CoreMechanics
 {
     private static Thread t;
@@ -101,6 +103,8 @@ public static class CoreMechanics
     public static double energy = 0;
     public static double water = 0;
     public static double money = 0;
+    public static double kid = 0;
+
     public static double time = 0;
 
     public static double scoreJoy = 0;
@@ -112,6 +116,7 @@ public static class CoreMechanics
     public static double comfort_rate = 0;
     public static double hygiene_rate = -5;
     public static double fun_rate = -6;
+    public static double kid_rate = 1;
 
     private static bool isRunning = false;
 
@@ -126,6 +131,7 @@ public static class CoreMechanics
         energy = 0;
         water = 0;
         money = 25000;
+        kid = 0;
         time = 0;
     }
 
@@ -260,6 +266,7 @@ public static class CoreMechanics
             comfort += comfort_rate / 60;
             hygiene += hygiene_rate / 60;
             fun += fun_rate / 60;
+            kid += kid_rate;
             time += 1;
 
             //Debug.Log("Time since start: " + time + "[s]");
@@ -269,6 +276,7 @@ public static class CoreMechanics
             keepBetween0and100(bladder);
             keepBetween0and100(comfort);
             keepBetween0and100(hygiene);
+            keepBetween0and100(kid);
             keepBetween0and100(fun);
 
             //Garage
