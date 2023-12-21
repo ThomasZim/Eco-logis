@@ -9,8 +9,6 @@ using Image = UnityEngine.UI.Image;
 
 public class InfoInteractor : MonoBehaviour
 {
-    public Image InfoTurnOn;
-    public Image InfoTurnOff;
     public GameObject character;
     public string interactionCode;
     private LevelLoader levelLoader;
@@ -46,17 +44,6 @@ public class InfoInteractor : MonoBehaviour
                             CoreMechanics.computerOfficeState = false;
                         }
                     }
-
-                    if (CoreMechanics.computerOfficeState)
-                    {
-                        InfoTurnOff.enabled = true;
-                        InfoTurnOn.enabled = false;
-                    }
-                    else
-                    {
-                        InfoTurnOff.enabled = false;
-                        InfoTurnOn.enabled = true;
-                    }
                 }
             } 
             break;
@@ -68,26 +55,13 @@ public class InfoInteractor : MonoBehaviour
                     {
                         if (CoreMechanics.ovenFloor1State == false)
                         {
-                            GameObject.Find("ovenLight").GetComponent<Light>().enabled = true;
                             CoreMechanics.ovenFloor1State = true;
                         }
                         else
                         {
-                            GameObject.Find("ovenLight").GetComponent<Light>().enabled = false;
                             CoreMechanics.ovenFloor1State = false;
                         }
                     }
-                }
-                
-                if (CoreMechanics.ovenFloor1State)
-                {
-                    InfoTurnOff.enabled = true;
-                    InfoTurnOn.enabled = false;
-                }
-                else
-                {
-                    InfoTurnOff.enabled = false;
-                    InfoTurnOn.enabled = true;
                 }
             }
             break;
@@ -105,17 +79,6 @@ public class InfoInteractor : MonoBehaviour
                         {
                             CoreMechanics.dishwasherFloor1State = false;
                         }
-                    }
-
-                    if (CoreMechanics.dishwasherFloor1State)
-                    {
-                        InfoTurnOff.enabled = true;
-                        InfoTurnOn.enabled = false;
-                    }
-                    else
-                    {
-                        InfoTurnOff.enabled = false;
-                        InfoTurnOn.enabled = true;
                     }
                 }
             }
@@ -135,17 +98,6 @@ public class InfoInteractor : MonoBehaviour
                             CoreMechanics.fridgeFloor1State = false;
                         }
                     }
-                    
-                    if (CoreMechanics.fridgeFloor1State)
-                    {
-                        InfoTurnOff.enabled = true;
-                        InfoTurnOn.enabled = false;
-                    }
-                    else
-                    {
-                        InfoTurnOff.enabled = false;
-                        InfoTurnOn.enabled = true;
-                    }
                 }
             }
             break;
@@ -155,9 +107,56 @@ public class InfoInteractor : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        switch (this.name)
+                        switch (this.gameObject.scene.name)
                         {
-                            //TODO: Add interruptor logoci
+                            case "1st_floor":
+                            {
+                                if (CoreMechanics.lightFloor1State == false)
+                                {
+                                    CoreMechanics.lightFloor1State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightFloor1State = false;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            break;
+            case "tv_1stfloor":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.tvFloor1State == false)
+                        {
+                            CoreMechanics.tvFloor1State = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.tvFloor1State = false;
+                        }
+                    }
+                }
+            }
+            break;
+            case "lavabo":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.lavaboFloor1State == false)
+                        {
+                            CoreMechanics.lavaboFloor1State = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.lavaboFloor1State = false;
                         }
                     }
                 }
@@ -173,22 +172,11 @@ public class InfoInteractor : MonoBehaviour
         if (other.gameObject == character)
         {
             collision = true;
-            if (CoreMechanics.computerOfficeState)
-            {
-                InfoTurnOff.enabled = true;
-            }
-            else
-            {
-                InfoTurnOn.enabled = true;
-            }
-            
         }
     }
     
     private void OnTriggerExit(Collider other)
     {
         collision = false;
-        InfoTurnOff.enabled = false;
-        InfoTurnOn.enabled = false;
     }
 }
