@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
-
-[System.Serializable]
+using System.Diagnostics;
 public static class CoreMechanics
-
 {
     private static Thread t;
 
@@ -21,7 +19,7 @@ public static class CoreMechanics
 
     //Level of objects
     public static int lightLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
-    public static int fridgeLevel = 0; // 0 = Low, 1 = Medium, 2 = 
+    public static int fridgeLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
     public static int ovenLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
     public static int washMachineLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
     public static int dishwasherLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
@@ -94,16 +92,18 @@ public static class CoreMechanics
     public static double[] conditionerConso = { 20, 13, 8 };
 
     //Scoring
-    public static double hunger;
-    public static double thirst;
-    public static double bladder;
-    public static double comfort;
-    public static double hygiene;
-    public static double fun;
-    public static double energy;
-    public static double water;
-    public static double money;
-    public static double time;
+    public static double hunger = 0;
+    public static double thirst = 0;
+    public static double bladder = 0;
+    public static double comfort = 0;
+    public static double hygiene = 0;
+    public static double fun = 0;
+    public static double energy = 0;
+    public static double water = 0;
+    public static double money = 0;
+    public static double time = 0;
+
+    public static double scoreJoy = 0;
 
     //Rate
     public static double hunger_rate = 10;
@@ -117,12 +117,12 @@ public static class CoreMechanics
 
     public static void Init()
     {
-        hunger = 90;
-        thirst = 90;
-        bladder = 90;
+        hunger = 50;
+        thirst = 50;
+        bladder = 50;
         comfort = 50;
         hygiene = 60;
-        fun = 50;
+        fun = 60;
         energy = 0;
         water = 0;
         money = 25000;
@@ -252,15 +252,17 @@ public static class CoreMechanics
 
         while (isRunning)
         {
-            hunger += hunger_rate;
-            thirst += thirst_rate;
-            bladder += bladder_rate;
-            comfort += comfort_rate;
-            hygiene += hygiene_rate;
-            fun += fun_rate;
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            hunger += hunger_rate/60;
+            thirst += thirst_rate / 60;
+            bladder += bladder_rate / 60;
+            comfort += comfort_rate / 60;
+            hygiene += hygiene_rate / 60;
+            fun += fun_rate / 60;
             time += 1;
 
-            Debug.Log("Time since start: " + time + "[s]");
+            //Debug.Log("Time since start: " + time + "[s]");
 
             keepBetween0and100(hunger);
             keepBetween0and100(thirst);
@@ -386,28 +388,35 @@ public static class CoreMechanics
             {
                 energy += conditionerConso[conditionerLevel];
             }
+            double hungerWeight = 0.15;
+            double thirstWeight = 0.20;
+            double bladderWeight = 0.15;
+            double comfortWeight = 0.05;
+            double hygieneWeight = 0.20;
+            double funWeight = 0.25;
+            scoreJoy = 0;
+            scoreJoy += (100 - hunger) * hungerWeight;
+            scoreJoy += (100 - thirst) * thirstWeight;
+            scoreJoy += (100 - bladder) * bladderWeight;
+            scoreJoy += (comfort * comfortWeight);
+            scoreJoy += (hygiene * hygieneWeight);
+            scoreJoy += (fun * funWeight);
+            //UnityEngine.Debug.Log("hunger since start: " + hunger + "[s]");
+            //UnityEngine.Debug.Log("thirst since start: " + thirst + "[s]");
+            //UnityEngine.Debug.Log("bladder since start: " + bladder + "[s]");
+            //UnityEngine.Debug.Log("comfort since start: " + comfort + "[s]");
+            //UnityEngine.Debug.Log("hygiene since start: " + hygiene + "[s]");
+            //UnityEngine.Debug.Log("fun since start: " + fun + "[s]");
+            //UnityEngine.Debug.Log("Score since start: " + scoreJoy + "[s]");
 
-            System.Threading.Thread.Sleep(1000);
+            stopwatch.Stop();
+            System.Threading.Thread.Sleep(1000- (int)stopwatch.ElapsedMilliseconds);
         }
     }
 
     public static double getJoyScore()
     {
-        double hungerWeight = 0.15;
-        double thirstWeight = 0.20;
-        double bladderWeight = 0.15;
-        double comfortWeight = 0.05;
-        double hygieneWeight = 0.20;
-        double funWeight = 0.25;
-        double score = 0;
-        score += (100 - hunger * hungerWeight);
-        score += (100 - thirst * thirstWeight);
-        score += (100 - bladder * bladderWeight);
-        score += (comfort * comfortWeight);
-        score += (hygiene * hygieneWeight);
-        score += (fun * funWeight);
-
-        return score;
+        return scoreJoy;
     }
 
     public static double getMoneyScore()

@@ -11,7 +11,7 @@ public class MoneyBar : MonoBehaviour
 
     void Start()
     {
-        slider.maxValue = 100000;
+        slider.maxValue = 25000;
         slider.minValue = 0;
         slider.value = (float)(CoreMechanics.money);
 
