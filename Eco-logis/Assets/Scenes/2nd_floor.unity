@@ -1577,7 +1577,7 @@ GameObject:
   - component: {fileID: 1077494654}
   - component: {fileID: 1077494655}
   m_Layer: 0
-  m_Name: example_point_light
+  m_Name: interruptorLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2553,7 +2553,7 @@ GameObject:
   - component: {fileID: 1697621068}
   - component: {fileID: 1697621069}
   m_Layer: 0
-  m_Name: example_point_light (1)
+  m_Name: interruptorLight1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
