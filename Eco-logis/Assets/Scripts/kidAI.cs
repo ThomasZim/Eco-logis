@@ -28,6 +28,9 @@ public class kidBehaviour : MonoBehaviour
     Animator animator;
     private bool enableAutoChange = false;
 
+    private bool doubleSpeed = false;
+    private float speedTimer = 0f;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -73,7 +76,7 @@ public class kidBehaviour : MonoBehaviour
         Vector3 destination = new Vector3(wayPoints[index].transform.position.x, 0f, wayPoints[index].transform.position.z);
         //Update kid position and make it move if it is not seen by the player
         
-        if(canNotMove == false && sameRoom == true)
+        if(sameRoom == true)
         {   
             animator.SetBool("IsWalking", true);
             // Calculate the rotation towards the destination
@@ -83,10 +86,18 @@ public class kidBehaviour : MonoBehaviour
 
             Vector3 newPos = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
             transform.position = newPos;
-        }
-        if(canNotMove == true && sameRoom == true)
-        {
-            animator.SetBool("IsWalking", false);
+
+            if (doubleSpeed)
+            {
+                speedTimer += Time.deltaTime;
+                // kid speed is doubled for 3 seconds
+                if (speedTimer >= 3f)
+                {
+                    doubleSpeed = false;
+                    speedTimer = 0f;
+                    speed = 2f;
+                }
+            }
         }
 
         float distance = Vector3.Distance(transform.position, destination);
@@ -100,45 +111,55 @@ public class kidBehaviour : MonoBehaviour
             
             if (delayTimer >= delayDuration)
             {   
+                // decides if kid will turn on an object or not 
+                
+                int kidRandAction = Random.Range(1, 101);
 
-                // Switch Case to include all the variables that rule the state of objects
-                switch (wayPoints[index].gameObject.name)
-                {
-                    case "tvFloor1State":
-                        if(CoreMechanics.tvFloor1State == false)
-                        {
-                            CoreMechanics.tvFloor1State = true;
-                            Debug.Log("Changed TV to : " + CoreMechanics.tvFloor1State);
-                        }
-                        
-                        break;
-                    case "fridgeFloor1State":
-                        if(CoreMechanics.fridgeFloor1State == false)
-                        {
-                            CoreMechanics.fridgeFloor1State = true;
-                            Debug.Log("Changed Fridge to : " + CoreMechanics.fridgeFloor1State);    
-                        }
-                        break;
-                    case "ovenFloor1State":
-                        if(CoreMechanics.ovenFloor1State == false)
-                        {
-                            CoreMechanics.ovenFloor1State = true;
-                            Debug.Log("Changed Oven to : " + CoreMechanics.ovenFloor1State);
-                        }
-                        break;
-                    case "lightFloor1State":
-                        if(CoreMechanics.lightFloor1State == false)
-                        {
-                            CoreMechanics.lightFloor1State = true;
-                            Debug.Log("Changed light to : " + CoreMechanics.lightFloor1State);
-                        }
-                        break;
-                    // Add cases for other variables 
-                    default:
-                        // Handle unknown interaction point names or add additional cases
-                        Debug.Log("Unknown interaction point name: " + wayPoints[index].gameObject.name);
-                        break;
-                }
+                Debug.Log("Kid random action : " + kidRandAction);
+                Debug.Log("Kid interaction : " + CoreMechanics.kid);
+
+                // CoreMechanics.kid at 100 = malicious kid interacts with object
+                // CoreMechanics.kid at 0 = really nice kid DOES NOT interact with object
+                if (CoreMechanics.kid >= kidRandAction)
+
+                    // Switch Case to include all the variables that rule the state of objects
+                    switch (wayPoints[index].gameObject.name)
+                    {
+                        case "tvFloor1State":
+                            if(CoreMechanics.tvFloor1State == false)
+                            {
+                                CoreMechanics.tvFloor1State = true;
+                                Debug.Log("Changed TV to : " + CoreMechanics.tvFloor1State);
+                            }
+                            
+                            break;
+                        case "fridgeFloor1State":
+                            if(CoreMechanics.fridgeFloor1State == false)
+                            {
+                                CoreMechanics.fridgeFloor1State = true;
+                                Debug.Log("Changed Fridge to : " + CoreMechanics.fridgeFloor1State);    
+                            }
+                            break;
+                        case "ovenFloor1State":
+                            if(CoreMechanics.ovenFloor1State == false)
+                            {
+                                CoreMechanics.ovenFloor1State = true;
+                                Debug.Log("Changed Oven to : " + CoreMechanics.ovenFloor1State);
+                            }
+                            break;
+                        case "lightFloor1State":
+                            if(CoreMechanics.lightFloor1State == false)
+                            {
+                                CoreMechanics.lightFloor1State = true;
+                                Debug.Log("Changed light to : " + CoreMechanics.lightFloor1State);
+                            }
+                            break;
+                        // Add cases for other variables 
+                        default:
+                            // Handle unknown interaction point names or add additional cases
+                            Debug.Log("Unknown interaction point name: " + wayPoints[index].gameObject.name);
+                            break;
+                    }
 
                 ChangeIndex();
                 delayTimer = 0f;
@@ -291,6 +312,12 @@ public class kidBehaviour : MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
         }
+        //if kid collides with player, kid's speed doubles for '
+        if (other.gameObject.name.Contains("Male"))
+        {
+            doubleSpeed = true;
+            speed = 5f;
+        }
         
     }
 
@@ -302,7 +329,8 @@ public class kidBehaviour : MonoBehaviour
      // Called by PlayerController when the player has the opponent in vision
     public void SetPlayerInSight(bool inSight)
     {
-        canNotMove = inSight;
+        CoreMechanics.kid = 0;
+        // Debug.Log("Kid Becomes Real Nice");
         // Debug.Log("Is the kid in view :" + playerInSight);
     }
 
