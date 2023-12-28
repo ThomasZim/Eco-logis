@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     { 
-        CoreMechanics.stop();
+        CoreMechanics.Stop();
     }
 
     // Update is called once per frame
@@ -25,14 +25,14 @@ public class MainMenu : MonoBehaviour
         if (StaticSceneTransi.PreviousSceneName.Equals("null"))
         {
             SceneManager.LoadScene("1st_floor");
-            CoreMechanics.Init();
+            CoreMechanics.InitNormal();
         }
         else
         {
             Debug.Log(StaticSceneTransi.PreviousSceneName);
             SceneManager.LoadScene(StaticSceneTransi.PreviousSceneName);
         }
-        CoreMechanics.start();
+        CoreMechanics.Start();
     }
     
     public void QuitGame()

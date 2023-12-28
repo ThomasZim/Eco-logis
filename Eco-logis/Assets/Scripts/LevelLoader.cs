@@ -105,6 +105,7 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CoreMechanics.playerScene = this.name;
         if (Input.GetKey(KeyCode.R))
         {
             // Reset scene

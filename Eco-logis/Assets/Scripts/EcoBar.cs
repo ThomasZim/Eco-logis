@@ -13,14 +13,14 @@ public class EcoBar : MonoBehaviour
     {
         slider.maxValue = 100;
         slider.minValue = 0;
-        slider.value = (float)(CoreMechanics.getEcologyScore());
+        slider.value = (float)(CoreMechanics.GetEcologyScore());
 
      
 
     }
     void Update()
     {
-        slider.value = (float)(CoreMechanics.getEcologyScore());
+        slider.value = (float)(CoreMechanics.GetEcologyScore());
         
     }
 }
