@@ -8,7 +8,7 @@ import pandas as pd
 def draw_rounded_rectangle(draw, width, height, border_radius):
     draw.rounded_rectangle(
         [(X_CORNER, Y_CORNER), (width, height)],
-        fill="#A5BEDC90",  # Rectangle color
+        fill="#A5BEDC",  # Rectangle color
         outline=None,
         radius=border_radius,
         width=0,
