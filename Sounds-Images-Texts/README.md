@@ -47,3 +47,23 @@ and
 - **Object upgraded** : <audio src="sounds/correct.mp3" controls title="game-music"></audio>
 - **Object interaction** : <audio src="sounds/button.mp3" controls title="game-music"></audio>
 
+### Texts
+
+#### Game over
+Oops! Looks like your eco-journey hit a bump. No worries, learn from it, make some tweaks, and get ready to bounce back stronger! Your next green adventure awaits in EcoLogis!
+
+![Game over](images/game_over.png)
+
+#### Next level
+Congratulations! You've mastered the art of eco-living! Level up in EcoLogis and continue your journey towards a greener, more sustainable future. Get ready for new challenges and even cooler ways to make a positive impact on your virtual world!
+
+![Next level](images/next_level.png)
+
+#### Winning
+You did it! EcoLogis conquered! Your commitment to green living has transformed the virtual world into an eco-paradise. Thanks for playing a vital role in making a sustainable difference. Now, take the lessons learned here and let them inspire your real-world impact. Kudos, Eco Champion!
+
+![Winner](images/win.png)
+
+## Sources
+
+- **Sound effects** : [Pixabay](https://pixabay.com/) (see [license summary](https://pixabay.com/service/license-summary/))
