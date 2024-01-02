@@ -29,7 +29,7 @@ def create_image(note, obj, object_index, is_on, excel_file, has_action):
 
     if is_success:
         # Save the image
-        image.save("output/" + obj + "_" + (note + "_" if note != "-" else "") + (("on" if is_on else "off") if has_action else "") + ".png")
+        image.save("output/" + obj + "_" + (note + "_" if note != "-" else "") + (("on" if is_on else "off") if has_action else "price") + ".png")
 
 if __name__ == "__main__":
 
