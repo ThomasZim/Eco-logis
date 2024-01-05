@@ -120,8 +120,8 @@ public class kidBehaviour : MonoBehaviour
 
                 // CoreMechanics.kid at 100 = malicious kid interacts with object
                 // CoreMechanics.kid at 0 = really nice kid DOES NOT interact with object
-                //if (CoreMechanics.kid >= kidRandAction)
-
+                if (CoreMechanics.kid >= kidRandAction)
+                {
                     // Switch Case to include all the variables that rule the state of objects
                     switch (wayPoints[index].gameObject.name)
                     {
@@ -269,7 +269,7 @@ public class kidBehaviour : MonoBehaviour
                             Debug.Log("Unknown interaction point name: " + wayPoints[index].gameObject.name);
                             break;
                     }
-
+                }
                 ChangeIndex();
                 delayTimer = 0f;
                 animator.SetBool("IsWalking", true);
@@ -422,11 +422,11 @@ public class kidBehaviour : MonoBehaviour
             animator.SetBool("IsWalking", false);
         }
         //if kid collides with player, kid's speed doubles for '
-        /*if (other.gameObject.name.Contains("Male"))
+        if (other.gameObject.name.Contains("Male"))
         {
             doubleSpeed = true;
             speed = 5f;
-        }*/
+        }
         
     }
 
@@ -439,7 +439,7 @@ public class kidBehaviour : MonoBehaviour
     public void SetPlayerInSight(bool inSight)
     {
         CoreMechanics.kid = 0;
-        // Debug.Log("Kid Becomes Real Nice");
+        Debug.Log("Kid Becomes Real Nice");
         // Debug.Log("Is the kid in view :" + playerInSight);
     }
 
