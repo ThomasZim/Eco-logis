@@ -23,7 +23,7 @@ public class kidBehaviour : MonoBehaviour
     private GameObject spawnPoint;
     private string oldLocation;
 
-    private string[] interactionPoints = {"lightFloor1State", "tvFloor1State", "fridgeFloor1State", "ovenFloor1State"};
+    private string[] interactionPoints = {"lightGarageState", "heaterLaundryRoomState", "washMachineLaundryRoomState", "lightLaundryRoomState", "lavaboFloor1State", "lightBathFloor1State", "lightChildRoomState","lightBathFloor2State", "bathBathFloor2State", "lavaboBathFloor2State", "lightAdultRoomState", "lightFloor2State", "lightFloor1State", "tvFloor1State", "fridgeFloor1State", "ovenFloor1State"};
 
     Animator animator;
     private bool enableAutoChange = false;
@@ -120,7 +120,7 @@ public class kidBehaviour : MonoBehaviour
 
                 // CoreMechanics.kid at 100 = malicious kid interacts with object
                 // CoreMechanics.kid at 0 = really nice kid DOES NOT interact with object
-                if (CoreMechanics.kid >= kidRandAction)
+                //if (CoreMechanics.kid >= kidRandAction)
 
                     // Switch Case to include all the variables that rule the state of objects
                     switch (wayPoints[index].gameObject.name)
@@ -154,6 +154,92 @@ public class kidBehaviour : MonoBehaviour
                                 Debug.Log("Changed light to : " + CoreMechanics.lightFloor1State);
                             }
                             break;
+                        case "lightFloor2State":
+                            if(CoreMechanics.lightFloor2State == false)
+                            {
+                                CoreMechanics.lightFloor2State = true;
+                                Debug.Log("Changed light to : " + CoreMechanics.lightFloor2State);
+                            }
+                            break;
+                        case "lightAdultRoomState":
+                            if(CoreMechanics.lightAdultRoomState == false)
+                            {
+                                CoreMechanics.lightAdultRoomState = true;
+                                Debug.Log("Changed light to : " + CoreMechanics.lightAdultRoomState);
+                            }
+                            break;
+                        case "lavaboBathFloor2State":
+                            if(CoreMechanics.lavaboBathFloor2State == false)
+                            {
+                                CoreMechanics.lavaboBathFloor2State = true;
+                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboBathFloor2State);
+                            }
+                            break;
+                        case "bathBathFloor2State":
+                            if(CoreMechanics.bathBathFloor2State == false)
+                            {
+                                CoreMechanics.bathBathFloor2State = true;
+                                Debug.Log("Changed bath to : " + CoreMechanics.bathBathFloor2State);
+                            }
+                            break;
+                        case "lightBathFloor2State":
+                            if(CoreMechanics.lightBathFloor2State == false)
+                            {
+                                CoreMechanics.lightBathFloor2State = true;
+                                Debug.Log("Changed light to : " + CoreMechanics.lightBathFloor2State);
+                            }
+                            break;
+
+                        case "lightChildRoomState":
+                            if(CoreMechanics.lightChildRoomState == false)
+                            {
+                                CoreMechanics.lightChildRoomState = true;
+                                Debug.Log("Changed light to : " + CoreMechanics.lightChildRoomState);
+                            }
+                            break;  
+
+                        case "lightBathFloor1State":
+                            if(CoreMechanics.lightBathFloor1State == false)
+                            {
+                                CoreMechanics.lightBathFloor1State = true;
+                                Debug.Log("Changed light to : " + CoreMechanics.lightBathFloor1State);
+                            }
+                            break;
+                        
+                        case "lavaboFloor1State":
+                            if(CoreMechanics.lavaboFloor1State == false)
+                            {
+                                CoreMechanics.lavaboFloor1State = true;
+                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboFloor1State);
+                            }
+                            break;
+                        
+                        case "lightLaundryRoomState":
+                            if(CoreMechanics.lightLaundryRoomState == false)
+                            {
+                                CoreMechanics.lightLaundryRoomState = true;
+                                Debug.Log("Changed light to : " + CoreMechanics.lightLaundryRoomState);
+                            }
+                            break;
+
+                        case "washMachineLaundryRoomState":
+                            if(CoreMechanics.washMachineLaundryRoomState == false)
+                            {
+                                CoreMechanics.washMachineLaundryRoomState = true;
+                                Debug.Log("Changed washMachine to : " + CoreMechanics.washMachineLaundryRoomState);
+                            }
+                            break;
+                        
+                        case "heaterLaundryRoomState":
+                            if(CoreMechanics.heaterLaundryRoomState == false)
+                            {
+                                CoreMechanics.heaterLaundryRoomState = true;
+                                Debug.Log("Changed heater to : " + CoreMechanics.heaterLaundryRoomState);
+                            }
+                            break;                       
+
+                         
+                        
                         // Add cases for other variables 
                         default:
                             // Handle unknown interaction point names or add additional cases
@@ -313,11 +399,11 @@ public class kidBehaviour : MonoBehaviour
             animator.SetBool("IsWalking", false);
         }
         //if kid collides with player, kid's speed doubles for '
-        if (other.gameObject.name.Contains("Male"))
+        /*if (other.gameObject.name.Contains("Male"))
         {
             doubleSpeed = true;
             speed = 5f;
-        }
+        }*/
         
     }
 
