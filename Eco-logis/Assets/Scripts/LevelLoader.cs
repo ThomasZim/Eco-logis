@@ -252,6 +252,7 @@ public class LevelLoader : MonoBehaviour
                 GameObject.Find("interruptorLight1").GetComponent<Light>().enabled = CoreMechanics.lightLaundryRoomState;
                 GameObject.Find("washing_machineOn").GetComponent<Light>().enabled = CoreMechanics.washMachineLaundryRoomState;
                 GameObject.Find("heating_pumpLight").GetComponent<Light>().enabled = CoreMechanics.heaterLaundryRoomState;
+                GameObject.Find("conditioner_Light").GetComponent<Light>().enabled = CoreMechanics.conditionerLaundryRoomState;
             }
             break;
             case "Bathroom_1st":
