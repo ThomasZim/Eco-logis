@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657987, g: 0.49641484, b: 0.5748177, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641597, b: 0.57481813, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -676,6 +676,10 @@ PrefabInstance:
       value: InterruptorInteraction
       objectReference: {fileID: 0}
     - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1112535334}
+    - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: interactionCode
       value: interruptor
       objectReference: {fileID: 0}
@@ -771,8 +775,12 @@ PrefabInstance:
       value: heating_pumpInteraction
       objectReference: {fileID: 0}
     - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1112535334}
+    - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: interactionCode
-      value: interruptor
+      value: heating_pump
       objectReference: {fileID: 0}
     - target: {fileID: 6959384354430033462, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Size.x
@@ -1311,6 +1319,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1112535334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1824340380413090, guid: 0e74cf81e6fd82546b4797f71ceffb81, type: 3}
+  m_PrefabInstance: {fileID: 1760977260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1150640023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3570,8 +3583,12 @@ PrefabInstance:
       value: washing_machineInteraction
       objectReference: {fileID: 0}
     - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1112535334}
+    - target: {fileID: 6806382862920012537, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: interactionCode
-      value: interruptor
+      value: washmachine
       objectReference: {fileID: 0}
     - target: {fileID: 6959384354430033462, guid: 9e51055d087e5e4428c387f999b0a163, type: 3}
       propertyPath: m_Size.x

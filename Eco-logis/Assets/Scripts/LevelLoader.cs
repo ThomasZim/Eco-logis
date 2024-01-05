@@ -177,15 +177,6 @@ public class LevelLoader : MonoBehaviour
 
     private void animUpdate()
     {
-        /*public static bool lightGarageState = false;
-        public static bool lightFloor1State = false;
-        public static bool lightBathFloor1State = false;
-        public static bool lightOfficeState = false;
-        public static bool lightBathFloor2State = false;
-        public static bool lightChildRoomState = false;
-        public static bool lightAdultRoomState = false;
-        public static bool lightLaundryRoomState = false;*/
-
         switch (this.gameObject.scene.name)
         {
             case "1st_floor":
@@ -246,6 +237,58 @@ public class LevelLoader : MonoBehaviour
                 {
                     GameObject.Find("FridgeLight").GetComponent<Light>().enabled = false;
                 }
+            }
+            break;
+            case "Garage":
+            {
+                GameObject.Find("interruptorLight").GetComponent<Light>().enabled = CoreMechanics.lightGarageState;
+                GameObject.Find("interruptorLight1").GetComponent<Light>().enabled = CoreMechanics.lightGarageState;
+                GameObject.Find("interruptorLight2").GetComponent<Light>().enabled = CoreMechanics.lightGarageState;
+            }
+            break;
+            case "buanderie_chauffage": 
+            {
+                GameObject.Find("interruptorLight").GetComponent<Light>().enabled = CoreMechanics.lightLaundryRoomState;
+                GameObject.Find("interruptorLight1").GetComponent<Light>().enabled = CoreMechanics.lightLaundryRoomState;
+                GameObject.Find("washing_machineOn").GetComponent<Light>().enabled = CoreMechanics.washMachineLaundryRoomState;
+                GameObject.Find("heating_pumpLight").GetComponent<Light>().enabled = CoreMechanics.heaterLaundryRoomState;
+            }
+            break;
+            case "Bathroom_1st":
+            {
+                GameObject.Find("interruptorLight").GetComponent<Light>().enabled = CoreMechanics.lightBathFloor1State;
+                GameObject.Find("LavaboOn").GetComponent<Renderer>().enabled = CoreMechanics.lavaboBathFloor1State;
+            }
+            break;
+            case "Office":
+            {
+                GameObject.Find("interruptorLight").GetComponent<Light>().enabled = CoreMechanics.lightOfficeState;
+                GameObject.Find("interruptorLight1").GetComponent<Light>().enabled = CoreMechanics.lightOfficeState;
+            }
+            break;
+            case "2nd_floor":
+            {
+                GameObject.Find("interruptorLight").GetComponent<Light>().enabled = CoreMechanics.lightFloor2State;
+                GameObject.Find("interruptorLight1").GetComponent<Light>().enabled = CoreMechanics.lightFloor2State;
+            }
+            break;
+            case "Child_room":
+            {
+                GameObject.Find("interruptorLight").GetComponent<Light>().enabled = CoreMechanics.lightChildRoomState;
+            }
+            break;
+            case "Adult_bedroom":
+            {
+                GameObject.Find("interruptorLight").GetComponent<Light>().enabled = CoreMechanics.lightAdultRoomState;
+                GameObject.Find("interruptorLight1").GetComponent<Light>().enabled = CoreMechanics.lightAdultRoomState;
+            }
+            break;
+            case "Bathroom_2nd":
+            {
+                GameObject.Find("interruptorLight").GetComponent<Light>().enabled = CoreMechanics.lightBathFloor2State;
+                GameObject.Find("interruptorLight1").GetComponent<Light>().enabled = CoreMechanics.lightBathFloor2State;
+                GameObject.Find("LavaboOn").GetComponent<Renderer>().enabled = CoreMechanics.lavaboBathFloor2State;
+                GameObject.Find("BathOn").GetComponent<Renderer>().enabled = CoreMechanics.bathBathFloor2State;
             }
             break;
         }

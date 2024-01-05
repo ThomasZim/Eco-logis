@@ -121,6 +121,102 @@ public class InfoInteractor : MonoBehaviour
                                 }
                             }
                             break;
+                            case "Garage":
+                            {
+                                if (CoreMechanics.lightGarageState == false)
+                                {
+                                    CoreMechanics.lightGarageState = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightGarageState = false;
+                                }
+                            }
+                            break;
+                            case "buanderie_chauffage":
+                            {
+                                if (CoreMechanics.lightLaundryRoomState == false)
+                                {
+                                    CoreMechanics.lightLaundryRoomState = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightLaundryRoomState = false;
+                                }
+                            }
+                            break;
+                            case "Bathroom_1st":
+                            {
+                                if (CoreMechanics.lightBathFloor1State == false)
+                                {
+                                    CoreMechanics.lightBathFloor1State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightBathFloor1State = false;
+                                }
+                            }
+                            break;
+                            case "Office":
+                            {
+                                if (CoreMechanics.lightOfficeState == false)
+                                {
+                                    CoreMechanics.lightOfficeState = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightOfficeState = false;
+                                }
+                            }
+                            break;
+                            case "2nd_floor":
+                            {
+                                if (CoreMechanics.lightFloor2State == false)
+                                {
+                                    CoreMechanics.lightFloor2State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightFloor2State = false;
+                                }
+                            }
+                            break;
+                            case "Child_room":
+                            {
+                                if (CoreMechanics.lightChildRoomState == false)
+                                {
+                                    CoreMechanics.lightChildRoomState = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightChildRoomState = false;
+                                }
+                            }
+                            break;
+                            case "Adult_bedroom":
+                            {
+                                if (CoreMechanics.lightAdultRoomState == false)
+                                {
+                                    CoreMechanics.lightAdultRoomState = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightAdultRoomState = false;
+                                }
+                            }
+                            break;
+                            case "Bathroom_2nd":
+                            {
+                                if (CoreMechanics.lightBathFloor2State == false)
+                                {
+                                    CoreMechanics.lightBathFloor2State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightBathFloor2State = false;
+                                }
+                            }
+                            break;
                         }
                     }
                 }
@@ -150,13 +246,98 @@ public class InfoInteractor : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        if (CoreMechanics.lavaboFloor1State == false)
+                        switch (this.gameObject.scene.name)
                         {
-                            CoreMechanics.lavaboFloor1State = true;
+                            case "1st_floor":
+                            {
+                                if (CoreMechanics.lavaboFloor1State == false)
+                                {
+                                    CoreMechanics.lavaboFloor1State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lavaboFloor1State = false;
+                                }
+                            }
+                            break;
+                            case "Bathroom_1st":
+                            {
+                                if (CoreMechanics.lavaboBathFloor1State == false)
+                                {
+                                    CoreMechanics.lavaboBathFloor1State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lavaboBathFloor1State = false;
+                                }
+                            }
+                            break;
+                            case "Bathroom_2nd":
+                            {
+                                if (CoreMechanics.lavaboBathFloor2State == false)
+                                {
+                                    CoreMechanics.lavaboBathFloor2State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lavaboBathFloor2State = false;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            break;
+            case "washmachine":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.washMachineLaundryRoomState == false)
+                        {
+                            CoreMechanics.washMachineLaundryRoomState = true;
                         }
                         else
                         {
-                            CoreMechanics.lavaboFloor1State = false;
+                            CoreMechanics.washMachineLaundryRoomState = false;
+                        }
+                    }
+                }
+            }
+            break;
+            case "heating_pump":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.heaterLaundryRoomState == false)
+                        {
+                            CoreMechanics.heaterLaundryRoomState = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.heaterLaundryRoomState = false;
+                        }
+                    }
+                }
+            }
+            break;
+            case "bath":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.bathBathFloor2State == false)
+                        {
+                            CoreMechanics.bathBathFloor2State = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.bathBathFloor2State = false;
                         }
                     }
                 }
