@@ -31,6 +31,8 @@ public class MainMenu : MonoBehaviour
             GameObject.Find("DiffHardButton").SetActive(false);
         }
         CoreMechanics.Stop();
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>().StopMain();
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>().PlayIntro();
     }
 
     // Update is called once per frame
@@ -103,6 +105,8 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene(StaticSceneTransi.PreviousSceneName);
         }
         CoreMechanics.Start();
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>().StopIntro();
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>().PlayMain();
     }
     
     public void QuitGame()

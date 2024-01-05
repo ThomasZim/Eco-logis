@@ -19,6 +19,10 @@ public class LevelLoader : MonoBehaviour
         // Get character
         GameObject character = GameObject.Find("MaleFreeSimpleMovement1");
         
+        // Play music
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>().StopIntro();
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>().PlayMain();
+        
         // Main menu
         if (StaticSceneTransi.inMainMenu)
         {
