@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
+using System.Diagnostics;
+using System.Security.Cryptography;
+using Debug = System.Diagnostics.Debug;
 
-[System.Serializable]
 public static class CoreMechanics
-
 {
     private static Thread t;
+
+    public static string playerScene = "";
 
     //Upgrade cost
     public static double[] lightCosts = { 7, 13, 20 };
@@ -21,7 +24,7 @@ public static class CoreMechanics
 
     //Level of objects
     public static int lightLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
-    public static int fridgeLevel = 0; // 0 = Low, 1 = Medium, 2 = 
+    public static int fridgeLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
     public static int ovenLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
     public static int washMachineLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
     public static int dishwasherLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
@@ -29,30 +32,30 @@ public static class CoreMechanics
     public static int conditionerLevel = 0; // 0 = Low, 1 = Medium, 2 = Good
 
     //Score effect
-    public static double eatingEffectHunger = -100;
-    public static double drinkingEffectThirst = -100;
-    public static double wcEffectBladder = -100;
-    public static double wcEffectWater = 40;
-    public static double workshopEffectFun = 10;
-    public static double tvEffectFun = 10;
-    public static double lavaboEffectHygiene = 20;
-    public static double lavaboEffectWater = 10;
-    public static double bathEffectHygiene = 60;
-    public static double bathEffectFun = 30;
-    public static double bathEffectWater = 200;
-    public static double showerEffectHygiene = 50;
-    public static double showerEffectFun = 20;
-    public static double showerEffectWater = 50;
-    public static double washMachineEffectHygiene = 60;
-    public static double washMachineEffectWater = 60;
-    public static double dishwasherEffectHygiene = 20;
-    public static double dishwasherEffectWater = 12;
-    public static double heaterHighEffectComfort = 100;
-    public static double heaterMediumEffectComfort = 50;
-    public static double heaterOffEffectComfort = 0;
-    public static double conditionerHighEffectComfort = 100;
-    public static double conditionerMediumEffectComfort = 50;
-    public static double conditionerOffEffectComfort = -100;
+    private static readonly double eatingEffectHunger = -100;
+    private static readonly double drinkingEffectThirst = -100;
+    private static readonly double wcEffectBladder = -100;
+    private static readonly double wcEffectWater = 40;
+    private static readonly double workshopEffectFun = 10;
+    private static readonly double tvEffectFun = 10;
+    private static readonly double lavaboEffectHygiene = 20;
+    private static readonly double lavaboEffectWater = 10;
+    private static readonly double bathEffectHygiene = 60;
+    private static readonly double bathEffectFun = 30;
+    private static readonly double bathEffectWater = 200;
+    private static readonly double showerEffectHygiene = 50;
+    private static readonly double showerEffectFun = 20;
+    private static readonly double showerEffectWater = 50;
+    private static readonly double washMachineEffectHygiene = 60;
+    private static readonly double washMachineEffectWater = 60;
+    private static readonly double dishwasherEffectHygiene = 20;
+    private static readonly double dishwasherEffectWater = 12;
+    private static readonly double heaterHighEffectComfort = 100;
+    private static readonly double heaterMediumEffectComfort = 50;
+    private static readonly double heaterOffEffectComfort = 0;
+    private static readonly double conditionerHighEffectComfort = 100;
+    private static readonly double conditionerMediumEffectComfort = 50;
+    private static readonly double conditionerOffEffectComfort = -100;
 
     //States
     public static bool lightGarageState = false;
@@ -71,6 +74,7 @@ public static class CoreMechanics
     public static bool bathBathFloor2State = false;
     public static bool wcBathFloor2State = false;
     public static bool lavaboBathFloor2State = false;
+    public static bool lightFloor2State = false;
     public static bool lightChildRoomState = false;
     public static bool lightAdultRoomState = false;
     public static bool lightLaundryRoomState = false;
@@ -79,7 +83,7 @@ public static class CoreMechanics
     public static bool conditionerLaundryRoomState = false;
 
     //Consommation values
-    public static double[] lightConso = { 0.056, 0.04, 0.032 };
+    public static double[] lightConso = { 0.05, 0.04, 0.03 };
     public static double tvConso = 0.1;
     public static double[] fridgeConso = { 1, 0.56, 0.4 };
     public static double[] ovenConso = { 1.23, 1, 0.52 };
@@ -89,21 +93,25 @@ public static class CoreMechanics
     public static double bathConso = 1;
     public static double showerConso = 1;
     public static double[] washMachineConso = { 0.5, 0.4, 0.2 };
-    public static double[] dishwasherConso = { 0.84, 0.74, 0.54 };
-    public static double[] heaterConso = { 0, 0, 3.5 };
-    public static double[] conditionerConso = { 20, 13, 8 };
+    public static double[] dishwasherConso = { 0.4, 0.2, 0.1 };
+    public static double[] heaterConso = { 0, 0, 0.35 };
+    public static double[] conditionerConso = { 2, 1.3, 0.8 };
 
     //Scoring
-    public static double hunger;
-    public static double thirst;
-    public static double bladder;
-    public static double comfort;
-    public static double hygiene;
-    public static double fun;
-    public static double energy;
-    public static double water;
-    public static double money;
-    public static double time;
+    public static double hunger = 0;
+    public static double thirst = 0;
+    public static double bladder = 0;
+    public static double comfort = 0;
+    public static double hygiene = 0;
+    public static double fun = 0;
+    public static double energy = 0;
+    public static double water = 0;
+    public static double money = 0;
+    public static double kid = 0;
+
+    public static double time = 0;
+
+    public static double scoreJoy = 0;
 
     //Rate
     public static double hunger_rate = 10;
@@ -112,29 +120,96 @@ public static class CoreMechanics
     public static double comfort_rate = 0;
     public static double hygiene_rate = -5;
     public static double fun_rate = -6;
+    public static double kid_rate = 1;
+    public static double moneyRate = 1000;
+
+    public static double fun_rate_factor = 1;
+    public static int gameLevel = 0;  // 0 = Easy, 1 = Normal, 2 = Hard
 
     private static bool isRunning = false;
 
-    public static void Init()
+    public static void InitEasy()
     {
-        hunger = 90;
-        thirst = 90;
-        bladder = 90;
+        //Scoring
+        hunger = 50;
+        thirst = 50;
+        bladder = 50;
         comfort = 50;
         hygiene = 60;
-        fun = 50;
+        fun = 60;
         energy = 0;
         water = 0;
-        money = 25000;
+        money = 10000;
+        kid = 0;
         time = 0;
+
+        // Rates
+        hunger_rate = 6;
+        thirst_rate = 6;
+        bladder_rate = 3;
+        comfort_rate = 0;
+        hygiene_rate = -2;
+        fun_rate = -2;
+        kid_rate = 0.5;
+        moneyRate = 1500;
+}
+    public static void InitNormal()
+    {
+        //Scoring
+        hunger = 50;
+        thirst = 50;
+        bladder = 50;
+        comfort = 50;
+        hygiene = 60;
+        fun = 60;
+        energy = 0;
+        water = 0;
+        money = 6000;
+        kid = 0;
+        time = 0;
+
+        // Rates
+        hunger_rate = 10;
+        thirst_rate = 10;
+        bladder_rate = 7;
+        comfort_rate = 0;
+        hygiene_rate = -5;
+        fun_rate = -6;
+        kid_rate = 1;
+        moneyRate = 1000;
+    }
+    public static void InitHard()
+    {
+        //Scoring
+        hunger = 50;
+        thirst = 50;
+        bladder = 50;
+        comfort = 50;
+        hygiene = 60;
+        fun = 60;
+        energy = 0;
+        water = 0;
+        money = 3000;
+        kid = 0;
+        time = 0;
+
+        // Rates
+        hunger_rate = 12;
+        thirst_rate = 12;
+        bladder_rate = 9;
+        comfort_rate = 0;
+        hygiene_rate = -7;
+        fun_rate = -8;
+        kid_rate = 2;
+        moneyRate = 700;
     }
 
-    public static void stop()
+    public static void Stop()
     {
         isRunning = false;
     }
 
-    public static double keepBetween0and100(double variable)
+    public static double KeepBetween0and100(double variable)
     {
         if (variable < 0)
         {
@@ -147,17 +222,17 @@ public static class CoreMechanics
         return variable;
     }
 
-    public static void lightIsOff()
+    public static void LightIsOff()
     {
-        fun_rate = -8;
+        fun_rate_factor = 1.3;
     }
 
-    public static void lightIsOn()
+    public static void LightIsOn()
     {
-        fun_rate = -6;
+        fun_rate_factor = 1;
     }
 
-    public static int coreMecanicsEvent(string mecanic)
+    public static int CoreMecanicsEvent(string mecanic)
     {
         if (mecanic == "Drinking")
         {
@@ -169,7 +244,7 @@ public static class CoreMechanics
             hunger += eatingEffectHunger;
             return 1;
         }
-        if (mecanic == "Wc")
+        if (mecanic == "WC")
         {
             water += wcEffectWater;
             bladder += wcEffectBladder;
@@ -237,68 +312,181 @@ public static class CoreMechanics
             fun += workshopEffectFun;
             return 1;
         }
+        if (mecanic == "TV")
+        {
+            fun += tvEffectFun;
+            return 1;
+        }
+        if (mecanic == "Lavabo")
+        {
+            hygiene += lavaboEffectHygiene;
+            water += lavaboEffectWater;
+            return 1;
+        }
         return 0;
     }
 
-    public static void start()
+    public static void Start()
     {
-        t = new Thread(thread_func);
+        t = new Thread(Thread_func);
         t.Start();
     }
 
-    public static void thread_func()
+    public static void Thread_func()
     {
         isRunning = true;
 
         while (isRunning)
         {
-            hunger += hunger_rate;
-            thirst += thirst_rate;
-            bladder += bladder_rate;
-            comfort += comfort_rate;
-            hygiene += hygiene_rate;
-            fun += fun_rate;
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            switch(playerScene)
+            {
+                case "Office":
+                    if (lightOfficeState)
+                    {
+                        LightIsOn();
+                    }
+                    else
+                    {
+                        LightIsOff();
+                    }
+                    break;
+                case "Garage":
+                    if (lightGarageState)
+                    {
+                        LightIsOn();
+                    }
+                    else
+                    {
+                        LightIsOff();
+                    }
+                    break;
+                case "Bathroom_1st":
+                    if (lightBathFloor1State)
+                    {
+                        LightIsOn();
+                    }
+                    else
+                    {
+                        LightIsOff();
+                    }
+
+                    break;
+                case "1nd_floor":
+                    if (lightFloor1State)
+                    {
+                        LightIsOn();
+                    }
+                    else
+                    {
+                        LightIsOff();
+                    }
+                    break;
+                case "buanderie_chauffage":
+                    if (lightLaundryRoomState)
+                    {
+                        LightIsOn();
+                    }
+                    else
+                    {
+                        LightIsOff();
+                    }
+                    break;
+                case "2nd_floor":
+                    if (lightFloor2State)
+                    {
+                        LightIsOn();
+                    }
+                    else
+                    {
+                        LightIsOff();
+                    }
+                    break;
+                case "Child_room":
+                    if (lightChildRoomState)
+                    {
+                        LightIsOn();
+                    }
+                    else
+                    {
+                        LightIsOff();
+                    }
+                    break;
+                case "Adult_bedroom":
+                    if (lightAdultRoomState)
+                    {
+                        LightIsOn();
+                    }
+                    else
+                    {
+                        LightIsOff();
+                    }
+                    break;
+                case "Bathroom_2nd":
+                    if (lightBathFloor2State)
+                    {
+                        LightIsOn();
+                    }
+                    else
+                    {
+                        LightIsOff();
+                    }
+                    break;
+            }
+            hunger += hunger_rate / 60;
+            thirst += thirst_rate / 60;
+            bladder += bladder_rate / 60;
+            comfort += comfort_rate / 60;
+            hygiene += hygiene_rate / 60;
+            fun += fun_rate * fun_rate_factor / 60;
+            kid += kid_rate;
             time += 1;
 
-            Debug.Log("Time since start: " + time + "[s]");
+            if (time % 60 == 0)
+            {
+                money += moneyRate;
+            }
 
-            keepBetween0and100(hunger);
-            keepBetween0and100(thirst);
-            keepBetween0and100(bladder);
-            keepBetween0and100(comfort);
-            keepBetween0and100(hygiene);
-            keepBetween0and100(fun);
+            KeepBetween0and100(hunger);
+            KeepBetween0and100(thirst);
+            KeepBetween0and100(bladder);
+            KeepBetween0and100(comfort);
+            KeepBetween0and100(hygiene);
+            KeepBetween0and100(kid);
+            KeepBetween0and100(fun);
 
             //Garage
             if (lightGarageState)
             {
-                energy += lightConso[lightLevel];
+                energy += lightConso[lightLevel] / 60;
             }
 
             //1Floor
             if (lightFloor1State)
             {
-                energy += lightConso[lightLevel];
+                energy += lightConso[lightLevel] / 60;
             }
 
             if (tvFloor1State)
             {
-                energy += tvConso;
+                energy += tvConso / 60;
             }
 
             if (fridgeFloor1State)
             {
-                energy += fridgeConso[fridgeLevel];
+                energy += fridgeConso[fridgeLevel] / 60;
             }
 
             if (ovenFloor1State)
             {
-                energy += ovenConso[ovenLevel];
+                energy += ovenConso[ovenLevel] / 60;
             }
 
             if (dishwasherFloor1State)
             {
-                energy += dishwasherConso[dishwasherLevel];
+                energy += dishwasherConso[dishwasherLevel] / 60;
             }
 
             if (lavaboFloor1State)
@@ -309,34 +497,34 @@ public static class CoreMechanics
             //Bathroom 1Floor
             if (lightBathFloor1State)
             {
-                energy += lightConso[lightLevel];
+                energy += lightConso[lightLevel] / 60;
             }
 
             if (wcBathFloor1State)
             {
-                energy += wcConso;
+                energy += wcConso / 60;
             }
 
             if (lavaboBathFloor1State)
             {
-                energy += lavaboConso;
+                energy += lavaboConso / 60;
             }
 
             //Office
             if (lightOfficeState)
             {
-                energy += lightConso[lightLevel];
+                energy += lightConso[lightLevel] / 60;
             }
 
             if (computerOfficeState)
             {
-                energy += computerConso;
+                energy += computerConso / 60;
             }
 
             //Bathroom 2Floor
             if (lightBathFloor2State)
             {
-                energy += lightConso[lightLevel];
+                energy += lightConso[lightLevel] / 60;
             }
 
             if (bathBathFloor2State)
@@ -353,69 +541,87 @@ public static class CoreMechanics
             {
                 water += lavaboConso;
             }
+            //1Floor
+            if (lightFloor2State)
+            {
+                energy += lightConso[lightLevel] / 60;
+            }
 
             //Child room
             if (lightChildRoomState)
             {
-                energy += lightConso[lightLevel];
+                energy += lightConso[lightLevel] / 60;
             }
 
             //Adult room
             if (lightAdultRoomState)
             {
-                energy += lightConso[lightLevel];
+                energy += lightConso[lightLevel] / 60;
             }
 
             //Laundry Room
             if (lightLaundryRoomState)
             {
-                energy += lightConso[lightLevel];
+                energy += lightConso[lightLevel] / 60;
             }
 
             if (washMachineLaundryRoomState)
             {
-                energy += washMachineConso[washMachineLevel];
+                energy += washMachineConso[washMachineLevel] / 60;
             }
 
             if (heaterLaundryRoomState)
             {
-                energy += heaterConso[heaterLevel];
+                energy += heaterConso[heaterLevel] / 60;
             }
 
             if (conditionerLaundryRoomState)
             {
-                energy += conditionerConso[conditionerLevel];
+                energy += conditionerConso[conditionerLevel] / 60;
+            }
+            double hungerWeight = 0.15;
+            double thirstWeight = 0.20;
+            double bladderWeight = 0.15;
+            double comfortWeight = 0.05;
+            double hygieneWeight = 0.20;
+            double funWeight = 0.25;
+            scoreJoy = 0;
+            scoreJoy += (100 - hunger) * hungerWeight;
+            scoreJoy += (100 - thirst) * thirstWeight;
+            scoreJoy += (100 - bladder) * bladderWeight;
+            scoreJoy += (comfort * comfortWeight);
+            scoreJoy += (hygiene * hygieneWeight);
+            scoreJoy += (fun * funWeight);
+            //UnityEngine.Debug.Log("hunger since start: " + hunger + "[s]");
+            //UnityEngine.Debug.Log("thirst since start: " + thirst + "[s]");
+            //UnityEngine.Debug.Log("bladder since start: " + bladder + "[s]");
+            //UnityEngine.Debug.Log("comfort since start: " + comfort + "[s]");
+            //UnityEngine.Debug.Log("hygiene since start: " + hygiene + "[s]");
+            //UnityEngine.Debug.Log("fun since start: " + fun + "[s]");
+            //UnityEngine.Debug.Log("Score since start: " + scoreJoy + "[s]");
+
+            if ((time > (22 - 8) * 60) || (scoreJoy < 20))
+            {
+                // TO DO : END GAME
+                Stop();
             }
 
-            System.Threading.Thread.Sleep(1000);
+            stopwatch.Stop();
+            System.Threading.Thread.Sleep(1000- (int)stopwatch.ElapsedMilliseconds);
         }
     }
 
-    public static double getJoyScore()
+    public static double GetJoyScore()
     {
-        double hungerWeight = 0.15;
-        double thirstWeight = 0.20;
-        double bladderWeight = 0.15;
-        double comfortWeight = 0.05;
-        double hygieneWeight = 0.20;
-        double funWeight = 0.25;
-        double score = 0;
-        score += (100 - hunger * hungerWeight);
-        score += (100 - thirst * thirstWeight);
-        score += (100 - bladder * bladderWeight);
-        score += (comfort * comfortWeight);
-        score += (hygiene * hygieneWeight);
-        score += (fun * funWeight);
-
-        return score;
+        return scoreJoy;
     }
 
-    public static double getMoneyScore()
+    public static double GetMoneyScore()
     {
         return money;
     }
 
-    public static double getEcologyScore()
+    public static double GetEcologyScore()
     {
         double refEnergie = 12;
         double refWater = 150;
@@ -423,11 +629,11 @@ public static class CoreMechanics
         double scoreWater = 100 / (water / refWater);
         double scoreEquipments = 100 * (lightLevel + fridgeLevel + ovenLevel + washMachineLevel + dishwasherLevel + heaterLevel + conditionerLevel) / 21;
 
-        scoreEnergie = keepBetween0and100(scoreEnergie);
-        scoreWater = keepBetween0and100(scoreWater);
-        scoreEquipments = keepBetween0and100(scoreEquipments);
+        scoreEnergie = KeepBetween0and100(scoreEnergie);
+        scoreWater = KeepBetween0and100(scoreWater);
+        scoreEquipments = KeepBetween0and100(scoreEquipments);
 
-        double score = scoreEnergie * 0.6 + scoreWater * 0.2 + scoreEquipments * 0.2;
+        double score = scoreEnergie * 0.5 + scoreWater * 0.2 + scoreEquipments * 0.3;
 
         return score;
     }

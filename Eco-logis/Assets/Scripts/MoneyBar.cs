@@ -11,15 +11,15 @@ public class MoneyBar : MonoBehaviour
 
     void Start()
     {
-        slider.maxValue = 100000;
+        slider.maxValue = 100;
         slider.minValue = 0;
-        slider.value = (float)(CoreMechanics.money);
+        slider.value = (float)(CoreMechanics.kid);
 
      
 
     }
     void Update()
     {
-        slider.value = (float)(CoreMechanics.money);
+        slider.value = (float)(CoreMechanics.kid);
     }
 }

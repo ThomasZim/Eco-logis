@@ -12,12 +12,12 @@ X_OBJECT, Y_OBJECT = X_CORNER + MARGIN, Y_CORNER + MARGIN
 SMALL_IMAGE_SIZE = 60
 LARGE_IMAGE_SIZE = 120
 
-NOTES = {"a", "b", "c", "d", "e", "f", "g"}
+NOTES = {"a", "b", "c", "d", "e", "f", "g", "-"}
 
-OBJECTS = ["tv", "printer", "pc", "fridge", "bulb", "air_conditioner"]
-OBJECT_NAMES = ["TV", "Printer", "PC", "Fridge", "Light bulb", "Air conditioner"]
+OBJECTS = ["tv", "printer", "desktop_computer", "refrigerator", "bulb", "air_conditioner", "dishwasher", "oven", "washing_machine", "bath", "kettle", "laptop", "pool", "shower", "toilet"]
+OBJECT_NAMES = ["TV", "Printer", "Desktop computer", "Refrigerator", "Light bulb", "Air conditioner", "Dishwasher", "Oven", "Washing machine", "Bath", "Kettle", "Laptop", "Pool", "Shower", "Toilet"]
 
 UNIT = "kWh"
 
 EXCEL_FILE_PATH = '/Users/clarisse/Documents/MSE/Fall_2023/GT/Projet/Eco-logis/Dialog-content/code/srcs/Effet_Core_Mecanics.xlsx'
-
+# EXCEL_FILE_PATH = '/Users/clarisse/Documents/MSE/Fall_2023/GT/Projet/Eco-logis/Game-balance/Effet_Core_Mecanics.xlsx'

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextScripts : MonoBehaviour
+public class xTextScripts : MonoBehaviour
 {
     [SerializeField] private GameObject _textBad;
     [SerializeField] private GameObject _textMedium;

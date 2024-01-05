@@ -8,7 +8,7 @@ import pandas as pd
 def draw_rounded_rectangle(draw, width, height, border_radius):
     draw.rounded_rectangle(
         [(X_CORNER, Y_CORNER), (width, height)],
-        fill="#A5BEDC90",  # Rectangle color
+        fill="#A5BEDC",  # Rectangle color
         outline=None,
         radius=border_radius,
         width=0,
@@ -78,6 +78,33 @@ def add_action_info(draw, image, is_on):
     # Draw the text on the image using the defined font_size and text_bbox
     draw.text((x, y), text, font=font, fill=font_color, align ="right")
 
+# Add the action info to the image
+def add_price_info(draw, image, object_index, note, excel_file):
+    image_path = "images/money.png"
+    position = (X_OBJECT + (LARGE_IMAGE_SIZE - SMALL_IMAGE_SIZE) // 2,
+                Y_OBJECT + LARGE_IMAGE_SIZE + MARGIN)
+    add_image(image, image_path, position, SMALL_IMAGE_SIZE)
+    
+    try:
+        #print("Price")
+        price = excel_file.loc[(excel_file["Objet"] == OBJECTS[object_index]) & (excel_file["Note"] == note.upper()), "Finance"].values[0]
+        price = float(format(price, '.2f'))
+    except:
+        return
+
+    # Add text to the image
+    text = str(price) + " $"
+    font_color = "#FFFFFF"  # RGB color code for white text
+    font = ImageFont.truetype(r'/Users/clarisse/Documents/Roboto/Roboto-Regular.ttf', FONT_SIZE)  
+
+    # Calculate the position to center the text
+    text_bbox = draw.textbbox((0, 0), text, font=font)
+    x = WIDTH - MARGIN - text_bbox[2] - text_bbox[0]
+    y = Y_OBJECT + LARGE_IMAGE_SIZE + MARGIN + FONT_SIZE // 2
+
+    # Draw the text on the image using the defined font_size and text_bbox
+    draw.text((x, y), text, font=font, fill=font_color, align ="right")
+
 # Add the energy info to the image
 def add_energy_info(draw, image, object_index, note, excel_file):
     energy_image_path = "images/energy.png"
@@ -86,13 +113,16 @@ def add_energy_info(draw, image, object_index, note, excel_file):
     add_image(image, energy_image_path, position, SMALL_IMAGE_SIZE)
 
     try:
-        bulb_value = excel_file.loc[(excel_file["Objet"] == OBJECTS[object_index]) & (excel_file["Note"] == note.upper()), "Energie"].values[0]
+        energy = excel_file.loc[(excel_file["Objet"] == OBJECTS[object_index]) & (excel_file["Note"] == note.upper()), "Energie"].values[0]
+        energy = float(format(energy, '.2f'))
+        unit = excel_file.loc[(excel_file["Objet"] == OBJECTS[object_index]) & (excel_file["Note"] == note.upper()), "Unité"].values[0]
+        if unit == "0":
+            unit = UNIT
     except:
-        bulb_value = 0
         return False
 
     # Add text to the image
-    text = str(bulb_value) + " " + UNIT
+    text = str(energy) + " " + unit
     font_color = "#FFFFFF"  # RGB color code for white text
     font = ImageFont.truetype(r'/Users/clarisse/Documents/Roboto/Roboto-Regular.ttf', FONT_SIZE)  
 

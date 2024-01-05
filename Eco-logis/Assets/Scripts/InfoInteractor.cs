@@ -9,8 +9,6 @@ using Image = UnityEngine.UI.Image;
 
 public class InfoInteractor : MonoBehaviour
 {
-    public Image InfoTurnOn;
-    public Image InfoTurnOff;
     public GameObject character;
     public string interactionCode;
     private LevelLoader levelLoader;
@@ -46,17 +44,6 @@ public class InfoInteractor : MonoBehaviour
                             CoreMechanics.computerOfficeState = false;
                         }
                     }
-
-                    if (CoreMechanics.computerOfficeState)
-                    {
-                        InfoTurnOff.enabled = true;
-                        InfoTurnOn.enabled = false;
-                    }
-                    else
-                    {
-                        InfoTurnOff.enabled = false;
-                        InfoTurnOn.enabled = true;
-                    }
                 }
             } 
             break;
@@ -68,26 +55,13 @@ public class InfoInteractor : MonoBehaviour
                     {
                         if (CoreMechanics.ovenFloor1State == false)
                         {
-                            GameObject.Find("ovenLight").GetComponent<Light>().enabled = true;
                             CoreMechanics.ovenFloor1State = true;
                         }
                         else
                         {
-                            GameObject.Find("ovenLight").GetComponent<Light>().enabled = false;
                             CoreMechanics.ovenFloor1State = false;
                         }
                     }
-                }
-                
-                if (CoreMechanics.ovenFloor1State)
-                {
-                    InfoTurnOff.enabled = true;
-                    InfoTurnOn.enabled = false;
-                }
-                else
-                {
-                    InfoTurnOff.enabled = false;
-                    InfoTurnOn.enabled = true;
                 }
             }
             break;
@@ -105,17 +79,6 @@ public class InfoInteractor : MonoBehaviour
                         {
                             CoreMechanics.dishwasherFloor1State = false;
                         }
-                    }
-
-                    if (CoreMechanics.dishwasherFloor1State)
-                    {
-                        InfoTurnOff.enabled = true;
-                        InfoTurnOn.enabled = false;
-                    }
-                    else
-                    {
-                        InfoTurnOff.enabled = false;
-                        InfoTurnOn.enabled = true;
                     }
                 }
             }
@@ -135,17 +98,6 @@ public class InfoInteractor : MonoBehaviour
                             CoreMechanics.fridgeFloor1State = false;
                         }
                     }
-                    
-                    if (CoreMechanics.fridgeFloor1State)
-                    {
-                        InfoTurnOff.enabled = true;
-                        InfoTurnOn.enabled = false;
-                    }
-                    else
-                    {
-                        InfoTurnOff.enabled = false;
-                        InfoTurnOn.enabled = true;
-                    }
                 }
             }
             break;
@@ -155,9 +107,237 @@ public class InfoInteractor : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        switch (this.name)
+                        switch (this.gameObject.scene.name)
                         {
-                            //TODO: Add interruptor logoci
+                            case "1st_floor":
+                            {
+                                if (CoreMechanics.lightFloor1State == false)
+                                {
+                                    CoreMechanics.lightFloor1State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightFloor1State = false;
+                                }
+                            }
+                            break;
+                            case "Garage":
+                            {
+                                if (CoreMechanics.lightGarageState == false)
+                                {
+                                    CoreMechanics.lightGarageState = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightGarageState = false;
+                                }
+                            }
+                            break;
+                            case "buanderie_chauffage":
+                            {
+                                if (CoreMechanics.lightLaundryRoomState == false)
+                                {
+                                    CoreMechanics.lightLaundryRoomState = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightLaundryRoomState = false;
+                                }
+                            }
+                            break;
+                            case "Bathroom_1st":
+                            {
+                                if (CoreMechanics.lightBathFloor1State == false)
+                                {
+                                    CoreMechanics.lightBathFloor1State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightBathFloor1State = false;
+                                }
+                            }
+                            break;
+                            case "Office":
+                            {
+                                if (CoreMechanics.lightOfficeState == false)
+                                {
+                                    CoreMechanics.lightOfficeState = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightOfficeState = false;
+                                }
+                            }
+                            break;
+                            case "2nd_floor":
+                            {
+                                if (CoreMechanics.lightFloor2State == false)
+                                {
+                                    CoreMechanics.lightFloor2State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightFloor2State = false;
+                                }
+                            }
+                            break;
+                            case "Child_room":
+                            {
+                                if (CoreMechanics.lightChildRoomState == false)
+                                {
+                                    CoreMechanics.lightChildRoomState = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightChildRoomState = false;
+                                }
+                            }
+                            break;
+                            case "Adult_bedroom":
+                            {
+                                if (CoreMechanics.lightAdultRoomState == false)
+                                {
+                                    CoreMechanics.lightAdultRoomState = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightAdultRoomState = false;
+                                }
+                            }
+                            break;
+                            case "Bathroom_2nd":
+                            {
+                                if (CoreMechanics.lightBathFloor2State == false)
+                                {
+                                    CoreMechanics.lightBathFloor2State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lightBathFloor2State = false;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            break;
+            case "tv_1stfloor":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.tvFloor1State == false)
+                        {
+                            CoreMechanics.tvFloor1State = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.tvFloor1State = false;
+                        }
+                    }
+                }
+            }
+            break;
+            case "lavabo":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        switch (this.gameObject.scene.name)
+                        {
+                            case "1st_floor":
+                            {
+                                if (CoreMechanics.lavaboFloor1State == false)
+                                {
+                                    CoreMechanics.lavaboFloor1State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lavaboFloor1State = false;
+                                }
+                            }
+                            break;
+                            case "Bathroom_1st":
+                            {
+                                if (CoreMechanics.lavaboBathFloor1State == false)
+                                {
+                                    CoreMechanics.lavaboBathFloor1State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lavaboBathFloor1State = false;
+                                }
+                            }
+                            break;
+                            case "Bathroom_2nd":
+                            {
+                                if (CoreMechanics.lavaboBathFloor2State == false)
+                                {
+                                    CoreMechanics.lavaboBathFloor2State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.lavaboBathFloor2State = false;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            break;
+            case "washmachine":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.washMachineLaundryRoomState == false)
+                        {
+                            CoreMechanics.washMachineLaundryRoomState = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.washMachineLaundryRoomState = false;
+                        }
+                    }
+                }
+            }
+            break;
+            case "heating_pump":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.heaterLaundryRoomState == false)
+                        {
+                            CoreMechanics.heaterLaundryRoomState = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.heaterLaundryRoomState = false;
+                        }
+                    }
+                }
+            }
+            break;
+            case "bath":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.bathBathFloor2State == false)
+                        {
+                            CoreMechanics.bathBathFloor2State = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.bathBathFloor2State = false;
                         }
                     }
                 }
@@ -173,22 +353,11 @@ public class InfoInteractor : MonoBehaviour
         if (other.gameObject == character)
         {
             collision = true;
-            if (CoreMechanics.computerOfficeState)
-            {
-                InfoTurnOff.enabled = true;
-            }
-            else
-            {
-                InfoTurnOn.enabled = true;
-            }
-            
         }
     }
     
     private void OnTriggerExit(Collider other)
     {
         collision = false;
-        InfoTurnOff.enabled = false;
-        InfoTurnOn.enabled = false;
     }
 }

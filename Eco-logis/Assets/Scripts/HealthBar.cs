@@ -11,16 +11,16 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
-        slider.maxValue = 80;
-        slider.minValue = 20;
-        slider.value = (float)(CoreMechanics.getJoyScore());
+        slider.maxValue = 70;
+        slider.minValue = 0;
+        slider.value = (float)(CoreMechanics.GetJoyScore());
 
        
 
     }
     void Update()
     { 
-        slider.value = (float)(CoreMechanics.getJoyScore());
+        slider.value = (float)(CoreMechanics.GetJoyScore());
         
     }
 }
