@@ -280,6 +280,7 @@ MonoBehaviour:
   - {fileID: 817381912}
   - {fileID: 432495659}
   - {fileID: 2085597024}
+  - {fileID: 784506696}
   speed: 2
   rotationSpeed: 2
 --- !u!1001 &121825398
@@ -2027,7 +2028,7 @@ GameObject:
   - component: {fileID: 1267375822}
   - component: {fileID: 1267375821}
   m_Layer: 0
-  m_Name: lavaboFloor1State
+  m_Name: lavaboBathFloor1State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -23,7 +23,7 @@ public class kidBehaviour : MonoBehaviour
     private GameObject spawnPoint;
     private string oldLocation;
 
-    private string[] interactionPoints = {"lightGarageState", "heaterLaundryRoomState", "washMachineLaundryRoomState", "lightLaundryRoomState", "lavaboFloor1State", "lightBathFloor1State", "lightChildRoomState","lightBathFloor2State", "bathBathFloor2State", "lavaboBathFloor2State", "lightAdultRoomState", "lightFloor2State", "lightFloor1State", "tvFloor1State", "fridgeFloor1State", "ovenFloor1State"};
+    private string[] interactionPoints = {"lightOfficeState", "lightGarageState", "heaterLaundryRoomState", "washMachineLaundryRoomState", "lightLaundryRoomState", "lavaboFloor1State","lavaboBathFloor1State", "lightBathFloor1State", "lightChildRoomState","lightBathFloor2State", "bathBathFloor2State", "lavaboBathFloor2State", "lightAdultRoomState", "lightFloor2State", "lightFloor1State", "tvFloor1State", "fridgeFloor1State", "ovenFloor1State"};
 
     Animator animator;
     private bool enableAutoChange = false;
@@ -133,6 +133,14 @@ public class kidBehaviour : MonoBehaviour
                             }
                             
                             break;
+
+                        case "lavaboFloor1State":
+                            if(CoreMechanics.lavaboFloor1State == false)
+                            {
+                                CoreMechanics.lavaboFloor1State = true;
+                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboFloor1State);
+                            }
+                            break;
                         case "fridgeFloor1State":
                             if(CoreMechanics.fridgeFloor1State == false)
                             {
@@ -206,11 +214,11 @@ public class kidBehaviour : MonoBehaviour
                             }
                             break;
                         
-                        case "lavaboFloor1State":
-                            if(CoreMechanics.lavaboFloor1State == false)
+                        case "lavaboBathFloor1State":
+                            if(CoreMechanics.lavaboBathFloor1State == false)
                             {
-                                CoreMechanics.lavaboFloor1State = true;
-                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboFloor1State);
+                                CoreMechanics.lavaboBathFloor1State = true;
+                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboBathFloor1State);
                             }
                             break;
                         
@@ -245,6 +253,14 @@ public class kidBehaviour : MonoBehaviour
                                 Debug.Log("Changed light to : " + CoreMechanics.lightGarageState);
                             }
                             break;
+
+                        case "lightOfficeState":
+                            if(CoreMechanics.lightOfficeState == false)
+                            {
+                                CoreMechanics.lightOfficeState = true;
+                                Debug.Log("Changed light to : " + CoreMechanics.lightOfficeState);
+                            }
+                            break;  
                          
                         
                         // Add cases for other variables 
