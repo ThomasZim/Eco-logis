@@ -343,6 +343,61 @@ public class InfoInteractor : MonoBehaviour
                 }
             }
             break;
+            case "wc":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        switch (this.gameObject.scene.name)
+                        {
+                            case "Bathroom_1st":
+                            {
+                                if (CoreMechanics.wcBathFloor1State == false)
+                                {
+                                    CoreMechanics.wcBathFloor1State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.wcBathFloor1State = false;
+                                }
+                            }
+                            break;
+                            case "Bathroom_2nd":
+                            {
+                                if (CoreMechanics.wcBathFloor2State == false)
+                                {
+                                    CoreMechanics.wcBathFloor2State = true;
+                                }
+                                else
+                                {
+                                    CoreMechanics.wcBathFloor2State = false;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            break;
+            case "conditioner":
+            {
+                if (collision)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (CoreMechanics.conditionerLaundryRoomState == false)
+                        {
+                            CoreMechanics.conditionerLaundryRoomState = true;
+                        }
+                        else
+                        {
+                            CoreMechanics.conditionerLaundryRoomState = false;
+                        }
+                    }
+                }
+            }
+            break;
         }
     }
         
