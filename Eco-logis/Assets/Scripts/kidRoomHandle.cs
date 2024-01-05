@@ -48,7 +48,7 @@ public class kidRoomHandle : MonoBehaviour
 
     public static void Reset_distance()
     {
-        distanceTimer = 0f;
+        distanceTimer = 1f;
     }
 
 }

@@ -31,12 +31,18 @@ public class kidBehaviour : MonoBehaviour
     private bool doubleSpeed = false;
     private float speedTimer = 0f;
 
+    public GameObject exclamationMarkPrefab;
+    private Canvas exclamationMark; 
+
+    private bool inVision = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         animator.SetBool("IsWalking", true);
         currentLocation = kidRoomHandle.GetCurrentRoom();
         sameRoom = SceneManager.GetActiveScene().name.Equals(currentLocation);
+        exclamationMark = exclamationMarkPrefab.GetComponentInChildren<Canvas>();
 
         if (sameRoom == false)
         {
@@ -53,16 +59,15 @@ public class kidBehaviour : MonoBehaviour
             //        transform.position = spawnPoint.transform.position;
             //    }
             //}
-
             spawnPoint = get_available_spawn_point(kidRoomHandle.get_distance_in_room(), wayPoints);
             kidRoomHandle.Reset_distance();
-            transform.position = spawnPoint.transform.position;
-
-
-
-            // spawnPoint = kidRoomHandle.get_available_spawn_point(distanceTimer, wayPoints);
-            // transform.position = spawnPoint.transform.position;            
+            transform.position = spawnPoint.transform.position;             
+            if (exclamationMark != null)
+            {
+                exclamationMark.gameObject.SetActive(inVision);
+            }
         }
+
         gameObject.SetActive(sameRoom);
         //currentLocation = PlayerPrefs.GetString("currentLocation", currentLocation);
         index = Random.Range(0, wayPoints.Count);
@@ -87,6 +92,8 @@ public class kidBehaviour : MonoBehaviour
             Vector3 newPos = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
             transform.position = newPos;
 
+
+            exclamationMark.gameObject.SetActive(inVision);
             if (doubleSpeed)
             {
                 speedTimer += Time.deltaTime;
@@ -440,6 +447,7 @@ public class kidBehaviour : MonoBehaviour
     {
         CoreMechanics.kid = 0;
         Debug.Log("Kid Becomes Real Nice");
+        inVision = inSight;
         // Debug.Log("Is the kid in view :" + playerInSight);
     }
 
