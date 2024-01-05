@@ -12,31 +12,53 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject _textNormal;
     [SerializeField] private GameObject _textHard;
 
+    public AudioSource audioSource;
+    
+    private bool startingNewGame = true;
+
     void Start()
-    { 
+    {
+        if (StaticSceneTransi.PreviousSceneName.Equals("null"))
+        {
+            startingNewGame = true;
+        }
+        else
+        {
+            startingNewGame = false;
+            Debug.Log("Not starting a new game");
+            GameObject.Find("DiffEasyButton").SetActive(false);
+            GameObject.Find("DiffNormalButton").SetActive(false);
+            GameObject.Find("DiffHardButton").SetActive(false);
+        }
         CoreMechanics.Stop();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (CoreMechanics.gameLevel)
+        if (startingNewGame)
         {
-            case 0:
-                _textEasy.GetComponent<TMP_Text>().text = "[ EASY ]";
-                _textNormal.GetComponent<TMP_Text>().text = "NORMAL";
-                _textHard.GetComponent<TMP_Text>().text = "HARD";
-            break;
-            case 1:
-                _textEasy.GetComponent<TMP_Text>().text = "EASY";
-                _textNormal.GetComponent<TMP_Text>().text = "[ NORMAL ]";
-                _textHard.GetComponent<TMP_Text>().text = "HARD";
-            break;
-            case 2:
-                _textEasy.GetComponent<TMP_Text>().text = "EASY";
-                _textNormal.GetComponent<TMP_Text>().text = "NORMAL";
-                _textHard.GetComponent<TMP_Text>().text = "[ HARD ]";
-                break;
+            GameObject.Find("DiffEasyButton").SetActive(true);
+            GameObject.Find("DiffNormalButton").SetActive(true);
+            GameObject.Find("DiffHardButton").SetActive(true);
+            switch (CoreMechanics.gameLevel)
+            {
+                case 0:
+                    _textEasy.GetComponent<TMP_Text>().text = "[ EASY ]";
+                    _textNormal.GetComponent<TMP_Text>().text = "NORMAL";
+                    _textHard.GetComponent<TMP_Text>().text = "HARD";
+                    break;
+                case 1:
+                    _textEasy.GetComponent<TMP_Text>().text = "EASY";
+                    _textNormal.GetComponent<TMP_Text>().text = "[ NORMAL ]";
+                    _textHard.GetComponent<TMP_Text>().text = "HARD";
+                    break;
+                case 2:
+                    _textEasy.GetComponent<TMP_Text>().text = "EASY";
+                    _textNormal.GetComponent<TMP_Text>().text = "NORMAL";
+                    _textHard.GetComponent<TMP_Text>().text = "[ HARD ]";
+                    break;
+            }
         }
     }
     
@@ -58,9 +80,8 @@ public class MainMenu : MonoBehaviour
     public void LaunchGame()
     {
         Debug.Log("Launching game");
-        if (StaticSceneTransi.PreviousSceneName.Equals("null"))
+        if (startingNewGame)
         {
-            SceneManager.LoadScene("1st_floor");
             switch (CoreMechanics.gameLevel)
             {
                 case 0:
@@ -73,6 +94,8 @@ public class MainMenu : MonoBehaviour
                     CoreMechanics.InitHard();
                     break;
             }
+            startingNewGame = false;
+            SceneManager.LoadScene("1st_floor");
         }
         else
         {
@@ -86,6 +109,24 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Quitting game");
         Application.Quit();
+    }
+    
+    public void PlaySound()
+    {
+        Debug.Log("Playing sound on a different thread");
+        StartCoroutine(PlaySoundCoroutine());
+    }
+
+    IEnumerator PlaySoundCoroutine()
+    {
+        audioSource.PlayScheduled(0);
+        yield return null;
+    }
+    
+    public void RestartGame()
+    {
+        StaticSceneTransi.PreviousSceneName = "null";
+        SceneManager.LoadScene("Main_menu");
     }
     
 }
