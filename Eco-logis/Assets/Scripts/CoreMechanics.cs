@@ -124,6 +124,7 @@ public static class CoreMechanics
     public static double moneyRate = 1000;
 
     public static double fun_rate_factor = 1;
+    public static int gameLevel = 0;  // 0 = Easy, 1 = Normal, 2 = Hard
 
     private static bool isRunning = false;
 
