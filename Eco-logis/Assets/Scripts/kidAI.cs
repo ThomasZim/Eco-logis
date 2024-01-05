@@ -238,6 +238,13 @@ public class kidBehaviour : MonoBehaviour
                             }
                             break;                       
 
+                        case "lightGarageState":
+                            if(CoreMechanics.lightGarageState == false)
+                            {
+                                CoreMechanics.lightGarageState = true;
+                                Debug.Log("Changed light to : " + CoreMechanics.lightGarageState);
+                            }
+                            break;
                          
                         
                         // Add cases for other variables 
