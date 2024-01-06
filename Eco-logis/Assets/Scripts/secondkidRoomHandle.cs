@@ -15,7 +15,7 @@ public class secondkidRoomHandle : MonoBehaviour
     public static void SetCurrentRoom(string roomName)
     {
         currentRoom = roomName;
-        print("Kid current room is " + currentRoom);
+        print("Second kid current room is " + currentRoom);
     }
     // Static function to get the current room
     public static string GetCurrentRoom()

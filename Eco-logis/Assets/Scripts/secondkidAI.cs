@@ -40,7 +40,7 @@ public class secondkidBehaviour : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         animator.SetBool("IsWalking", true);
-        currentLocation = kidRoomHandle.GetCurrentRoom();
+        currentLocation = secondkidRoomHandle.GetCurrentRoom();
         sameRoom = SceneManager.GetActiveScene().name.Equals(currentLocation);
         exclamationMark = exclamationMarkPrefab.GetComponentInChildren<Canvas>();
 
@@ -52,11 +52,12 @@ public class secondkidBehaviour : MonoBehaviour
         {
             CancelInvoke("auto_roomChange");
             
-            spawnPoint = get_available_spawn_point(kidRoomHandle.get_distance_in_room(), wayPoints);
-            kidRoomHandle.Reset_distance();
+            spawnPoint = get_available_spawn_point(secondkidRoomHandle.get_distance_in_room(), wayPoints);
+            secondkidRoomHandle.Reset_distance();
             transform.position = spawnPoint.transform.position;             
             if (exclamationMark != null)
             {
+                Debug.Log("exclamationMark is not null");
                 exclamationMark.gameObject.SetActive(inVision);
             }
         }
@@ -292,9 +293,9 @@ public class secondkidBehaviour : MonoBehaviour
             if (delayTimer >= delayDuration)
             {
                 gameObject.SetActive(false);
-                kidRoomHandle.SetOldRoom(currentLocation);
+                secondkidRoomHandle.SetOldRoom(currentLocation);
                 currentLocation = wayPoints[index].gameObject.name;
-                kidRoomHandle.SetCurrentRoom(currentLocation);
+                secondkidRoomHandle.SetCurrentRoom(currentLocation);
                 oldLocation = SceneManager.GetActiveScene().name;
 
                 sameRoom = false;
@@ -335,7 +336,7 @@ public class secondkidBehaviour : MonoBehaviour
 
     void auto_roomChange()
     {
-        kidRoomHandle.distance_in_room();
+        secondkidRoomHandle.distance_in_room();
 
         float randomValue = Random.value;
 
@@ -361,9 +362,9 @@ public class secondkidBehaviour : MonoBehaviour
             {
                 currentLocation = "2nd_floor";
             }
-            string oldLocation = kidRoomHandle.GetCurrentRoom();
-            kidRoomHandle.SetOldRoom(oldLocation);
-            kidRoomHandle.SetCurrentRoom(currentLocation);
+            string oldLocation = secondkidRoomHandle.GetCurrentRoom();
+            secondkidRoomHandle.SetOldRoom(oldLocation);
+            secondkidRoomHandle.SetCurrentRoom(currentLocation);
 
 
             Debug.Log("Kid changed room and now in : " + currentLocation);
@@ -376,7 +377,7 @@ public class secondkidBehaviour : MonoBehaviour
                 
                 for(int i = 0; i < wayPoints.Count; i++)
                 {
-                    if (wayPoints[i].gameObject.name.Equals(kidRoomHandle.GetoldRoom()))
+                    if (wayPoints[i].gameObject.name.Equals(secondkidRoomHandle.GetoldRoom()))
                     {
                         spawnPoint = wayPoints[i];
                         transform.position = spawnPoint.transform.position;
@@ -443,7 +444,7 @@ public class secondkidBehaviour : MonoBehaviour
     public void SetPlayerInSight(bool inSight)
     {
         CoreMechanics.kid = 0;
-        Debug.Log("Kid Becomes Real Nice");
+        Debug.Log("SECOND KID");
         inVision = inSight;
         // Debug.Log("Is the kid in view :" + playerInSight);
     }
@@ -460,7 +461,7 @@ public class secondkidBehaviour : MonoBehaviour
         currentWaypoints = localWayPoints;
         
         // store specific point closest to the room where kid comes from
-        GameObject originWayPoint = currentWaypoints.Find(waypoint => waypoint.name.Contains(kidRoomHandle.GetoldRoom()));
+        GameObject originWayPoint = currentWaypoints.Find(waypoint => waypoint.name.Contains(secondkidRoomHandle.GetoldRoom()));
         // Calculate and store distances for each waypoint compared to orifinWayPoint
         
         List<(float, string)> distances = new List<(float,string)>();
