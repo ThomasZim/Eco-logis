@@ -56,6 +56,7 @@ public class InfoInteractor : MonoBehaviour
                         if (CoreMechanics.ovenFloor1State == false)
                         {
                             CoreMechanics.ovenFloor1State = true;
+                            CoreMechanics.CoreMecanicsEvent("Eating");
                         }
                         else
                         {
@@ -74,6 +75,7 @@ public class InfoInteractor : MonoBehaviour
                         if (CoreMechanics.dishwasherFloor1State == false)
                         {
                             CoreMechanics.dishwasherFloor1State = true;
+                            CoreMechanics.CoreMecanicsEvent("Dishwasher");
                         }
                         else
                         {
@@ -231,6 +233,7 @@ public class InfoInteractor : MonoBehaviour
                         if (CoreMechanics.tvFloor1State == false)
                         {
                             CoreMechanics.tvFloor1State = true;
+                            CoreMechanics.CoreMecanicsEvent("TV");
                         }
                         else
                         {
@@ -253,6 +256,7 @@ public class InfoInteractor : MonoBehaviour
                                 if (CoreMechanics.lavaboFloor1State == false)
                                 {
                                     CoreMechanics.lavaboFloor1State = true;
+                                    CoreMechanics.CoreMecanicsEvent("Drinking");
                                 }
                                 else
                                 {
@@ -265,6 +269,7 @@ public class InfoInteractor : MonoBehaviour
                                 if (CoreMechanics.lavaboBathFloor1State == false)
                                 {
                                     CoreMechanics.lavaboBathFloor1State = true;
+                                    CoreMechanics.CoreMecanicsEvent("Lavabo");
                                 }
                                 else
                                 {
@@ -277,6 +282,7 @@ public class InfoInteractor : MonoBehaviour
                                 if (CoreMechanics.lavaboBathFloor2State == false)
                                 {
                                     CoreMechanics.lavaboBathFloor2State = true;
+                                    CoreMechanics.CoreMecanicsEvent("Lavabo");
                                 }
                                 else
                                 {
@@ -298,6 +304,7 @@ public class InfoInteractor : MonoBehaviour
                         if (CoreMechanics.washMachineLaundryRoomState == false)
                         {
                             CoreMechanics.washMachineLaundryRoomState = true;
+                            CoreMechanics.CoreMecanicsEvent("WashMachine");
                         }
                         else
                         {
@@ -316,10 +323,12 @@ public class InfoInteractor : MonoBehaviour
                         if (CoreMechanics.heaterLaundryRoomState == false)
                         {
                             CoreMechanics.heaterLaundryRoomState = true;
+                            CoreMechanics.CoreMecanicsEvent("HeaterON");
                         }
                         else
                         {
                             CoreMechanics.heaterLaundryRoomState = false;
+                            CoreMechanics.CoreMecanicsEvent("HeaterOff");
                         }
                     }
                 }
@@ -334,6 +343,7 @@ public class InfoInteractor : MonoBehaviour
                         if (CoreMechanics.bathBathFloor2State == false)
                         {
                             CoreMechanics.bathBathFloor2State = true;
+                            CoreMechanics.CoreMecanicsEvent("Bath");
                         }
                         else
                         {
@@ -356,6 +366,7 @@ public class InfoInteractor : MonoBehaviour
                                 if (CoreMechanics.wcBathFloor1State == false)
                                 {
                                     CoreMechanics.wcBathFloor1State = true;
+                                    CoreMechanics.CoreMecanicsEvent("WC");
                                 }
                                 else
                                 {
@@ -368,6 +379,7 @@ public class InfoInteractor : MonoBehaviour
                                 if (CoreMechanics.wcBathFloor2State == false)
                                 {
                                     CoreMechanics.wcBathFloor2State = true;
+                                    CoreMechanics.CoreMecanicsEvent("WC");
                                 }
                                 else
                                 {
@@ -389,10 +401,12 @@ public class InfoInteractor : MonoBehaviour
                         if (CoreMechanics.conditionerLaundryRoomState == false)
                         {
                             CoreMechanics.conditionerLaundryRoomState = true;
+                            CoreMechanics.CoreMecanicsEvent("ConditionerON");
                         }
                         else
                         {
                             CoreMechanics.conditionerLaundryRoomState = false;
+                            CoreMechanics.CoreMecanicsEvent("ConditionerOff");
                         }
                     }
                 }

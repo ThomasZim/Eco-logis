@@ -153,7 +153,7 @@ public static class CoreMechanics
         bladder_rate = 3;
         comfort_rate = 0;
         hygiene_rate = -2;
-        fun_rate = -2;
+        fun_rate = -4;
         kid_rate = 0.5;
         moneyRate = 1500;
 
@@ -182,7 +182,7 @@ public static class CoreMechanics
         bladder_rate = 7;
         comfort_rate = 0;
         hygiene_rate = -5;
-        fun_rate = -6;
+        fun_rate = -8;
         kid_rate = 1;
         moneyRate = 1000;
 
@@ -211,7 +211,7 @@ public static class CoreMechanics
         bladder_rate = 9;
         comfort_rate = 0;
         hygiene_rate = -7;
-        fun_rate = -8;
+        fun_rate = -10;
         kid_rate = 2;
         moneyRate = 700;
 
@@ -450,13 +450,13 @@ public static class CoreMechanics
                 money += moneyRate;
             }
 
-            KeepBetween0and100(hunger);
-            KeepBetween0and100(thirst);
-            KeepBetween0and100(bladder);
-            KeepBetween0and100(comfort);
-            KeepBetween0and100(hygiene);
-            KeepBetween0and100(kid);
-            KeepBetween0and100(fun);
+            hunger = KeepBetween0and100(hunger);
+            thirst = KeepBetween0and100(thirst);
+            bladder = KeepBetween0and100(bladder);
+            comfort = KeepBetween0and100(comfort);
+            hygiene = KeepBetween0and100(hygiene);
+            kid = KeepBetween0and100(kid);
+            fun = KeepBetween0and100(fun);
 
             //Garage
             if (lightGarageState)
@@ -593,13 +593,13 @@ public static class CoreMechanics
             scoreJoy += (comfort * comfortWeight);
             scoreJoy += (hygiene * hygieneWeight);
             scoreJoy += (fun * funWeight);
-            //UnityEngine.Debug.Log("hunger since start: " + hunger + "[s]");
-            //UnityEngine.Debug.Log("thirst since start: " + thirst + "[s]");
-            //UnityEngine.Debug.Log("bladder since start: " + bladder + "[s]");
-            //UnityEngine.Debug.Log("comfort since start: " + comfort + "[s]");
-            //UnityEngine.Debug.Log("hygiene since start: " + hygiene + "[s]");
-            //UnityEngine.Debug.Log("fun since start: " + fun + "[s]");
-            //UnityEngine.Debug.Log("Score since start: " + scoreJoy + "[s]");
+            UnityEngine.Debug.Log("hunger since start: " + hunger + "[s]");
+            UnityEngine.Debug.Log("thirst since start: " + thirst + "[s]");
+            UnityEngine.Debug.Log("bladder since start: " + bladder + "[s]");
+            UnityEngine.Debug.Log("comfort since start: " + comfort + "[s]");
+            UnityEngine.Debug.Log("hygiene since start: " + hygiene + "[s]");
+            UnityEngine.Debug.Log("fun since start: " + fun + "[s]");
+            UnityEngine.Debug.Log("Score since start: " + scoreJoy + "[s]");
 
             if (time > (22 - 8) * 60)
             {
