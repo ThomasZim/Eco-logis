@@ -280,12 +280,7 @@ public static class CoreMechanics
             water += bathEffectWater;
             return 1;
         }
-        if (mecanic == "HeaterMax")
-        {
-            comfort = heaterHighEffectComfort;
-            return 1;
-        }
-        if (mecanic == "HeaterMin")
+        if (mecanic == "HeaterON")
         {
             comfort = heaterMediumEffectComfort;
             return 1;
@@ -295,12 +290,7 @@ public static class CoreMechanics
             comfort = heaterOffEffectComfort;
             return 1;
         }
-        if (mecanic == "ConditionerMax")
-        {
-            comfort = conditionerHighEffectComfort;
-            return 1;
-        }
-        if (mecanic == "ConditionerMin")
+        if (mecanic == "ConditionerON")
         {
             comfort = conditionerMediumEffectComfort;
             return 1;
@@ -321,11 +311,6 @@ public static class CoreMechanics
         {
             hygiene += dishwasherEffectHygiene;
             water += dishwasherEffectWater;
-            return 1;
-        }
-        if (mecanic == "Workshop")
-        {
-            fun += workshopEffectFun;
             return 1;
         }
         if (mecanic == "TV")
