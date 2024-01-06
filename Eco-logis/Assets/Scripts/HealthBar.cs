@@ -11,8 +11,8 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
-        slider.maxValue = 70;
-        slider.minValue = 0;
+        slider.maxValue = 100;
+        slider.minValue = 33;
         slider.value = (float)(CoreMechanics.GetJoyScore());
 
        
