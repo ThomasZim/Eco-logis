@@ -73,27 +73,13 @@ public class Player : MonoBehaviour
                 GameObject kid = kidObj;
                 if (IsInSight(kid))
                 {
-                    Debug.Log(kid.name);
-                    if(kid.GetComponent<kidBehaviour>() != null)
-                    {
-                        kid.GetComponent<kidBehaviour>().SetPlayerInSight(true);
-                    }
-                    if(kid.GetComponent<secondkidBehaviour>() != null)
-                    {
-                        kid.GetComponent<secondkidBehaviour>().SetPlayerInSight(true);
-                    }
                     
+                    kid.GetComponent<kidBehaviour>().SetPlayerInSight(true);
+
                 }
                 else
                 {
-                    if(kid.GetComponent<kidBehaviour>() != null)
-                    {
-                        kid.GetComponent<kidBehaviour>().SetPlayerInSight(false);
-                    }
-                    if(kid.GetComponent<secondkidBehaviour>() != null)
-                    {
-                        kid.GetComponent<secondkidBehaviour>().SetPlayerInSight(false);
-                    }
+                    kid.GetComponent<kidBehaviour>().SetPlayerInSight(false);
                 }
             }   
         }
