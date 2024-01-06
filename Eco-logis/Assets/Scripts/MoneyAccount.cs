@@ -19,6 +19,7 @@ public class MoneyAccount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        money = (int)(CoreMechanics.kid);
         int_to_string = money.ToString();
         textVariable = string.Concat(int_to_string, dollard);
         moneyText.text = textVariable;

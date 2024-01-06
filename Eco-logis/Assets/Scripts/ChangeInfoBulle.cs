@@ -35,6 +35,34 @@ public class ChangeInfoBulle : MonoBehaviour
     public Image TVFOn;
     public Image TVGOff;
     public Image TVGOn;
+    public Image BathOff;
+    public Image BathOn;
+    public Image DishWasher_a_off;
+    public Image DishWasher_a_on;
+    public Image DishWasher_b_off;
+    public Image DishWasher_b_on;
+    public Image DishWasher_c_off;
+    public Image DishWasher_c_on;
+    public Image DishWasher_d_off;
+    public Image DishWasher_d_on;
+    public Image oven_a_off;
+    public Image oven_a_on;
+    public Image oven_b_off;
+    public Image oven_b_on;
+    public Image oven_c_off;
+    public Image oven_c_on;
+    public Image shower_off;
+    public Image shower_on;
+    public Image toilet_off;
+    public Image toilet_on;
+    public Image washMach_a_off;
+    public Image washMach_a_on;
+    public Image washMach_b_off;
+    public Image washMach_b_on;
+    public Image washMach_c_off;
+    public Image washMach_c_on;
+
+    
 
 
     // Start is called before the first frame update
@@ -69,7 +97,33 @@ public class ChangeInfoBulle : MonoBehaviour
         TVFOff.enabled  = false;
         TVFOn.enabled  = false;
         TVGOff.enabled  = false;
-        TVGOn.enabled  = false; 
+        TVGOn.enabled  = false;
+        BathOff.enabled  = false;
+        BathOn.enabled  = false;
+        DishWasher_a_off.enabled  = false;
+        DishWasher_a_on.enabled  = false;
+        DishWasher_b_off.enabled  = false;
+        DishWasher_b_on.enabled  = false;
+        DishWasher_c_off.enabled  = false;
+        DishWasher_c_on.enabled  = false;
+        DishWasher_d_off.enabled  = false;
+        DishWasher_d_on.enabled  = false;
+        oven_a_off.enabled  = false;
+        oven_a_on.enabled  = false;
+        oven_b_off.enabled  = false;
+        oven_b_on.enabled  = false;
+        oven_c_off.enabled  = false;
+        oven_c_on.enabled  = false;
+        shower_off.enabled  = false;
+        shower_on.enabled  = false;
+        toilet_off.enabled  = false;
+        toilet_on.enabled  = false;
+        washMach_a_off.enabled  = false;
+        washMach_a_on.enabled  = false;
+        washMach_b_off.enabled  = false;
+        washMach_b_on.enabled  = false;
+        washMach_c_off.enabled  = false;
+        washMach_c_on.enabled  = false; 
     }
 
     // Update is called once per frame
@@ -164,12 +218,85 @@ public class ChangeInfoBulle : MonoBehaviour
                 case "TVGOff":
                     TVGOff.enabled  = true;
                     break;
-                case "TVGOn":
-                    TVGOn.enabled  = true;
+                case "BathOff":
+                    BathOff.enabled  = true;
                     break;
-                
-                
-            }   
-        
+                case "BathOn":
+                    BathOn.enabled  = true;
+                    break;
+                case "DishWasher_a_off":
+                    DishWasher_a_off.enabled  = true;
+                    break;
+                case "DishWasher_a_on":
+                    DishWasher_a_on.enabled  = true;
+                    break;
+                case "DishWasher_b_off":
+                    DishWasher_b_off.enabled  = true;
+                    break;
+                case "DishWasher_b_on":
+                    DishWasher_b_on.enabled  = true;
+                    break;
+                case "DishWasher_c_off":
+                    DishWasher_c_off.enabled  = true;
+                    break;
+                case "DishWasher_c_on":
+                    DishWasher_c_on.enabled  = true;
+                    break;
+                 case "DishWasher_d_off":
+                    DishWasher_d_off.enabled  = true;
+                    break; 
+                case "DishWasher_d_on":
+                    DishWasher_d_on.enabled  = true;
+                    break; 
+                case "oven_a_off":
+                    oven_a_off.enabled  = true;
+                    break;
+                case "oven_a_on":
+                    oven_a_on.enabled  = true;
+                    break;
+                case "oven_b_off":
+                    oven_b_off.enabled  = true;
+                    break;
+                case "oven_b_on":
+                    oven_b_on.enabled  = true;
+                    break;
+                 case "oven_c_off":
+                    oven_c_off.enabled  = true;
+                    break; 
+                case "oven_c_on":
+                    oven_c_on.enabled  = true;
+                    break;
+                case "shower_off":
+                    shower_off.enabled  = true;
+                    break;
+                case "shower_on":
+                    shower_on.enabled  = true;
+                    break;
+                 case "toilet_off":
+                    toilet_off.enabled  = true;
+                    break; 
+                case "toilet_on":
+                    toilet_on.enabled  = true;
+                    break;
+                case "washMach_a_off":
+                    washMach_a_off.enabled  = true;
+                    break; 
+                case "washMach_a_on":
+                    washMach_a_on.enabled  = true;
+                    break;
+                case "washMach_b_off":
+                    washMach_b_off.enabled  = true;
+                    break;
+                case "washMach_b_on":
+                    washMach_b_on.enabled  = true;
+                    break;
+                 case "washMach_c_off":
+                    washMach_c_off.enabled  = true;
+                    break; 
+                case "washMach_c_on":
+                    washMach_c_on.enabled  = true;
+                    break;
+                                 
+            }         
     }
 }
