@@ -5,12 +5,16 @@ using System.Threading;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using Debug = System.Diagnostics.Debug;
+using UnityEngine.SceneManagement;
 
 public static class CoreMechanics
 {
     private static Thread t;
 
     public static string playerScene = "";
+
+    public static bool isFinised = false;
+    public static bool isVictory = false;
 
     //Upgrade cost
     public static double[] lightCosts = { 7, 13, 20 };
@@ -152,7 +156,11 @@ public static class CoreMechanics
         fun_rate = -2;
         kid_rate = 0.5;
         moneyRate = 1500;
-}
+
+        //Ending
+        isFinised = false;
+        isVictory = false;
+    }
     public static void InitNormal()
     {
         //Scoring
@@ -177,6 +185,10 @@ public static class CoreMechanics
         fun_rate = -6;
         kid_rate = 1;
         moneyRate = 1000;
+
+        //Ending
+        isFinised = false;
+        isVictory = false;
     }
     public static void InitHard()
     {
@@ -202,6 +214,10 @@ public static class CoreMechanics
         fun_rate = -8;
         kid_rate = 2;
         moneyRate = 700;
+
+        //Ending
+        isFinised = false;
+        isVictory = false;
     }
 
     public static void Stop()
@@ -600,9 +616,25 @@ public static class CoreMechanics
             //UnityEngine.Debug.Log("fun since start: " + fun + "[s]");
             //UnityEngine.Debug.Log("Score since start: " + scoreJoy + "[s]");
 
-            if ((time > (22 - 8) * 60) || (scoreJoy < 20))
+            if (time > (22 - 8) * 60)
             {
-                // TO DO : END GAME
+                isFinised = true;
+                if (GetEcologyScore() < 50)
+                {
+                    isVictory = true;
+                }
+                else
+                {
+                    isVictory = false;
+                }
+                Stop();
+            }
+            
+            if (scoreJoy < 33)
+            {
+                isFinised = true;
+                isVictory = false;
+                UnityEngine.Debug.Log("END");
                 Stop();
             }
 
