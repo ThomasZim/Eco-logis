@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class kidBehaviour : MonoBehaviour
+public class secondkidBehaviour : MonoBehaviour
 {
     public List<GameObject> wayPoints;
     public float speed = 2f;
