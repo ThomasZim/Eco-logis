@@ -109,7 +109,6 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CoreMechanics.playerScene = this.name;
         if (Input.GetKey(KeyCode.R))
         {
             // Reset scene
@@ -125,7 +124,7 @@ public class LevelLoader : MonoBehaviour
             StaticSceneTransi.PreviousRotation = GameObject.Find("MaleFreeSimpleMovement1").transform.rotation;
             SceneManager.LoadScene("Main_menu");
         }
-
+        CoreMechanics.playerScene = SceneManager.GetActiveScene().name;
         animUpdate();
     }
     public void LoadNextRoom(Scene actualScene, string nextScene)

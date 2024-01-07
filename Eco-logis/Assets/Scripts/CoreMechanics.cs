@@ -375,7 +375,7 @@ public static class CoreMechanics
                     }
 
                     break;
-                case "1nd_floor":
+                case "1st_floor":
                     if (lightFloor1State)
                     {
                         LightIsOn();
@@ -593,13 +593,17 @@ public static class CoreMechanics
             scoreJoy += (comfort * comfortWeight);
             scoreJoy += (hygiene * hygieneWeight);
             scoreJoy += (fun * funWeight);
-            UnityEngine.Debug.Log("hunger since start: " + hunger + "[s]");
-            UnityEngine.Debug.Log("thirst since start: " + thirst + "[s]");
-            UnityEngine.Debug.Log("bladder since start: " + bladder + "[s]");
-            UnityEngine.Debug.Log("comfort since start: " + comfort + "[s]");
-            UnityEngine.Debug.Log("hygiene since start: " + hygiene + "[s]");
-            UnityEngine.Debug.Log("fun since start: " + fun + "[s]");
-            UnityEngine.Debug.Log("Score since start: " + scoreJoy + "[s]");
+            //UnityEngine.Debug.Log("hunger since start: " + hunger + "[s]");
+            //UnityEngine.Debug.Log("thirst since start: " + thirst + "[s]");
+            //UnityEngine.Debug.Log("bladder since start: " + bladder + "[s]");
+            //UnityEngine.Debug.Log("comfort since start: " + comfort + "[s]");
+            //UnityEngine.Debug.Log("hygiene since start: " + hygiene + "[s]");
+            //UnityEngine.Debug.Log("fun factor: " + fun_rate_factor + "");
+            //UnityEngine.Debug.Log("Score since start: " + scoreJoy + "[s]");
+
+            //UnityEngine.Debug.Log("Scene: " + playerScene + "");
+
+            
 
             if (time > (22 - 8) * 60)
             {
