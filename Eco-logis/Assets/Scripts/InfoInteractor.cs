@@ -943,11 +943,11 @@ public class InfoInteractor : MonoBehaviour
             {
                 if (state)
                 {
-                    bulleInteractor.activateOne("heater_c_on");
+                    bulleInteractor.activateOne("oil_heating_on");
                 }
                 else
                 {
-                    bulleInteractor.activateOne("heater_c_off");
+                    bulleInteractor.activateOne("oil_heating_off");
                 }
             }
                 break;
@@ -955,11 +955,11 @@ public class InfoInteractor : MonoBehaviour
             {
                 if (state)
                 {
-                    bulleInteractor.activateOne("heater_b_on");
+                    bulleInteractor.activateOne("natural_gas_on");
                 }
                 else
                 {
-                    bulleInteractor.activateOne("heater_b_off");
+                    bulleInteractor.activateOne("natural_gas_off");
                 }
             }
                 break;
@@ -967,11 +967,11 @@ public class InfoInteractor : MonoBehaviour
             {
                 if (state)
                 {
-                    bulleInteractor.activateOne("heater_a_on");
+                    bulleInteractor.activateOne("heat_pump_on");
                 }
                 else
                 {
-                    bulleInteractor.activateOne("heater_a_off");
+                    bulleInteractor.activateOne("heat_pump_off");
                 }
             }
                 break;
