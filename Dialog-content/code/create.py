@@ -38,6 +38,7 @@ if __name__ == "__main__":
     for note in NOTES:
         object_index = 0
         for obj in OBJECTS:
+            print("Creating images for " + obj + "-" + note)
             create_image(note, obj, object_index, True, excel_file, True)
             create_image(note, obj, object_index, False, excel_file, True)
             create_image(note, obj, object_index, False, excel_file, False)
