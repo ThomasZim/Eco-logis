@@ -337,6 +337,8 @@ public static class CoreMechanics
     {
         isRunning = true;
 
+        double secondPerSecond = 5;
+
         while (isRunning)
         {
             var stopwatch = new Stopwatch();
@@ -436,14 +438,14 @@ public static class CoreMechanics
                     }
                     break;
             }
-            hunger += hunger_rate / 60;
-            thirst += thirst_rate / 60;
-            bladder += bladder_rate / 60;
-            comfort += comfort_rate / 60;
-            hygiene += hygiene_rate / 60;
-            fun += fun_rate * fun_rate_factor / 60;
+            hunger += (hunger_rate / 60) * secondPerSecond;
+            thirst += (thirst_rate / 60) * secondPerSecond;
+            bladder += (bladder_rate / 60) * secondPerSecond;
+            comfort += (comfort_rate / 60) * secondPerSecond;
+            hygiene += (hygiene_rate / 60) * secondPerSecond;
+            fun += (fun_rate * fun_rate_factor / 60) * secondPerSecond;
             kid += kid_rate;
-            time += 1;
+            time += secondPerSecond;
 
             if (time % 60 == 0)
             {
@@ -461,124 +463,124 @@ public static class CoreMechanics
             //Garage
             if (lightGarageState)
             {
-                energy += lightConso[lightLevel] / 60;
+                energy += (lightConso[lightLevel] /30) * secondPerSecond;
             }
 
             //1Floor
             if (lightFloor1State)
             {
-                energy += lightConso[lightLevel] / 60;
+                energy += (lightConso[lightLevel] /30) * secondPerSecond;
             }
 
             if (tvFloor1State)
             {
-                energy += tvConso / 60;
+                energy += (tvConso /30) * secondPerSecond;
             }
 
             if (fridgeFloor1State)
             {
-                energy += fridgeConso[fridgeLevel] / 60;
+                energy += (fridgeConso[fridgeLevel] /30) * secondPerSecond;
             }
 
             if (ovenFloor1State)
             {
-                energy += ovenConso[ovenLevel] / 60;
+                energy += (ovenConso[ovenLevel] /30) * secondPerSecond;
             }
 
             if (dishwasherFloor1State)
             {
-                energy += dishwasherConso[dishwasherLevel] / 60;
+                energy += (dishwasherConso[dishwasherLevel] /30) * secondPerSecond;
             }
 
             if (lavaboFloor1State)
             {
-                water += lavaboConso;
+                water += (lavaboConso /30) * secondPerSecond;
             }
 
             //Bathroom 1Floor
             if (lightBathFloor1State)
             {
-                energy += lightConso[lightLevel] / 60;
+                energy += (lightConso[lightLevel] /30) * secondPerSecond;
             }
 
             if (wcBathFloor1State)
             {
-                energy += wcConso / 60;
+                energy += (wcConso /30) * secondPerSecond;
             }
 
             if (lavaboBathFloor1State)
             {
-                energy += lavaboConso / 60;
+                energy += (lavaboConso /30) * secondPerSecond;
             }
 
             //Office
             if (lightOfficeState)
             {
-                energy += lightConso[lightLevel] / 60;
+                energy += (lightConso[lightLevel] /30) * secondPerSecond;
             }
 
             if (computerOfficeState)
             {
-                energy += computerConso / 60;
+                energy += (computerConso /30) * secondPerSecond;
             }
 
             //Bathroom 2Floor
             if (lightBathFloor2State)
             {
-                energy += lightConso[lightLevel] / 60;
+                energy += (lightConso[lightLevel] /30) * secondPerSecond;
             }
 
             if (bathBathFloor2State)
             {
-                water += bathConso;
+                water += (bathConso /30) * secondPerSecond;
             }
 
             if (wcBathFloor2State)
             {
-                water += wcConso;
+                water += (wcConso /30) * secondPerSecond;
             }
 
             if (lavaboBathFloor2State)
             {
-                water += lavaboConso;
+                water += (lavaboConso /30) * secondPerSecond;
             }
             //1Floor
             if (lightFloor2State)
             {
-                energy += lightConso[lightLevel] / 60;
+                energy += (lightConso[lightLevel] /30) * secondPerSecond;
             }
 
             //Child room
             if (lightChildRoomState)
             {
-                energy += lightConso[lightLevel] / 60;
+                energy += (lightConso[lightLevel] /30) * secondPerSecond;
             }
 
             //Adult room
             if (lightAdultRoomState)
             {
-                energy += lightConso[lightLevel] / 60;
+                energy += (lightConso[lightLevel] /30) * secondPerSecond;
             }
 
             //Laundry Room
             if (lightLaundryRoomState)
             {
-                energy += lightConso[lightLevel] / 60;
+                energy += (lightConso[lightLevel] /30) * secondPerSecond;
             }
 
             if (washMachineLaundryRoomState)
             {
-                energy += washMachineConso[washMachineLevel] / 60;
+                energy += (washMachineConso[washMachineLevel] /30) * secondPerSecond;
             }
 
             if (heaterLaundryRoomState)
             {
-                energy += heaterConso[heaterLevel] / 60;
+                energy += (heaterConso[heaterLevel] /30) * secondPerSecond;
             }
 
             if (conditionerLaundryRoomState)
             {
-                energy += conditionerConso[conditionerLevel] / 60;
+                energy += (conditionerConso[conditionerLevel] /30) * secondPerSecond;
             }
             double hungerWeight = 0.15;
             double thirstWeight = 0.20;
@@ -593,22 +595,11 @@ public static class CoreMechanics
             scoreJoy += (comfort * comfortWeight);
             scoreJoy += (hygiene * hygieneWeight);
             scoreJoy += (fun * funWeight);
-            //UnityEngine.Debug.Log("hunger since start: " + hunger + "[s]");
-            //UnityEngine.Debug.Log("thirst since start: " + thirst + "[s]");
-            //UnityEngine.Debug.Log("bladder since start: " + bladder + "[s]");
-            //UnityEngine.Debug.Log("comfort since start: " + comfort + "[s]");
-            //UnityEngine.Debug.Log("hygiene since start: " + hygiene + "[s]");
-            //UnityEngine.Debug.Log("fun factor: " + fun_rate_factor + "");
-            //UnityEngine.Debug.Log("Score since start: " + scoreJoy + "[s]");
-
-            //UnityEngine.Debug.Log("Scene: " + playerScene + "");
-
-            
 
             if (time > (22 - 8) * 60)
             {
                 isFinised = true;
-                if (GetEcologyScore() < 50)
+                if (GetEcologyScore() > 25)
                 {
                     isVictory = true;
                 }
@@ -654,7 +645,7 @@ public static class CoreMechanics
         scoreWater = KeepBetween0and100(scoreWater);
         scoreEquipments = KeepBetween0and100(scoreEquipments);
 
-        double score = scoreEnergie * 0.5 + scoreWater * 0.2 + scoreEquipments * 0.3;
+        double score = scoreEnergie * 0.7 + scoreWater * 0.2 + scoreEquipments * 0.1;
 
         return score;
     }
