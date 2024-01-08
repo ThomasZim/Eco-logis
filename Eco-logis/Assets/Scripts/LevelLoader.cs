@@ -268,6 +268,7 @@ public class LevelLoader : MonoBehaviour
             {
                 GameObject.Find("interruptorLight").GetComponent<Light>().enabled = CoreMechanics.lightOfficeState;
                 GameObject.Find("interruptorLight1").GetComponent<Light>().enabled = CoreMechanics.lightOfficeState;
+                GameObject.Find("PcLight").GetComponent<Light>().enabled = CoreMechanics.computerOfficeState;
             }
             break;
             case "2nd_floor":

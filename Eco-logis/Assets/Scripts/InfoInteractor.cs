@@ -25,6 +25,7 @@ public class InfoInteractor : MonoBehaviour
         //InfoTurnOn.enabled = false;
         //InfoTurnOff.enabled = false;
         internalCollisionCount = 0;
+        StaticInteractorUtils.ResetCollisionCount();
         levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
         bulleInteractor = GameObject.Find("IPad").GetComponent<ChangeInfoBulle>();
     }

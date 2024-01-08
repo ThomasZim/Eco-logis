@@ -18,4 +18,9 @@ public static class StaticInteractorUtils
         Debug.Log("COLISION COUNT: " + collisionCount);
         return collisionCount > 0;
     }
+    
+    public static void ResetCollisionCount()
+    {
+        collisionCount = 0;
+    }
 }
