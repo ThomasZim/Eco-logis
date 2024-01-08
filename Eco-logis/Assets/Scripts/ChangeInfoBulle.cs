@@ -61,6 +61,14 @@ public class ChangeInfoBulle : MonoBehaviour
     public Image washMach_b_on;
     public Image washMach_c_off;
     public Image washMach_c_on;
+    public Image heat_pump_off;
+    public Image heat_pump_on;
+    public Image natural_gaz_off;
+    public Image natural_gaz_on;
+    public Image oil_heating_off;
+    public Image oil_heating_on;
+    public Image kettel_off;
+    public Image kettel_on;
 
     
 
@@ -124,6 +132,14 @@ public class ChangeInfoBulle : MonoBehaviour
         washMach_b_on.enabled  = false;
         washMach_c_off.enabled  = false;
         washMach_c_on.enabled  = false; 
+        heat_pump_off.enabled= false;
+        heat_pump_on.enabled= false;
+        natural_gaz_off.enabled= false;
+        natural_gaz_on.enabled= false;
+        oil_heating_off.enabled= false;
+        oil_heating_on.enabled= false;
+        kettel_off.enabled= false;
+        kettel_on.enabled= false;
     }
 
     // Update is called once per frame
@@ -344,7 +360,39 @@ public class ChangeInfoBulle : MonoBehaviour
                     Debug.Log("VALERIE: washMach_c_on");
                     washMach_c_on.enabled  = true;
                     break;
+                case "heat_pump_off":
+                     Debug.Log("VALERIE: heat_pump_off");
+                     heat_pump_off.enabled  = true;
+                    break; 
+                case "heat_pump_on":
+                    Debug.Log("VALERIE: heat_pump_on");
+                    heat_pump_on.enabled  = true;
+                    break;
+                case "natural_gaz_off":
+                    Debug.Log("VALERIE: natural_gaz_off");
+                    natural_gaz_off.enabled  = true;
+                    break; 
+                case "natural_gaz_on":
+                    Debug.Log("VALERIE: natural_gaz_on");
+                    natural_gaz_on.enabled  = true;
+                    break;
+                case "oil_heating_off":
+                    Debug.Log("VALERIE: oil_heating_off");
+                    oil_heating_off.enabled  = true;
+                    break;
+                case "oil_heating_on":
+                    Debug.Log("VALERIE: oil_heating_on");
+                    oil_heating_on.enabled  = true;
+                    break;
+                 case "kettel_off":
+                    Debug.Log("VALERIE: kettel_off");
+                    kettel_off.enabled  = true;
+                    break; 
+                case "kettel_on":
+                    Debug.Log("VALERIE: kettel_on");
+                    kettel_on.enabled  = true;
+                    break;
                                  
             }         
-    }
+    }      
 }
