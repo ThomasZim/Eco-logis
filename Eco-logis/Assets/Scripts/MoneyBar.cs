@@ -14,9 +14,6 @@ public class MoneyBar : MonoBehaviour
         slider.maxValue = 100;
         slider.minValue = 0;
         slider.value = (float)(CoreMechanics.kid);
-
-     
-
     }
     void Update()
     {

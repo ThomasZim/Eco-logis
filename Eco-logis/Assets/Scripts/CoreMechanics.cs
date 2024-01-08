@@ -5,12 +5,16 @@ using System.Threading;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using Debug = System.Diagnostics.Debug;
+using UnityEngine.SceneManagement;
 
 public static class CoreMechanics
 {
     private static Thread t;
 
     public static string playerScene = "";
+
+    public static bool isFinised = false;
+    public static bool isVictory = false;
 
     //Upgrade cost
     public static double[] lightCosts = { 7, 13, 20 };
@@ -124,6 +128,7 @@ public static class CoreMechanics
     public static double moneyRate = 1000;
 
     public static double fun_rate_factor = 1;
+    public static int gameLevel = 0;  // 0 = Easy, 1 = Normal, 2 = Hard
 
     private static bool isRunning = false;
 
@@ -148,10 +153,14 @@ public static class CoreMechanics
         bladder_rate = 3;
         comfort_rate = 0;
         hygiene_rate = -2;
-        fun_rate = -2;
+        fun_rate = -4;
         kid_rate = 0.5;
         moneyRate = 1500;
-}
+
+        //Ending
+        isFinised = false;
+        isVictory = false;
+    }
     public static void InitNormal()
     {
         //Scoring
@@ -173,9 +182,13 @@ public static class CoreMechanics
         bladder_rate = 7;
         comfort_rate = 0;
         hygiene_rate = -5;
-        fun_rate = -6;
+        fun_rate = -8;
         kid_rate = 1;
         moneyRate = 1000;
+
+        //Ending
+        isFinised = false;
+        isVictory = false;
     }
     public static void InitHard()
     {
@@ -198,9 +211,13 @@ public static class CoreMechanics
         bladder_rate = 9;
         comfort_rate = 0;
         hygiene_rate = -7;
-        fun_rate = -8;
+        fun_rate = -10;
         kid_rate = 2;
         moneyRate = 700;
+
+        //Ending
+        isFinised = false;
+        isVictory = false;
     }
 
     public static void Stop()
@@ -263,12 +280,7 @@ public static class CoreMechanics
             water += bathEffectWater;
             return 1;
         }
-        if (mecanic == "HeaterMax")
-        {
-            comfort = heaterHighEffectComfort;
-            return 1;
-        }
-        if (mecanic == "HeaterMin")
+        if (mecanic == "HeaterON")
         {
             comfort = heaterMediumEffectComfort;
             return 1;
@@ -278,12 +290,7 @@ public static class CoreMechanics
             comfort = heaterOffEffectComfort;
             return 1;
         }
-        if (mecanic == "ConditionerMax")
-        {
-            comfort = conditionerHighEffectComfort;
-            return 1;
-        }
-        if (mecanic == "ConditionerMin")
+        if (mecanic == "ConditionerON")
         {
             comfort = conditionerMediumEffectComfort;
             return 1;
@@ -304,11 +311,6 @@ public static class CoreMechanics
         {
             hygiene += dishwasherEffectHygiene;
             water += dishwasherEffectWater;
-            return 1;
-        }
-        if (mecanic == "Workshop")
-        {
-            fun += workshopEffectFun;
             return 1;
         }
         if (mecanic == "TV")
@@ -373,7 +375,7 @@ public static class CoreMechanics
                     }
 
                     break;
-                case "1nd_floor":
+                case "1st_floor":
                     if (lightFloor1State)
                     {
                         LightIsOn();
@@ -448,13 +450,13 @@ public static class CoreMechanics
                 money += moneyRate;
             }
 
-            KeepBetween0and100(hunger);
-            KeepBetween0and100(thirst);
-            KeepBetween0and100(bladder);
-            KeepBetween0and100(comfort);
-            KeepBetween0and100(hygiene);
-            KeepBetween0and100(kid);
-            KeepBetween0and100(fun);
+            hunger = KeepBetween0and100(hunger);
+            thirst = KeepBetween0and100(thirst);
+            bladder = KeepBetween0and100(bladder);
+            comfort = KeepBetween0and100(comfort);
+            hygiene = KeepBetween0and100(hygiene);
+            kid = KeepBetween0and100(kid);
+            fun = KeepBetween0and100(fun);
 
             //Garage
             if (lightGarageState)
@@ -596,12 +598,32 @@ public static class CoreMechanics
             //UnityEngine.Debug.Log("bladder since start: " + bladder + "[s]");
             //UnityEngine.Debug.Log("comfort since start: " + comfort + "[s]");
             //UnityEngine.Debug.Log("hygiene since start: " + hygiene + "[s]");
-            //UnityEngine.Debug.Log("fun since start: " + fun + "[s]");
+            //UnityEngine.Debug.Log("fun factor: " + fun_rate_factor + "");
             //UnityEngine.Debug.Log("Score since start: " + scoreJoy + "[s]");
 
-            if ((time > (22 - 8) * 60) || (scoreJoy < 20))
+            //UnityEngine.Debug.Log("Scene: " + playerScene + "");
+
+            
+
+            if (time > (22 - 8) * 60)
             {
-                // TO DO : END GAME
+                isFinised = true;
+                if (GetEcologyScore() < 50)
+                {
+                    isVictory = true;
+                }
+                else
+                {
+                    isVictory = false;
+                }
+                Stop();
+            }
+            
+            if (scoreJoy < 33)
+            {
+                isFinised = true;
+                isVictory = false;
+                UnityEngine.Debug.Log("END");
                 Stop();
             }
 

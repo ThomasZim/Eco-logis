@@ -9,7 +9,8 @@ public class ComputerMenu : MonoBehaviour
     
     void Start()
     {
-        
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>().StopIntro();
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>().PlayMain();
     }
 
     // Update is called once per frame
@@ -20,6 +21,8 @@ public class ComputerMenu : MonoBehaviour
     
     public void quitMenu()
     {
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>().StopIntro();
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>().PlayMain();
         SceneManager.LoadScene("Office");
         StaticSceneTransi.PreviousSceneName = "Computer_menu";
     }

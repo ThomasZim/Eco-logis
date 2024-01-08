@@ -139,7 +139,7 @@ Material:
     - _outline_tint: 0.5
     - _outline_width: 0.2
     m_Colors:
-    - _Color: {r: 0.8161765, g: 0.641, b: 0.37808177, a: 1}
+    - _Color: {r: 0.69411767, g: 0.44705883, b: 0.3882353, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 0.785, g: 0.785, b: 0.785, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

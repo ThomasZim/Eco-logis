@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //[ExecuteInEditMode]
 public class Player : MonoBehaviour
@@ -46,6 +47,19 @@ public class Player : MonoBehaviour
             //Scan();
             DetectKidInSight();
         }
+
+        // End game check
+        if (CoreMechanics.isFinised)
+        {
+            if (CoreMechanics.isVictory)
+            {
+                SceneManager.LoadScene("Winning_end");
+            }
+            else
+            {
+                SceneManager.LoadScene("Losing_end");
+            }
+        }
     }
     private void DetectKidInSight()
     {
@@ -59,7 +73,9 @@ public class Player : MonoBehaviour
                 GameObject kid = kidObj;
                 if (IsInSight(kid))
                 {
+                    
                     kid.GetComponent<kidBehaviour>().SetPlayerInSight(true);
+
                 }
                 else
                 {
