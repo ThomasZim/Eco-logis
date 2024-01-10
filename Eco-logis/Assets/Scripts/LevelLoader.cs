@@ -35,7 +35,6 @@ public class LevelLoader : MonoBehaviour
             // First floor
             if (SceneManager.GetActiveScene().name.Equals("1st_floor"))
             {
-                Debug.Log("StaticSceneTransi.PreviousScene.name: " + StaticSceneTransi.PreviousSceneName);
                 if (StaticSceneTransi.PreviousSceneName.Equals("Office"))
                 {
                     character.transform.position = new Vector3(1.174f, 0f, -1.132f);
@@ -112,7 +111,6 @@ public class LevelLoader : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
         {
             // Reset scene
-            Debug.Log("Resetting scene");
             LoadScene(SceneManager.GetActiveScene().name);
         }
 
@@ -134,28 +132,23 @@ public class LevelLoader : MonoBehaviour
             if (actualScene.name.Equals("Bathroom_1st") || actualScene.name.Equals("Office") ||
                 actualScene.name.Equals("Garage") || actualScene.name.Equals("buanderie_chauffage")) 
             {
-                Debug.Log("Loading next scene: 1st_floor");
                 StartCoroutine(LoadLevel("1st_floor"));
             }
             else if(actualScene.name.Equals("Bathroom_2nd") || actualScene.name.Equals("Adult_bedroom") || actualScene.name.Equals("Child_room"))
             {
-                Debug.Log("Loading next scene: 2nd_floor");
                 StartCoroutine(LoadLevel("2nd_floor"));
             }
             else
             {
-                Debug.Log("Loading next scene: " + nextScene);
                 StartCoroutine(LoadLevel(nextScene));
             }
         }
         else if(actualScene.name.Equals("1st_floor"))
         {
-            Debug.Log("Loading next scene: " + nextScene);
             StartCoroutine(LoadLevel(nextScene));
         }
         else if(actualScene.name.Equals("2nd_floor"))
         {
-            Debug.Log("Loading next scene: " + nextScene);
             StartCoroutine(LoadLevel(nextScene));
         }
     }
@@ -173,7 +166,6 @@ public class LevelLoader : MonoBehaviour
         //Wait
         yield return new WaitForSeconds(transitionTime);
         
-        Debug.Log("Loading scene: " + sceneName);
         //Load scene
         SceneManager.LoadScene(sceneName);
     }

@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
         else
         {
             startingNewGame = false;
-            Debug.Log("Not starting a new game");
+            
             GameObject.Find("DiffEasyButton").SetActive(false);
             GameObject.Find("DiffNormalButton").SetActive(false);
             GameObject.Find("DiffHardButton").SetActive(false);
@@ -81,7 +81,6 @@ public class MainMenu : MonoBehaviour
     
     public void LaunchGame()
     {
-        Debug.Log("Launching game");
         if (startingNewGame)
         {
             switch (CoreMechanics.gameLevel)
@@ -101,7 +100,6 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            Debug.Log(StaticSceneTransi.PreviousSceneName);
             SceneManager.LoadScene(StaticSceneTransi.PreviousSceneName);
         }
         CoreMechanics.Start();
@@ -111,13 +109,11 @@ public class MainMenu : MonoBehaviour
     
     public void QuitGame()
     {
-        Debug.Log("Quitting game");
         Application.Quit();
     }
     
     public void PlaySound()
     {
-        Debug.Log("Playing sound on a different thread");
         StartCoroutine(PlaySoundCoroutine());
     }
 

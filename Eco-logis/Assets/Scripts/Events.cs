@@ -21,7 +21,6 @@ public class Events : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == MainCharacter) {
-            Debug.Log("Collision!");
         }
     }
 }

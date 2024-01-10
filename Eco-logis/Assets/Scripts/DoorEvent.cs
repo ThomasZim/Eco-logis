@@ -30,16 +30,11 @@ public class DoorEvent : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag.Equals("Player"))
-        {
-            Debug.Log("Player entered the Door");
-        }
         if (Input.GetKey(KeyCode.E))
         {
             LevelLoader levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
             StaticSceneTransi.PreviousSceneName = SceneManager.GetActiveScene().name;
             levelLoader.LoadNextRoom(SceneManager.GetActiveScene(), sceneToLoad);
-            Debug.Log(StaticSceneTransi.PreviousSceneName);
         }
     }
     

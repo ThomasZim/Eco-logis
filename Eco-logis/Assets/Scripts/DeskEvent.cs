@@ -27,12 +27,10 @@ public class DeskEvent : MonoBehaviour
     {
         if (other.tag.Equals("Player"))
         {
-            Debug.Log("Player entered the Desk");
             // Find the gameobject with the name "InfoDesk" and set them to active
             foreach (GameObject infoDesk in infoDesks)
             {
                 infoDesk.GetComponent<Image>().enabled = true;
-                Debug.Log(infoDesk.name);
             }
         }
     }
@@ -41,12 +39,10 @@ public class DeskEvent : MonoBehaviour
     {
         if (other.tag.Equals("Player"))
         {
-            Debug.Log("Player left the Desk");
             // Find the gameobject with the name "InfoDesk" and set them to active
             foreach (GameObject infoDesk in infoDesks)
             {
                 infoDesk.GetComponent<Image>().enabled = false;
-                Debug.Log(infoDesk.name);
             }
         }
     }

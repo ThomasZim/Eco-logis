@@ -41,7 +41,6 @@ public class InfoInteractor : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        Debug.Log(CoreMechanics.computerOfficeState);
                         if (CoreMechanics.computerOfficeState == false)
                         {
                             SceneManager.LoadScene("Computer_menu");
@@ -54,13 +53,11 @@ public class InfoInteractor : MonoBehaviour
                     }
                     if (CoreMechanics.computerOfficeState == true)
                     {
-                        Debug.Log("COLISION, COMPUTER IS ON");
                         bulleInteractor.hideAll();
                         bulleInteractor.activateOne("computerOff");
                     }
                     else
                     {
-                        Debug.Log("COLISION, COMPUTER IS OFF");
                         bulleInteractor.hideAll();
                         bulleInteractor.activateOne("computerOn");
                     }
@@ -82,13 +79,11 @@ public class InfoInteractor : MonoBehaviour
                     }
                     if (CoreMechanics.ovenFloor1State == true)
                     {
-                        Debug.Log("COLISION, OVEN IS ON");
                         bulleInteractor.hideAll();
                         activateOven(false);
                     }
                     else
                     {
-                        Debug.Log("COLISION, OVEN IS OFF");
                         bulleInteractor.hideAll();
                         activateOven(true);
                     }
@@ -111,13 +106,11 @@ public class InfoInteractor : MonoBehaviour
                     }
                     if (CoreMechanics.dishwasherFloor1State == true)
                     {
-                        Debug.Log("COLISION, DISHWASHER IS ON");
                         bulleInteractor.hideAll();
                         activateDishwasher(false);
                     }
                     else
                     {
-                        Debug.Log("COLISION, DISHWASHER IS OFF");
                         bulleInteractor.hideAll();
                         activateDishwasher(true);
                     }
@@ -138,13 +131,11 @@ public class InfoInteractor : MonoBehaviour
                     }
                     if (CoreMechanics.fridgeFloor1State == true)
                     {
-                        Debug.Log("COLISION, FRIDGE IS ON");
                         bulleInteractor.hideAll();
                         activateFridge(false);
                     }
                     else
                     {
-                        Debug.Log("COLISION, FRIDGE IS OFF");
                         bulleInteractor.hideAll();
                         activateFridge(true);
                     }
@@ -273,13 +264,11 @@ public class InfoInteractor : MonoBehaviour
                         {
                             if (CoreMechanics.lightFloor1State)
                             {
-                                Debug.Log("COLISION, LIGHT 1ST_FLOOR IS ON");
                                 bulleInteractor.hideAll();
                                 activateBulb(false);
                             }
                             else
                             {
-                                Debug.Log("COLISION, LIGHT 1ST_FLOOR IS OFF");
                                 bulleInteractor.hideAll();
                                 activateBulb(true);
                             }
@@ -289,13 +278,11 @@ public class InfoInteractor : MonoBehaviour
                         {
                             if (CoreMechanics.lightGarageState)
                             {
-                                Debug.Log("COLISION, LIGHT GARAGE IS ON");
                                 bulleInteractor.hideAll();
                                 activateBulb(false);
                             }
                             else
                             {
-                                Debug.Log("COLISION, LIGHT GARAGE IS OFF");
                                 bulleInteractor.hideAll();
                                 activateBulb(true);
                             }
@@ -305,13 +292,11 @@ public class InfoInteractor : MonoBehaviour
                         {
                             if(CoreMechanics.lightLaundryRoomState)
                             {
-                                Debug.Log("COLISION, LIGHT LAUNDRY ROOM IS ON");
                                 bulleInteractor.hideAll();
                                 activateBulb(false);
                             }
                             else
                             {
-                                Debug.Log("COLISION, LIGHT LAUNDRY ROOM IS OFF");
                                 bulleInteractor.hideAll();
                                 activateBulb(true);
                             }
@@ -321,13 +306,11 @@ public class InfoInteractor : MonoBehaviour
                         {
                             if (CoreMechanics.lightBathFloor1State)
                             {
-                                Debug.Log("COLISION, LIGHT BATHROOM 1ST FLOOR IS ON");
                                 bulleInteractor.hideAll();
                                 activateBulb(false);
                             }
                             else
                             {
-                                Debug.Log("COLISION, LIGHT BATHROOM 1ST FLOOR IS OFF");
                                 bulleInteractor.hideAll();
                                 activateBulb(true);
                             }
@@ -337,13 +320,11 @@ public class InfoInteractor : MonoBehaviour
                         {
                             if (CoreMechanics.lightOfficeState)
                             {
-                                Debug.Log("COLISION, LIGHT OFFICE IS ON");
                                 bulleInteractor.hideAll();
                                 activateBulb(false);
                             }
                             else
                             {
-                                Debug.Log("COLISION, LIGHT OFFICE IS OFF");
                                 bulleInteractor.hideAll();
                                 activateBulb(true);
                             }
@@ -353,13 +334,11 @@ public class InfoInteractor : MonoBehaviour
                         {
                             if (CoreMechanics.lightFloor2State)
                             {
-                                Debug.Log("COLISION, LIGHT SECOND FLOOR IS ON");
                                 bulleInteractor.hideAll();
                                 activateBulb(false);
                             }
                             else
                             {
-                                Debug.Log("COLISION, LIGHT SECOND FLOOR IS OFF");
                                 bulleInteractor.hideAll();
                                 activateBulb(true);
                             }
@@ -369,13 +348,11 @@ public class InfoInteractor : MonoBehaviour
                         {
                             if (CoreMechanics.lightChildRoomState)
                             {
-                                Debug.Log("COLISION, LIGHT CHILD ROOM IS ON");
                                 bulleInteractor.hideAll();
                                 activateBulb(false);
                             }
                             else
                             {
-                                Debug.Log("COLISION, LIGHT CHILD ROOM IS OFF");
                                 bulleInteractor.hideAll();
                                 activateBulb(true);
                             }
@@ -385,13 +362,11 @@ public class InfoInteractor : MonoBehaviour
                         {
                             if (CoreMechanics.lightAdultRoomState)
                             {
-                                Debug.Log("COLISION, LIGHT ADULT ROOM IS ON");
                                 bulleInteractor.hideAll();
                                 activateBulb(false);
                             }
                             else
                             {
-                                Debug.Log("COLISION, LIGHT ADULT ROOM IS OFF");
                                 bulleInteractor.hideAll();
                                 activateBulb(true);
                             }
@@ -401,13 +376,11 @@ public class InfoInteractor : MonoBehaviour
                         {
                             if (CoreMechanics.lightBathFloor2State)
                             {
-                                Debug.Log("COLISION, LIGHT BATHROOM 2ND IS ON");
                                 bulleInteractor.hideAll();
                                 activateBulb(false);
                             }
                             else
                             {
-                                Debug.Log("COLISION, LIGHT BATHROOM 2ND IS OFF");
                                 bulleInteractor.hideAll();
                                 activateBulb(true);
                             }
@@ -672,7 +645,6 @@ public class InfoInteractor : MonoBehaviour
         }
         else if (!StaticInteractorUtils.IsCharacterColliding())
         {
-            Debug.Log("I AM: " + interactionCode + "NO COLISION, HIDE ALL");
             bulleInteractor.hideAll();
         }
     }
@@ -701,7 +673,6 @@ public class InfoInteractor : MonoBehaviour
     
     private bool IsCharacterColliding()
     {
-        Debug.Log("COLISION COUNT: " + internalCollisionCount);
         return internalCollisionCount > 0;
     }
 
