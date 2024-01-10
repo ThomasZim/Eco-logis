@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
         scanTimer -= Time.deltaTime;
         if (scanTimer < 0){
             scanTimer += scanInterval;
-            //Scan();
             DetectKidInSight();
         }
 
@@ -84,28 +83,7 @@ public class Player : MonoBehaviour
             }   
         }
     }
-    private void Scan(){
-        count = Physics.OverlapSphereNonAlloc(transform.position, distance, colliders, layers, QueryTriggerInteraction.Collide);
 
-        Objects.Clear();
-
-        for(int i = 0; i < count; ++i) {
-            GameObject obj = colliders[i].gameObject;
-            bool seeKid = obj.CompareTag("Kid");
-            Debug.Log(seeKid);
-            Debug.Log("seeing something :" + IsInSight(obj));
-            if(IsInSight(obj) && seeKid){
-                Debug.Log("YES");
-                if(seeKid){
-                    Debug.Log("see kid");
-                    obj.GetComponent<kidBehaviour>().SetPlayerInSight(seeKid);
-                }
-            
-                Objects.Add(obj);
-
-                }
-        }
-    }
 
     public bool IsInSight(GameObject obj){
         Vector3 origin = transform.position;
@@ -202,17 +180,6 @@ public class Player : MonoBehaviour
             Gizmos.color = meshColor;
             Gizmos.DrawMesh(mesh, transform.position, transform.rotation);
         }
-        
-        //Gizmos.DrawWireSphere(transform.position, distance);
-        for(int i = 0; i<count; ++i) {
-            //Gizmos.DrawSphere(colliders[i].transform.position, 0.2f);
-        }
-
-        Gizmos.color = Color.green;
-        //foreach (var obj in Objects){
-            //Gizmos.DrawSphere(obj.transform.position, 0.2f);
-        //}
-
     }
 
 

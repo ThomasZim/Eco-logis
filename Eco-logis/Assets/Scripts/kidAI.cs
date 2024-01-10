@@ -87,7 +87,6 @@ public class kidBehaviour : MonoBehaviour
             else
             {
                 //obstacle in path, change destination
-                //Debug.Log("Obstacle in path, changing destination");
                 ChangeIndex();
             }
 
@@ -120,9 +119,6 @@ public class kidBehaviour : MonoBehaviour
                 
                 int kidRandAction = Random.Range(1, 101);
 
-                Debug.Log("Kid random action :" + kidRandAction);
-                Debug.Log("Kid interaction : " + CoreMechanics.kid);
-
                 // CoreMechanics.kid at 100 = malicious kid interacts with object
                 // CoreMechanics.kid at 0 = really nice kid DOES NOT interact with object
                 if (CoreMechanics.kid >= kidRandAction)
@@ -135,14 +131,12 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.dishwasherFloor1State == false)
                             {
                                 CoreMechanics.dishwasherFloor1State = true;
-                                Debug.Log("Changed dishwasher to : " + CoreMechanics.dishwasherFloor1State);
                             }
                             break;
                         case "tvFloor1State":
                             if(CoreMechanics.tvFloor1State == false)
                             {
                                 CoreMechanics.tvFloor1State = true;
-                                Debug.Log("Changed TV to : " + CoreMechanics.tvFloor1State);
                             }
                             
                             break;
@@ -151,63 +145,54 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lavaboFloor1State == false)
                             {
                                 CoreMechanics.lavaboFloor1State = true;
-                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboFloor1State);
                             }
                             break;
                         case "fridgeFloor1State":
                             if(CoreMechanics.fridgeFloor1State == false)
                             {
                                 CoreMechanics.fridgeFloor1State = true;
-                                Debug.Log("Changed Fridge to : " + CoreMechanics.fridgeFloor1State);    
                             }
                             break;
                         case "ovenFloor1State":
                             if(CoreMechanics.ovenFloor1State == false)
                             {
                                 CoreMechanics.ovenFloor1State = true;
-                                Debug.Log("Changed Oven to : " + CoreMechanics.ovenFloor1State);
                             }
                             break;
                         case "lightFloor1State":
                             if(CoreMechanics.lightFloor1State == false)
                             {
                                 CoreMechanics.lightFloor1State = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightFloor1State);
                             }
                             break;
                         case "lightFloor2State":
                             if(CoreMechanics.lightFloor2State == false)
                             {
                                 CoreMechanics.lightFloor2State = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightFloor2State);
                             }
                             break;
                         case "lightAdultRoomState":
                             if(CoreMechanics.lightAdultRoomState == false)
                             {
                                 CoreMechanics.lightAdultRoomState = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightAdultRoomState);
                             }
                             break;
                         case "lavaboBathFloor2State":
                             if(CoreMechanics.lavaboBathFloor2State == false)
                             {
                                 CoreMechanics.lavaboBathFloor2State = true;
-                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboBathFloor2State);
                             }
                             break;
                         case "bathBathFloor2State":
                             if(CoreMechanics.bathBathFloor2State == false)
                             {
                                 CoreMechanics.bathBathFloor2State = true;
-                                Debug.Log("Changed bath to : " + CoreMechanics.bathBathFloor2State);
                             }
                             break;
                         case "lightBathFloor2State":
                             if(CoreMechanics.lightBathFloor2State == false)
                             {
                                 CoreMechanics.lightBathFloor2State = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightBathFloor2State);
                             }
                             break;
 
@@ -215,7 +200,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lightChildRoomState == false)
                             {
                                 CoreMechanics.lightChildRoomState = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightChildRoomState);
                             }
                             break;  
 
@@ -223,7 +207,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lightBathFloor1State == false)
                             {
                                 CoreMechanics.lightBathFloor1State = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightBathFloor1State);
                             }
                             break;
                         
@@ -231,7 +214,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lavaboBathFloor1State == false)
                             {
                                 CoreMechanics.lavaboBathFloor1State = true;
-                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboBathFloor1State);
                             }
                             break;
                         
@@ -239,7 +221,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lightLaundryRoomState == false)
                             {
                                 CoreMechanics.lightLaundryRoomState = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightLaundryRoomState);
                             }
                             break;
 
@@ -247,7 +228,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.washMachineLaundryRoomState == false)
                             {
                                 CoreMechanics.washMachineLaundryRoomState = true;
-                                Debug.Log("Changed washMachine to : " + CoreMechanics.washMachineLaundryRoomState);
                             }
                             break;
                         
@@ -255,7 +235,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.heaterLaundryRoomState == false)
                             {
                                 CoreMechanics.heaterLaundryRoomState = true;
-                                Debug.Log("Changed heater to : " + CoreMechanics.heaterLaundryRoomState);
                             }
                             break;                       
 
@@ -263,7 +242,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lightGarageState == false)
                             {
                                 CoreMechanics.lightGarageState = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightGarageState);
                             }
                             break;
 
@@ -271,7 +249,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lightOfficeState == false)
                             {
                                 CoreMechanics.lightOfficeState = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightOfficeState);
                             }
                             break;  
                          
@@ -362,7 +339,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.tvFloor1State == false)
                             {
                                 CoreMechanics.tvFloor1State = true;
-                                Debug.Log("Changed TV to : " + CoreMechanics.tvFloor1State);
                             }
                         break;
 
@@ -370,7 +346,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lavaboFloor1State == false)
                             {
                                 CoreMechanics.lavaboFloor1State = true;
-                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboFloor1State);
                             }
                         break;
 
@@ -378,7 +353,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.fridgeFloor1State == false)
                             {
                                 CoreMechanics.fridgeFloor1State = true;
-                                Debug.Log("Changed Fridge to : " + CoreMechanics.fridgeFloor1State);    
                             }
                         break;
 
@@ -386,21 +360,18 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.ovenFloor1State == false)
                             {
                                 CoreMechanics.ovenFloor1State = true;
-                                Debug.Log("Changed Oven to : " + CoreMechanics.ovenFloor1State);
                             }
                         break;
                         case 5:
                             if(CoreMechanics.lightFloor1State == false)
                             {
                                 CoreMechanics.lightFloor1State = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightFloor1State);
                             }
                         break;
                         case 6 :
                             if(CoreMechanics.dishwasherFloor1State == false)
                             {
                                 CoreMechanics.dishwasherFloor1State = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.dishwasherFloor1State);
                             }
                         break;
                         default:
@@ -413,7 +384,6 @@ public class kidBehaviour : MonoBehaviour
                     if(CoreMechanics.lightFloor2State == false)
                     {
                         CoreMechanics.lightFloor2State = true;
-                        Debug.Log("Changed light to : " + CoreMechanics.lightFloor2State);
                     }
 
                 break;
@@ -421,14 +391,12 @@ public class kidBehaviour : MonoBehaviour
                     if(CoreMechanics.lightOfficeState == false)
                     {
                         CoreMechanics.lightOfficeState = true;
-                        Debug.Log("Changed light to : " + CoreMechanics.lightOfficeState);
                     }
                     break;
                 case "Garage":
                     if(CoreMechanics.lightGarageState == false)
                     {
                         CoreMechanics.lightGarageState = true;
-                        Debug.Log("Changed light to : " + CoreMechanics.lightGarageState);
                     }
                     break;
                 case "Bathroom_1st":
@@ -440,7 +408,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lavaboBathFloor1State == false)
                             {
                                 CoreMechanics.lavaboBathFloor1State = true;
-                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboBathFloor1State);
                             }
                             break;
 
@@ -448,7 +415,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lightBathFloor1State == false)
                             {
                                 CoreMechanics.lightBathFloor1State = true;
-                                Debug.Log("Changed lavabo to : " + CoreMechanics.lightBathFloor1State);
                             }
                             break;
                     }
@@ -462,7 +428,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lightLaundryRoomState == false)
                             {
                                 CoreMechanics.lightLaundryRoomState = true;
-                                Debug.Log("Changed light to : " + CoreMechanics.lightLaundryRoomState);
                             }
                             break;
 
@@ -470,7 +435,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.washMachineLaundryRoomState == false)
                             {
                                 CoreMechanics.washMachineLaundryRoomState = true;
-                                Debug.Log("Changed washMachine to : " + CoreMechanics.washMachineLaundryRoomState);
                             }
                             break;
                         
@@ -478,7 +442,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.heaterLaundryRoomState == false)
                             {
                                 CoreMechanics.heaterLaundryRoomState = true;
-                                Debug.Log("Changed heater to : " + CoreMechanics.heaterLaundryRoomState);
                             }
                             break;    
                     }
@@ -493,7 +456,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lavaboBathFloor2State == false)
                             {
                                 CoreMechanics.lavaboBathFloor2State = true;
-                                Debug.Log("Changed lavabo to : " + CoreMechanics.lavaboBathFloor2State);
                             }
                             break;
 
@@ -501,7 +463,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.lightBathFloor2State == false)
                             {
                                 CoreMechanics.lightBathFloor2State = true;
-                                Debug.Log("Changed lavabo to : " + CoreMechanics.lightBathFloor2State);
                             }
                             break;
                         
@@ -509,7 +470,6 @@ public class kidBehaviour : MonoBehaviour
                             if(CoreMechanics.bathBathFloor2State == false)
                             {
                                 CoreMechanics.bathBathFloor2State = true;
-                                Debug.Log("Changed bath to : " + CoreMechanics.bathBathFloor2State);
                             }
                             break;    
                     }    
@@ -518,14 +478,12 @@ public class kidBehaviour : MonoBehaviour
                     if(CoreMechanics.lightChildRoomState == false)
                     {
                         CoreMechanics.lightChildRoomState = true;
-                        Debug.Log("Changed light to : " + CoreMechanics.lightChildRoomState);
                     }
                     break;
                 case "Adult_bedroom":
                     if(CoreMechanics.lightAdultRoomState == false)
                     {
                         CoreMechanics.lightAdultRoomState = true;
-                        Debug.Log("Changed light to : " + CoreMechanics.lightAdultRoomState);
                     }
                     break;
                 default:  
@@ -549,7 +507,6 @@ public class kidBehaviour : MonoBehaviour
         // condition to move room 
         if (randomValue > (1-respawnChance))
         {
-            // Debug.Log("Kid changed room");
             if(currentLocation.Equals("1st_floor"))
             {
                 string[] possibleRooms = {"Garage", "Office", "Bathroom_1st", "2nd_floor", "buanderie_chauffage"};
@@ -573,13 +530,11 @@ public class kidBehaviour : MonoBehaviour
             kidRoomHandle.SetCurrentRoom(currentLocation);
 
 
-            Debug.Log("Kid changed room and now in : " + currentLocation);
             sameRoom = currentLocation.Equals(SceneManager.GetActiveScene().name);
 
 
             if(sameRoom)
             {
-                Debug.Log("Kid SPAWN");
                 
                 for(int i = 0; i < wayPoints.Count; i++)
                 {
@@ -609,15 +564,13 @@ public class kidBehaviour : MonoBehaviour
         if (wayPoints.Contains(other.gameObject) == false && other.gameObject.name.Contains("Floor") == false)
         {
             //change index immediately if random object
-            //Debug.Log("Collision with :" + other.gameObject.name);
             ChangeIndex();
-            //Debug.Log("New destination:" + wayPoints[index].gameObject.name);
         }
         if (wayPoints.Contains(other.gameObject)) 
         {
             animator.SetBool("IsWalking", false);
         }
-        //if kid collides with player, kid's speed doubles for '
+        //if kid collides with player, kid's speed doubles
         if (other.gameObject.name.Contains("Male"))
         {
             doubleSpeed = true;
@@ -652,9 +605,7 @@ public class kidBehaviour : MonoBehaviour
         {
             CoreMechanics.kid -= 20f;
         }
-        //Debug.Log("Kid Becomes Real Nice");
         inVision = inSight;
-        // Debug.Log("Is the kid in view :" + playerInSight);
     }
 
     public GameObject GetSpecificWayPoint(string WayPointName)
@@ -670,7 +621,7 @@ public class kidBehaviour : MonoBehaviour
         
         // store specific point closest to the room where kid comes from
         GameObject originWayPoint = currentWaypoints.Find(waypoint => waypoint.name.Contains(kidRoomHandle.GetoldRoom()));
-        // Calculate and store distances for each waypoint compared to orifinWayPoint
+        // Calculate and store distances for each waypoint compared to originWayPoint
         
         List<(float, string)> distances = new List<(float,string)>();
         
