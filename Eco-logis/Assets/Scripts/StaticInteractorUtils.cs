@@ -15,7 +15,11 @@ public static class StaticInteractorUtils
     
     public static bool IsCharacterColliding()
     {
-        Debug.Log("COLISION COUNT: " + collisionCount);
         return collisionCount > 0;
+    }
+    
+    public static void ResetCollisionCount()
+    {
+        collisionCount = 0;
     }
 }
